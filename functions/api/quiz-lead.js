@@ -39,11 +39,40 @@ function answerHtml(answers) {
     .map((item) => {
       const selected = Array.isArray(item.answers) ? item.answers : [];
       const list = selected
-        .map((answer) => `<li>${escapeHtml(answer.text || '')} <em>(${escapeHtml(answer.tag || '')})</em></li>`)
+        .map((answer) => `
+          <li style="margin:8px 0;color:#33413a;line-height:1.5;">
+            ${escapeHtml(answer.text || '')}
+            <span style="color:#718078;">(${escapeHtml(answer.tag || '')})</span>
+          </li>
+        `)
         .join('');
-      return `<h3>Q${escapeHtml(item.question || '')}: ${escapeHtml(item.prompt || '')}</h3><ul>${list}</ul>`;
+      return `
+        <div style="border:1px solid #dfe5dc;border-radius:12px;padding:16px;margin:14px 0;background:#fbfcf8;">
+          <h3 style="margin:0 0 10px;color:#27372f;font-size:16px;line-height:1.35;">
+            Q${escapeHtml(item.question || '')}: ${escapeHtml(item.prompt || '')}
+          </h3>
+          <ul style="padding-left:20px;margin:0;">${list}</ul>
+        </div>
+      `;
     })
     .join('');
+}
+
+function emailShell(preheader, content) {
+  return `
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(preheader)}</div>
+    <div style="margin:0;padding:0;background:#f4f1e8;font-family:Arial,Helvetica,sans-serif;color:#27372f;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f4f1e8;">
+        <tr>
+          <td align="center" style="padding:28px 14px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;max-width:640px;background:#ffffff;border-radius:18px;overflow:hidden;border:1px solid #e1ddcf;">
+              ${content}
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `;
 }
 
 async function sendEmail(env, message) {
@@ -78,6 +107,7 @@ export async function onRequestPost({ request, env }) {
   if (!isEmail(email)) return json({ error: 'Valid email is required' }, 400);
 
   const resultTitle = String(payload.resultTitle || 'Quiz result').trim();
+  const resultBody = String(payload.resultBody || '').trim();
   const productLink = String(payload.productLink || '').trim();
   const productCta = String(payload.productCta || 'View recommended product').trim();
   const resultKey = String(payload.resultKey || '').trim();
@@ -101,36 +131,68 @@ export async function onRequestPost({ request, env }) {
     `Client recipient when ready: ${CLIENT_TO}`,
   ].join('\n');
 
-  const leadHtml = `
-    <h2>New Dr. Garber quiz lead</h2>
-    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-    <p><strong>Result:</strong> ${escapeHtml(resultTitle)}</p>
-    <p><strong>Result key:</strong> ${escapeHtml(resultKey)}</p>
-    <p><strong>Recommended product:</strong> <a href="${escapeHtml(productLink)}">${escapeHtml(productCta)}</a></p>
-    <hr>
-    <h2>Quiz answers</h2>
-    ${answerHtml(payload.answers)}
-    <hr>
-    <p><strong>Current recipient:</strong> ${escapeHtml(recipient)}</p>
-    <p><strong>Client recipient when ready:</strong> ${escapeHtml(CLIENT_TO)}</p>
-  `;
+  const leadHtml = emailShell(`New quiz lead from ${email}`, `
+    <tr>
+      <td style="background:#27372f;padding:28px 30px;color:#ffffff;">
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c7d4bd;margin-bottom:8px;">Dr. Garber Quiz</div>
+        <h1 style="margin:0;font-size:26px;line-height:1.2;font-weight:500;">New quiz lead</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px 30px;">
+        <div style="background:#f7f5ed;border-radius:14px;padding:18px;margin-bottom:22px;">
+          <p style="margin:0 0 8px;color:#5b665f;font-size:13px;text-transform:uppercase;letter-spacing:.08em;">Visitor email</p>
+          <p style="margin:0;font-size:20px;color:#27372f;"><a href="mailto:${escapeHtml(email)}" style="color:#27372f;text-decoration:none;">${escapeHtml(email)}</a></p>
+        </div>
+        <h2 style="margin:0 0 10px;color:#27372f;font-size:20px;line-height:1.3;">${escapeHtml(resultTitle)}</h2>
+        ${resultBody ? `<p style="margin:0 0 18px;color:#526058;line-height:1.6;">${escapeHtml(resultBody)}</p>` : ''}
+        <p style="margin:0 0 18px;color:#526058;line-height:1.6;"><strong>Result key:</strong> ${escapeHtml(resultKey || 'n/a')}</p>
+        <p style="margin:0 0 24px;">
+          <a href="${escapeHtml(productLink)}" style="display:inline-block;background:#9e6f47;color:#ffffff;text-decoration:none;padding:13px 18px;border-radius:8px;font-weight:700;">${escapeHtml(productCta)}</a>
+        </p>
+        <h2 style="margin:26px 0 10px;color:#27372f;font-size:20px;">Quiz answers</h2>
+        ${answerHtml(payload.answers)}
+        <div style="border-top:1px solid #e6e1d4;margin-top:24px;padding-top:18px;color:#69756d;font-size:13px;line-height:1.6;">
+          <p style="margin:0;"><strong>Current internal recipient:</strong> ${escapeHtml(recipient)}</p>
+          <p style="margin:4px 0 0;"><strong>Client recipient when ready:</strong> ${escapeHtml(CLIENT_TO)}</p>
+        </div>
+      </td>
+    </tr>
+  `);
 
   const receiptSubject = `Your Dr. Garber quiz recommendation`;
   const receiptText = [
     `Thank you for taking the Dr. Garber quiz.`,
     ``,
     resultTitle,
+    resultBody,
     ``,
     `Recommended product: ${productCta}`,
     productLink,
   ].join('\n');
 
-  const receiptHtml = `
-    <h2>Thank you for taking the Dr. Garber quiz.</h2>
-    <p><strong>${escapeHtml(resultTitle)}</strong></p>
-    <p>Your recommended next step is:</p>
-    <p><a href="${escapeHtml(productLink)}">${escapeHtml(productCta)}</a></p>
-  `;
+  const receiptHtml = emailShell(resultTitle, `
+    <tr>
+      <td style="background:#27372f;padding:30px;color:#ffffff;text-align:center;">
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c7d4bd;margin-bottom:10px;">Your Dr. Garber recommendation</div>
+        <h1 style="margin:0;font-size:27px;line-height:1.22;font-weight:500;">${escapeHtml(resultTitle)}</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:30px;text-align:left;">
+        <p style="margin:0 0 18px;color:#526058;font-size:16px;line-height:1.65;">Thank you for taking the quiz. Based on your answers, this is the protocol we recommend starting with.</p>
+        ${resultBody ? `<p style="margin:0 0 22px;color:#526058;font-size:16px;line-height:1.65;">${escapeHtml(resultBody)}</p>` : ''}
+        <div style="background:#f7f5ed;border:1px solid #e6e1d4;border-radius:14px;padding:20px;margin:0 0 24px;">
+          <p style="margin:0 0 8px;color:#5b665f;font-size:13px;text-transform:uppercase;letter-spacing:.08em;">Recommended next step</p>
+          <p style="margin:0;color:#27372f;font-size:18px;font-weight:700;">${escapeHtml(productCta)}</p>
+        </div>
+        <p style="margin:0 0 24px;text-align:center;">
+          <a href="${escapeHtml(productLink)}" style="display:inline-block;background:#9e6f47;color:#ffffff;text-decoration:none;padding:15px 22px;border-radius:8px;font-weight:700;">View Recommendation</a>
+        </p>
+        <p style="margin:0;color:#7a847d;font-size:13px;line-height:1.55;text-align:center;">If the button does not open, copy this link into your browser:<br>${escapeHtml(productLink)}</p>
+      </td>
+    </tr>
+  `);
 
   try {
     await sendEmail(env, {
