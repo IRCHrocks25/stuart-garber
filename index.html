@@ -305,6 +305,9 @@ p{margin:0}
 #quizEmail{display:block;width:100%;max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--line);
   border-radius:100px;padding:15px 22px;font-family:inherit;font-size:16px;outline:none;transition:border .3s;text-align:center}
 #quizEmail:focus{border-color:var(--moss)}
+.qemail{margin:24px auto 0;text-align:center}
+.qemail label{display:block;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.qemail small{display:block;color:var(--ink-soft);font-size:14px;margin-top:8px}
 .qnav{display:flex;justify-content:center;align-items:center;gap:12px;min-height:48px;margin-top:30px}
 .quiz-note{text-align:center;font-size:16px;color:var(--moss);margin-top:14px;min-height:1.2em;font-weight:500}
 .quiz-result{margin-top:26px;border-radius:22px;overflow:hidden;background:var(--forest);color:#EDEDE5;
@@ -807,6 +810,11 @@ p{margin:0}
             <div class="opt" data-tag="stress">I want to feel calmer, more focused, and better equipped to handle stress.</div>
           </div>
         </div>
+        <div class="qemail" id="qEmailWrap" hidden>
+          <label for="quizEmail">Where should we send your recommendation?</label>
+          <input id="quizEmail" type="email" name="email" placeholder="Your email address" autocomplete="email">
+          <small>We’ll use this to follow up with your quiz result.</small>
+        </div>
         <div class="qnav">
           <button class="btn btn--ghost" id="qBack" type="button" style="display:none">← Back</button>
           <button class="btn" id="qNext" type="button">Next <span class="arr">→</span></button>
@@ -1040,6 +1048,7 @@ const qBack=document.getElementById('qBack'), qNext=document.getElementById('qNe
 const qNote=document.getElementById('quizNote'), qLabel=document.getElementById('qLabel');
 const qPct=document.getElementById('qPct'), qProgress=document.getElementById('qProgress');
 const quizBox=document.getElementById('quizBox');
+const qEmailWrap=document.getElementById('qEmailWrap'), quizEmail=document.getElementById('quizEmail');
 
 document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{o.classList.toggle('sel');qNote.textContent='';}));
 
@@ -1047,6 +1056,7 @@ function qRender(){
   qSteps.forEach((s,i)=>s.classList.toggle('active',i===qCur));
   qBack.style.display=qCur===0?'none':'inline-flex';
   const isLast=qCur===qTotal-1;
+  qEmailWrap.hidden=!isLast;
   qLabel.textContent='Question '+(qCur+1)+' of '+qTotal;
   const pct=Math.round(((qCur+1)/qTotal)*100);
   qPct.textContent=pct+'%'; qProgress.style.width=pct+'%';
@@ -1054,14 +1064,49 @@ function qRender(){
   qNote.textContent='';
 }
 function qScroll(){ quizBox.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'}); }
+function quizAnswers(){
+  return qSteps.map((step,i)=>({
+    question:i+1,
+    prompt:(step.querySelector('h3')?.textContent||'').trim(),
+    answers:[...step.querySelectorAll('.opt.sel')].map(o=>({
+      text:(o.textContent||'').replace(/^✓\s*/,'').trim(),
+      tag:o.dataset.tag||''
+    }))
+  }));
+}
+function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+async function sendQuizLead(payload){
+  const res=await fetch('/api/quiz-lead',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+  if(!res.ok) throw new Error('quiz lead email failed');
+}
 qBack.addEventListener('click',()=>{ if(qCur>0){qCur--;qRender();qScroll();} });
-qNext.addEventListener('click',()=>{
+qNext.addEventListener('click',async()=>{
   if(qSteps[qCur].querySelectorAll('.opt.sel').length===0){qNote.textContent='Pick at least one that applies to continue.';return;}
   if(qCur<qTotal-1){ qCur++; qRender(); qScroll(); return; }
+  const email=quizEmail.value.trim();
+  if(!validEmail(email)){qNote.textContent='Enter a valid email to see your recommendation.';quizEmail.focus();return;}
   const tally={aging:0,immune:0,stress:0};
   document.querySelectorAll('.opt.sel').forEach(o=>tally[o.dataset.tag]++);
   let win=order[0]; order.forEach(k=>{if(tally[k]>tally[win])win=k;});
   const r=results[win];
+  qNext.disabled=true;
+  qNote.textContent='Preparing your recommendation...';
+  try{
+    await sendQuizLead({
+      email,
+      resultKey:win,
+      resultTitle:r.t,
+      productLink:r.l,
+      productCta:r.cta,
+      answers:quizAnswers()
+    });
+  }catch(err){
+    console.error(err);
+  }
   document.getElementById('resTitle').textContent=r.t;
   document.getElementById('resBody').textContent=r.b;
   const rb=document.getElementById('resBtn'); rb.textContent=r.cta; rb.href=r.l;
