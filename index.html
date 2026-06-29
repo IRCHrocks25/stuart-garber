@@ -1053,14 +1053,14 @@ const qEmailWrap=document.getElementById('qEmailWrap'), quizEmail=document.getEl
 document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{o.classList.toggle('sel');qNote.textContent='';}));
 
 function qRender(){
-  qSteps.forEach((s,i)=>s.classList.toggle('active',i===qCur));
+  const isEmailStep=qCur===qTotal;
+  qSteps.forEach((s,i)=>s.classList.toggle('active',!isEmailStep&&i===qCur));
   qBack.style.display=qCur===0?'none':'inline-flex';
-  const isLast=qCur===qTotal-1;
-  qEmailWrap.hidden=!isLast;
-  qLabel.textContent='Question '+(qCur+1)+' of '+qTotal;
-  const pct=Math.round(((qCur+1)/qTotal)*100);
+  qEmailWrap.hidden=!isEmailStep;
+  qLabel.textContent=isEmailStep?'Your Recommendation':'Question '+(qCur+1)+' of '+qTotal;
+  const pct=isEmailStep?100:Math.round(((qCur+1)/qTotal)*100);
   qPct.textContent=pct+'%'; qProgress.style.width=pct+'%';
-  qNext.innerHTML=isLast?'See My Protocol <span class="arr">→</span>':'Next <span class="arr">→</span>';
+  qNext.innerHTML=isEmailStep?'See My Protocol <span class="arr">→</span>':'Next <span class="arr">→</span>';
   qNote.textContent='';
 }
 function qScroll(){ quizBox.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'}); }
@@ -1085,8 +1085,9 @@ async function sendQuizLead(payload){
 }
 qBack.addEventListener('click',()=>{ if(qCur>0){qCur--;qRender();qScroll();} });
 qNext.addEventListener('click',async()=>{
-  if(qSteps[qCur].querySelectorAll('.opt.sel').length===0){qNote.textContent='Pick at least one that applies to continue.';return;}
-  if(qCur<qTotal-1){ qCur++; qRender(); qScroll(); return; }
+  const isEmailStep=qCur===qTotal;
+  if(!isEmailStep&&qSteps[qCur].querySelectorAll('.opt.sel').length===0){qNote.textContent='Pick at least one that applies to continue.';return;}
+  if(!isEmailStep){ qCur++; qRender(); qScroll(); return; }
   const email=quizEmail.value.trim();
   if(!validEmail(email)){qNote.textContent='Enter a valid email to see your recommendation.';quizEmail.focus();return;}
   const tally={aging:0,immune:0,stress:0};
