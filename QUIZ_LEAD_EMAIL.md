@@ -14,7 +14,7 @@ The Cloudflare Pages Function sends:
 By default, submissions go to:
 
 ```text
-nik@katalyst-crm.com
+jkgramos14@gmail.com
 ```
 
 ## Client Recipient
