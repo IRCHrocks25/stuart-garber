@@ -88,15 +88,17 @@ p{margin:0}
 .menu-btn.open .bars i:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .menu-btn.open .bars i:nth-child(2){opacity:0}
 .menu-btn.open .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-.mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(18,24,17,0);backdrop-filter:blur(0);
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s var(--ease),visibility .4s var(--ease),background .4s var(--ease)}
-.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;background:rgba(16,22,15,.97);backdrop-filter:blur(12px)}
-.mm-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:2px;
-  padding:96px clamp(28px,8vw,52px) 52px}
-.mm-inner a{color:#F4F3EE;font-size:clamp(27px,8.4vw,40px);font-weight:500;letter-spacing:-.02em;line-height:1.1;
-  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);text-decoration:none;
-  opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s}
-.mm-inner a:active{color:var(--sage)}
+.mobile-menu{position:fixed;top:88px;left:clamp(12px,4vw,22px);right:clamp(12px,4vw,22px);z-index:99;
+  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(94,110,84,.18);
+  border-radius:22px;box-shadow:0 22px 60px -34px rgba(22,30,18,.48);backdrop-filter:blur(16px);
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px) scale(.98);transform-origin:top right;
+  transition:opacity .28s var(--ease),visibility .28s var(--ease),transform .28s var(--ease)}
+.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.mm-inner{display:flex;flex-direction:column;justify-content:flex-start;gap:0;padding:10px}
+.mm-inner a{color:var(--ink);font-size:16px;font-weight:600;letter-spacing:0;line-height:1.25;
+  padding:14px 14px;border-bottom:1px solid rgba(35,40,31,.08);border-radius:12px;text-decoration:none;
+  opacity:0;transform:translateY(8px);transition:opacity .34s var(--ease),transform .34s var(--ease),background .2s,color .2s}
+.mm-inner a:hover,.mm-inner a:active{background:rgba(94,110,84,.1);color:var(--forest)}
 .mobile-menu.open .mm-inner a{opacity:1;transform:none}
 .mobile-menu.open .mm-inner a:nth-child(1){transition-delay:.08s}
 .mobile-menu.open .mm-inner a:nth-child(2){transition-delay:.13s}
@@ -104,8 +106,9 @@ p{margin:0}
 .mobile-menu.open .mm-inner a:nth-child(4){transition-delay:.23s}
 .mobile-menu.open .mm-inner a:nth-child(5){transition-delay:.28s}
 .mobile-menu.open .mm-inner a:nth-child(6){transition-delay:.33s}
-.mm-inner .mm-cta{margin-top:26px;border-bottom:0;background:var(--purple);color:#fff;border-radius:100px;
-  text-align:center;font-size:18px;font-weight:600;padding:17px 22px;letter-spacing:0}
+.mm-inner .mm-cta{margin-top:10px;border-bottom:0;background:var(--purple);color:#fff;border-radius:100px;
+  text-align:center;font-size:15px;font-weight:700;padding:14px 18px;letter-spacing:0}
+.mm-inner .mm-cta:hover,.mm-inner .mm-cta:active{background:var(--purple-d);color:#fff}
 .mobile-menu.open .mm-inner .mm-cta{transition-delay:.4s}
 
 /* hero */
@@ -373,6 +376,13 @@ p{margin:0}
 /* responsive */
 @media(max-width:980px){
   .nav-links{display:none}.menu-btn{display:inline-flex}.nav-cta{display:none}
+  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(94,110,84,.14);backdrop-filter:blur(14px);
+    box-shadow:0 14px 34px -26px rgba(34,39,30,.5)}
+  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(94,110,84,.22);
+    box-shadow:0 18px 46px -30px rgba(34,39,30,.58)}
+  .menu-btn{background:rgba(94,110,84,.1);border-color:rgba(94,110,84,.2)}
+  .mobile-menu{top:126px;max-height:calc(100dvh - 146px)}
+  .nav.top0 + .mobile-menu{top:88px;max-height:calc(100dvh - 108px)}
   .sci-split{grid-template-columns:1fr;gap:28px}.proto-grid{grid-template-columns:1fr}
   .meet-card{grid-template-columns:1fr}.meet-body h2{white-space:normal}
   .shift-grid{grid-template-columns:1fr;grid-template-rows:auto;grid-template-areas:"head" "lead" "media" "rest";row-gap:26px}
@@ -386,6 +396,21 @@ p{margin:0}
 @media(max-width:560px){
   .foot-top{grid-template-columns:1fr}.anews .row{gap:10px;font-size:16px}
   .nav{top:0}.anews{display:none}.hero{padding:92px 0 16px}.brand .logo{height:32px}
+  .nav-inner{margin:10px 12px;padding:9px 12px;gap:12px}
+  .mobile-menu{top:76px;left:12px;right:12px;max-height:calc(100dvh - 88px);border-radius:18px}
+  .mm-inner{padding:8px}
+  .mm-inner a{font-size:15px;padding:13px 12px}
+  .shift-grid{row-gap:10px}
+  .shift-body{gap:12px}
+  .shift-rest{gap:10px}
+  .meet-card,.sci-split,.trust-list{gap:12px}
+  .meet-body{gap:12px}
+  .sec-head{margin-bottom:16px}
+  .shift,.meet,.science,.protocols,.quiz,.reviews{padding-top:28px;padding-bottom:28px}
+  .gallery{padding-top:4px;padding-bottom:24px}
+  .offer{padding-top:18px;padding-bottom:18px}
+  .perks{padding-top:4px;padding-bottom:28px}
+  .finalcta{padding-top:28px;padding-bottom:44px}
   .hero-card{display:flex;align-items:flex-start;min-height:104vh;background:var(--forest)}
   .hero-photo{position:absolute;inset:0;height:auto;min-height:0;background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_2_ho4pgg.png");background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#23281F}
   .hero-card::after{display:block;background:linear-gradient(180deg,rgba(8,18,12,.9) 0%,rgba(8,18,12,.72) 30%,rgba(8,18,12,.5) 55%,rgba(8,18,12,.18) 80%,rgba(8,18,12,0) 100%)}
@@ -962,10 +987,10 @@ const menuBtn=document.getElementById('menuBtn'), mobileMenu=document.getElement
 function setMenu(open){
   menuBtn.classList.toggle('open',open);
   mobileMenu.classList.toggle('open',open);
+  nav.classList.toggle('menu-open',open);
   menuBtn.setAttribute('aria-expanded',open?'true':'false');
   menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu');
   mobileMenu.setAttribute('aria-hidden',open?'false':'true');
-  document.body.style.overflow=open?'hidden':'';
 }
 menuBtn.addEventListener('click',()=>setMenu(!mobileMenu.classList.contains('open')));
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
