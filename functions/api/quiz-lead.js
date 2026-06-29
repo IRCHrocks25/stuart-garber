@@ -1,6 +1,6 @@
 const DEFAULT_TO = 'industryrockstarteam@gmail.com';
 const CLIENT_TO = 'office@drgarbers.com';
-const DEFAULT_FROM = 'Dr. Garber Quiz <onboarding@resend.dev>';
+const DEFAULT_FROM = 'Dr. Garber Quiz <drgarber@katek-ai.com>';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {

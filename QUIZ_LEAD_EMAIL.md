@@ -35,5 +35,5 @@ QUIZ_LEAD_FROM=<verified sender, optional>
 If `QUIZ_LEAD_FROM` is not set, the function uses:
 
 ```text
-Dr. Garber Quiz <onboarding@resend.dev>
+Dr. Garber Quiz <drgarber@katek-ai.com>
 ```
