@@ -1,4 +1,4 @@
-const DEFAULT_TO = 'jkgramos14@gmail.com';
+const DEFAULT_TO = 'industryrockstarteam@gmail.com';
 const CLIENT_TO = 'office@drgarbers.com';
 const DEFAULT_FROM = 'Dr. Garber Quiz <onboarding@resend.dev>';
 
