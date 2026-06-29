@@ -2,40 +2,37 @@
 
 The quiz posts completed submissions to `/api/quiz-lead`.
 
-The Cloudflare Pages Function sends an internal lead email with:
+The Cloudflare Pages Function sends:
 
-- visitor email
-- quiz answers
-- recommended protocol
-- recommended product link
+- one internal lead email to `QUIZ_LEAD_TO`
+- one visitor receipt email to the quiz taker's email address
 
-It also sends a separate receipt email to the visitor with their recommendation and product link.
-
-## Testing Recipient
-
-By default, submissions go to:
+## Required Cloudflare Env Vars
 
 ```text
-industryrockstarteam@gmail.com
+RESEND_API_KEY=<resend api key>
+QUIZ_LEAD_FROM=Dr. Garber Quiz <drgarber@katek-ai.com>
+QUIZ_LEAD_TO=industryrockstarteam@gmail.com
 ```
 
-## Client Recipient
-
-When testing is approved, set this Cloudflare Pages environment variable:
+For client handoff, change only:
 
 ```text
 QUIZ_LEAD_TO=office@drgarbers.com
 ```
 
-## Required Email Env Vars
+## Optional Env Var
+
+Use `QUIZ_LEAD_BCC` when testing needs a copy while the client is the main recipient.
 
 ```text
-RESEND_API_KEY=<resend api key>
-QUIZ_LEAD_FROM=<verified sender, optional>
+QUIZ_LEAD_BCC=industryrockstarteam@gmail.com
 ```
 
-If `QUIZ_LEAD_FROM` is not set, the function uses:
+Multiple internal recipients can be comma-separated:
 
 ```text
-Dr. Garber Quiz <drgarber@katek-ai.com>
+QUIZ_LEAD_TO=office@drgarbers.com,nik@katalyst-crm.com
 ```
+
+After changing any Cloudflare Pages env var, redeploy the Pages project.

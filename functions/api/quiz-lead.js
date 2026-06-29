@@ -1,7 +1,3 @@
-const DEFAULT_TO = 'industryrockstarteam@gmail.com';
-const CLIENT_TO = 'office@drgarbers.com';
-const DEFAULT_FROM = 'Dr. Garber Quiz <drgarber@katek-ai.com>';
-
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -20,6 +16,13 @@ function escapeHtml(value) {
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function splitEmails(value) {
+  return String(value || '')
+    .split(',')
+    .map((email) => email.trim())
+    .filter(Boolean);
 }
 
 function answerLines(answers) {
@@ -95,6 +98,9 @@ export async function onRequestPost({ request, env }) {
   if (!env.RESEND_API_KEY) {
     return json({ error: 'Email service is not configured' }, 500);
   }
+  if (!env.QUIZ_LEAD_TO || !env.QUIZ_LEAD_FROM) {
+    return json({ error: 'Email recipients are not configured' }, 500);
+  }
 
   let payload;
   try {
@@ -111,8 +117,15 @@ export async function onRequestPost({ request, env }) {
   const productLink = String(payload.productLink || '').trim();
   const productCta = String(payload.productCta || 'View recommended product').trim();
   const resultKey = String(payload.resultKey || '').trim();
-  const recipient = env.QUIZ_LEAD_TO || DEFAULT_TO;
-  const sender = env.QUIZ_LEAD_FROM || DEFAULT_FROM;
+  const recipients = splitEmails(env.QUIZ_LEAD_TO);
+  const bcc = splitEmails(env.QUIZ_LEAD_BCC);
+  const sender = env.QUIZ_LEAD_FROM;
+  if (!recipients.length || recipients.some((recipient) => !isEmail(recipient))) {
+    return json({ error: 'Internal email recipient is invalid' }, 500);
+  }
+  if (bcc.some((recipient) => !isEmail(recipient))) {
+    return json({ error: 'BCC email recipient is invalid' }, 500);
+  }
 
   const leadSubject = `Dr. Garber quiz lead: ${email}`;
   const leadText = [
@@ -126,9 +139,6 @@ export async function onRequestPost({ request, env }) {
     ``,
     `Quiz answers:`,
     answerLines(payload.answers),
-    ``,
-    `Testing recipient: ${DEFAULT_TO}`,
-    `Client recipient when ready: ${CLIENT_TO}`,
   ].join('\n');
 
   const leadHtml = emailShell(`New quiz lead from ${email}`, `
@@ -153,8 +163,8 @@ export async function onRequestPost({ request, env }) {
         <h2 style="margin:26px 0 10px;color:#27372f;font-size:20px;">Quiz answers</h2>
         ${answerHtml(payload.answers)}
         <div style="border-top:1px solid #e6e1d4;margin-top:24px;padding-top:18px;color:#69756d;font-size:13px;line-height:1.6;">
-          <p style="margin:0;"><strong>Current internal recipient:</strong> ${escapeHtml(recipient)}</p>
-          <p style="margin:4px 0 0;"><strong>Client recipient when ready:</strong> ${escapeHtml(CLIENT_TO)}</p>
+          <p style="margin:0;"><strong>Internal recipient:</strong> ${escapeHtml(recipients.join(', '))}</p>
+          ${bcc.length ? `<p style="margin:4px 0 0;"><strong>BCC:</strong> ${escapeHtml(bcc.join(', '))}</p>` : ''}
         </div>
       </td>
     </tr>
@@ -197,7 +207,8 @@ export async function onRequestPost({ request, env }) {
   try {
     await sendEmail(env, {
       from: sender,
-      to: [recipient],
+      to: recipients,
+      ...(bcc.length ? { bcc } : {}),
       reply_to: email,
       subject: leadSubject,
       text: leadText,
@@ -207,7 +218,7 @@ export async function onRequestPost({ request, env }) {
     await sendEmail(env, {
       from: sender,
       to: [email],
-      reply_to: recipient,
+      reply_to: recipients[0],
       subject: receiptSubject,
       text: receiptText,
       html: receiptHtml,
