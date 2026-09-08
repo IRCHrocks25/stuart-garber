@@ -6,16 +6,16 @@
 <title>Meet Dr. Stuart Garber | Dr. Garber's Bioformulas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F6F3; --paper:#FFFFFF; --paper-2:#EDEDE8;
-  --ink:#23281F; --ink-soft:#5B635A;
-  --forest:#3A1360; --forest-2:#4A1877;
-  --sage:#EBE2F5; --moss:#5B1F91; --olive:#6E4BA6;
-  --clay:#5B1F91; --stone:#C7C7BF; --mist:#E3E3DC;
-  --ice:#EBE2F5; --rose:#F0E9F8; --indigo:#4A1877; --indigo-2:#5B1F91;
-  --purple:#5B1F91; --purple-d:#4A1877; --accent:#F6C324;
+  --ink:#23281F; --ink-soft:#5C5766;
+  --forest:#3B2C57; --forest-2:#4A3A69;
+  --sage:#DED4F0; --moss:#6A4C93; --olive:#7C63A5;
+  --clay:#6A4C93; --stone:#C7C7BF; --mist:#E3E3DC;
+  --ice:#DED4F0; --rose:#EDE6F7; --indigo:#4A3A69; --indigo-2:#5B4680;
+  --purple:#6A4C93; --purple-d:#573D7B;
   --line:rgba(35,40,31,.12); --line-soft:rgba(35,40,31,.07);
   --shadow:0 1px 2px rgba(34,39,30,.04),0 18px 50px -28px rgba(34,39,30,.30);
   --r:18px; --maxw:1560px; --ease:cubic-bezier(.2,.7,.2,1);
@@ -50,11 +50,11 @@ p{margin:0}
   background:var(--moss);transition:width .1s linear}
 
 /* announcement */
-.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#E9E3F3;
+.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#EAE4F3;
   font-size:16px;letter-spacing:.02em;transition:transform .45s var(--ease)}
 .anews.hide{transform:translateY(-100%)}
 .anews .row{display:flex;gap:26px;justify-content:center;align-items:center;flex-wrap:wrap;padding:9px 16px;text-align:center}
-.anews b{color:#EBE2F5;font-weight:600}
+.anews b{color:#DED4F0;font-weight:600}
 .anews .sep{opacity:.4}
 
 /* nav */
@@ -62,10 +62,9 @@ p{margin:0}
 .nav.top0{top:0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;
   margin:12px auto;max-width:var(--maxw);padding:10px 18px;border-radius:100px;
-  background:#FFFFFF;border:1px solid var(--line-soft);
-  box-shadow:0 10px 30px -22px rgba(34,39,30,.35);transition:all .45s var(--ease)}
-.nav.scrolled .nav-inner{background:#FFFFFF;border-color:var(--line-soft);
-  box-shadow:0 12px 34px -20px rgba(34,39,30,.42)}
+  background:rgba(235,234,228,.5);border:1px solid transparent;backdrop-filter:blur(0);transition:all .45s var(--ease)}
+.nav.scrolled .nav-inner{background:rgba(248,247,242,.82);border-color:var(--line-soft);
+  backdrop-filter:blur(16px);box-shadow:0 10px 30px -20px rgba(34,39,30,.4)}
 .brand{display:inline-flex;align-items:center}
 .brand .logo{height:40px;width:auto;display:block;transition:height .45s var(--ease)}
 .nav.scrolled .brand .logo{height:34px}
@@ -77,20 +76,6 @@ p{margin:0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1.5px;width:0;background:var(--moss);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{width:100%}
-.nav-drop{position:relative;display:inline-flex;align-items:center}
-.nav-drop>.nav-drop-btn{font:inherit;color:var(--ink-soft);background:none;border:0;cursor:pointer;padding:0;
-  display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:500;transition:color .3s}
-.nav-drop>.nav-drop-btn:hover{color:var(--ink)}
-.nav-drop .caret{width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
-  transform:translateY(-2px) rotate(45deg);transition:transform .3s}
-.nav-drop:hover .caret,.nav-drop:focus-within .caret{transform:translateY(0) rotate(225deg)}
-.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);
-  min-width:214px;background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;
-  box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:120}
-.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.nav-drop-menu a{display:block;padding:10px 12px;border-radius:9px;font-size:15px;color:var(--ink-soft);white-space:nowrap;transition:background .2s,color .2s}
-.nav-drop-menu a::after{display:none}
-.nav-drop-menu a:hover{background:var(--paper-2);color:var(--ink)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none;width:46px;height:42px;align-items:center;justify-content:center;
   background:rgba(255,255,255,.5);border:1px solid var(--line-soft);border-radius:100px;cursor:pointer;padding:0;z-index:121;position:relative}
@@ -104,8 +89,8 @@ p{margin:0}
 .menu-btn.open .bars i:nth-child(2){opacity:0}
 .menu-btn.open .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .mobile-menu{position:fixed;top:88px;left:clamp(12px,4vw,22px);right:clamp(12px,4vw,22px);z-index:99;
-  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(94,110,84,.18);
-  border-radius:22px;box-shadow:0 22px 60px -34px rgba(22,30,18,.48);backdrop-filter:blur(16px);
+  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(106,76,147,.18);
+  border-radius:22px;box-shadow:0 22px 60px -34px rgba(26,16,40,.48);backdrop-filter:blur(16px);
   opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px) scale(.98);transform-origin:top right;
   transition:opacity .28s var(--ease),visibility .28s var(--ease),transform .28s var(--ease)}
 .mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
@@ -113,7 +98,7 @@ p{margin:0}
 .mm-inner a{color:var(--ink);font-size:16px;font-weight:600;letter-spacing:0;line-height:1.25;
   padding:14px 14px;border-bottom:1px solid rgba(35,40,31,.08);border-radius:12px;text-decoration:none;
   opacity:0;transform:translateY(8px);transition:opacity .34s var(--ease),transform .34s var(--ease),background .2s,color .2s}
-.mm-inner a:hover,.mm-inner a:active{background:rgba(94,110,84,.1);color:var(--forest)}
+.mm-inner a:hover,.mm-inner a:active{background:rgba(106,76,147,.1);color:var(--forest)}
 .mobile-menu.open .mm-inner a{opacity:1;transform:none}
 .mobile-menu.open .mm-inner a:nth-child(1){transition-delay:.08s}
 .mobile-menu.open .mm-inner a:nth-child(2){transition-delay:.13s}
@@ -131,12 +116,12 @@ p{margin:0}
 .hero{padding:128px 0 26px}
 .hero>.wrap{max-width:1840px;padding-left:clamp(10px,1.1vw,16px);padding-right:clamp(10px,1.1vw,16px)}
 .hero-card{position:relative;border-radius:26px;overflow:hidden;min-height:84vh;display:flex;align-items:flex-end;
-  background:#3A1360}
+  background:#3B2C57}
 .hero-photo{position:absolute;inset:0;background-size:cover;background-position:right center;
   background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_1_gszne7.png");
   opacity:1}
 .hero-card::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(8,22,15,.88) 0%,rgba(8,22,15,.62) 28%,rgba(8,22,15,.22) 52%,rgba(8,22,15,0) 72%)}
+  background:linear-gradient(90deg,rgba(16,8,26,.88) 0%,rgba(16,8,26,.62) 28%,rgba(16,8,26,.22) 52%,rgba(16,8,26,0) 72%)}
 .hero-noise{position:absolute;inset:0;opacity:.45;mix-blend-mode:overlay;pointer-events:none}
 .hero-kicker{display:inline-flex;align-items:center;background:rgba(248,247,242,.14);
   backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:8px 16px;
@@ -151,7 +136,7 @@ p{margin:0}
 .hero-card.in h1 .ln:nth-child(2) i{transition-delay:.26s}
 .hero-card.in h1 .ln:nth-child(3) i{transition-delay:.40s}
 .hero-card.in h1 .ln i{transform:translateY(0)}
-.hero h1 .accent{color:#EBE2F5}
+.hero h1 .accent{color:#DED4F0}
 .hero-sub{margin-top:18px;font-size:clamp(19px,1.9vw,22px);max-width:600px;color:rgba(244,243,238,.9);
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .5s}
 .hero-card.in .hero-sub{opacity:1;transform:none}
@@ -159,7 +144,7 @@ p{margin:0}
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .6s}
 .hero-card.in .hero-ticks{opacity:1;transform:none}
 .hero-ticks li{list-style:none;display:flex;align-items:flex-start;gap:8px;font-size:16px;line-height:1.4;color:rgba(244,243,238,.92)}
-.hero-ticks .ck{color:#EBE2F5;flex:none}
+.hero-ticks .ck{color:#DED4F0;flex:none}
 .hero-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .72s}
 .hero-card.in .hero-cta{opacity:1;transform:none}
 .hero-cta .btn{background:#F4F3EE;color:var(--ink);border-color:transparent}
@@ -174,36 +159,32 @@ p{margin:0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:30px}
 .sec-head h2{font-size:clamp(26px,3.6vw,42px);max-width:620px}
 .sec-head .lede{max-width:330px;color:var(--ink-soft);font-size:19px;line-height:1.55}
-/* journey timeline â horizontal scrollable */
+/* journey timeline */
 .journey{padding:78px 0;background:var(--paper-2)}
-.htl-wrap{position:relative;margin-top:40px;overflow-x:auto;overflow-y:hidden;padding:0 0 20px;
-  scrollbar-width:thin;scrollbar-color:var(--purple) transparent;scroll-snap-type:x proximity}
-.htl-wrap::-webkit-scrollbar{height:8px}
-.htl-wrap::-webkit-scrollbar-thumb{background:var(--purple);border-radius:6px}
-.htl-wrap::-webkit-scrollbar-track{background:var(--line-soft);border-radius:6px}
-.htl-track{position:relative;display:flex;align-items:stretch;gap:clamp(16px,1.8vw,26px);
-  width:max-content;padding:0 clamp(16px,4vw,44px)}
-/* the horizontal rail passing through every node */
-.htl-track::before{content:"";position:absolute;left:0;right:0;top:47px;height:2px;background:var(--line);z-index:0}
-.htl-item{flex:0 0 clamp(270px,25vw,316px);position:relative;display:flex;flex-direction:column;align-items:center;
-  scroll-snap-align:start;text-align:center}
-.htl-year{height:28px;line-height:28px;font-size:clamp(18px,1.7vw,21px);font-weight:700;letter-spacing:.02em;
-  color:var(--purple);margin-bottom:12px}
-.htl-node{width:15px;height:15px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 4px var(--paper-2);
-  position:relative;z-index:1;flex:0 0 auto}
-.htl-card{position:relative;margin-top:22px;background:var(--paper);border:1px solid var(--line-soft);
-  border-radius:16px;padding:0 0 24px;width:100%;text-align:left;box-shadow:var(--shadow);
-  flex:1 1 auto;overflow:hidden}
-.htl-card::before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
-  width:0;height:0;border:9px solid transparent;border-top:0;border-bottom-color:var(--paper);z-index:2}
-.htl-photos{display:flex;gap:2px;height:170px;margin-bottom:16px;background:var(--paper-2)}
-.htl-photo{flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:cover;display:block}
-.htl-title{font-size:15px;font-weight:400;line-height:1.58;letter-spacing:0;color:var(--ink);margin:0;padding:0 22px 4px}
-.htl-card p{margin:0;color:var(--ink-soft);font-size:14px;line-height:1.6;padding:0 22px}
-.htl-card:not(:has(.htl-photos)) .htl-title{padding-top:22px}
-.tl-closer{max-width:920px;margin:52px auto 0;padding-left:0;text-align:center}
-.tl-closer p{margin:0 auto;font-size:clamp(21px,2.5vw,28px);font-style:italic;color:var(--ink);line-height:1.42;max-width:62ch}
-.tl-closer .btn{margin-top:26px}
+.tl{max-width:1000px;margin:38px auto 0;position:relative}
+.tl::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-left:clamp(22px,3.4vw,40px);border-bottom:1px solid var(--line-soft)}
+.tl-item:last-child{border-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-4px;top:32px;width:9px;height:9px;border-radius:50%;
+  background:var(--stone);border:2px solid var(--paper-2);transition:background .35s var(--ease),transform .35s var(--ease)}
+.tl-item.open::before,.tl-item:hover::before{background:var(--purple);transform:scale(1.25)}
+.tl-head{width:100%;background:none;border:0;padding:22px 44px 22px 0;text-align:left;cursor:pointer;
+  font-family:inherit;color:var(--ink);display:block;position:relative}
+.tl-year{display:block;font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--moss);margin-bottom:7px}
+.tl-title{display:block;font-size:clamp(18px,1.9vw,22px);font-weight:500;letter-spacing:-.02em;line-height:1.35;transition:color .3s}
+.tl-head:hover .tl-title,.tl-item.open .tl-title{color:var(--purple)}
+.tl-ico{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:26px;height:26px;flex:0 0 26px}
+.tl-ico::before,.tl-ico::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink-soft);border-radius:2px;
+  transform:translate(-50%,-50%);transition:transform .4s var(--ease),opacity .3s}
+.tl-ico::before{width:13px;height:1.5px}
+.tl-ico::after{width:1.5px;height:13px}
+.tl-item.open .tl-ico::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.tl-panel{overflow:hidden;max-height:0;transition:max-height .55s var(--ease)}
+.tl-panel p{margin:0 0 26px;padding-right:clamp(0px,4vw,60px);color:var(--ink-soft);
+  font-size:clamp(19px,1.75vw,21px);line-height:1.65}
+.tl-closer{max-width:1000px;margin:46px auto 0;padding-left:clamp(22px,3.4vw,40px)}
+.tl-closer p{margin:0;font-size:clamp(21px,2.5vw,27px);font-style:italic;color:var(--ink);line-height:1.4;max-width:44ch}
+.tl-closer .btn{margin-top:24px}
 .sec-head--center{flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .sec-head--center h2{max-width:none}
 .sec-head--center .lede{max-width:620px}
@@ -241,7 +222,7 @@ p{margin:0}
 .meet-photo{position:relative}
 .meet-photo .meet-img{display:block;width:100%;height:auto;border-radius:20px}
 .meet-photo::before{content:"";position:absolute;inset:0;background:rgba(35,40,31,.08);border-radius:20px}
-.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(20,24,17,.46);backdrop-filter:blur(8px);
+.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(24,15,36,.46);backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 16px;font-size:16px;color:#EDEDE5}
 .meet-photo .cap b{display:block;font-size:16px;margin-bottom:2px}
 .meet-body{padding:0;display:flex;flex-direction:column;justify-content:center;gap:20px}
@@ -282,18 +263,18 @@ p{margin:0}
 .tri .ic svg{width:27px;height:27px}
 .tri h3{font-size:20px;font-weight:500;letter-spacing:-.02em;align-self:center}
 .tri p{font-size:19px;color:var(--ink-soft);line-height:1.5}
-.ic-gem{background:#3A1360}
-.ic-lith{background:#4A1877}
-.ic-org{background:#5B1F91}
-.trust-list{background:var(--forest);color:#E9E3F3;border-radius:22px;padding:clamp(26px,4vw,48px);
+.ic-gem{background:#3B2C57}
+.ic-lith{background:#4A3A69}
+.ic-org{background:#5B4680}
+.trust-list{background:var(--forest);color:#EAE4F3;border-radius:22px;padding:clamp(26px,4vw,48px);
   display:grid;grid-template-columns:0.88fr 1.12fr;gap:clamp(28px,4vw,48px);align-items:stretch}
 .trust-list h3{font-size:clamp(25px,3.2vw,38px);font-weight:500;color:#fff;margin-bottom:26px;max-width:22ch;line-height:1.12;letter-spacing:-.02em}
 .trust-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(231,232,221,.92)}
-.trust-grid .ck{color:#EBE2F5;flex:none;margin-top:2px}
+.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(234,228,243,.92)}
+.trust-grid .ck{color:#DED4F0;flex:none;margin-top:2px}
 .trust-media{position:relative;align-self:stretch;border-radius:16px;overflow:hidden;min-height:340px}
 .trust-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(231,232,221,.16);
+.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(234,228,243,.16);
   font-style:italic;font-size:clamp(19px,2.1vw,24px);color:#fff}
 
 /* protocols */
@@ -303,15 +284,15 @@ p{margin:0}
   transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .proto:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
 .proto .top{position:relative;padding:0;color:#F4F3EE;overflow:hidden;aspect-ratio:1/1;display:flex;align-items:flex-end}
-.proto .top.t-age{background:#3A1360}
-.proto .top.t-imm{background:#4A1877}
-.proto .top.t-str{background:#5B1F91}
+.proto .top.t-age{background:#3B2C57}
+.proto .top.t-imm{background:#4A3A69}
+.proto .top.t-str{background:#5B4680}
 .proto .top .top-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,22,15,0) 36%,rgba(8,22,15,.4) 62%,rgba(8,22,15,.92) 100%)}
+.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,8,26,0) 36%,rgba(16,8,26,.4) 62%,rgba(16,8,26,.92) 100%)}
 .proto .top-meta{position:relative;z-index:2;width:100%;padding:22px 24px}
 .proto .top .kick{font-size:16px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
 .proto .top h3{font-size:23px;font-weight:500;margin-top:6px;letter-spacing:-.02em}
-.proto .top .tag{margin-top:12px;background:rgba(20,24,17,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
+.proto .top .tag{margin-top:12px;background:rgba(24,15,36,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
 .proto .mid{padding:22px 24px;flex:1;display:flex;flex-direction:column;gap:14px}
 .proto .desc{font-size:19px;color:var(--ink-soft);line-height:1.55}
 .proto .inside{display:flex;flex-direction:column;gap:11px}
@@ -347,7 +328,7 @@ p{margin:0}
   transition:all .25s var(--ease);position:relative;user-select:none}
 .opt:hover{border-color:var(--olive);color:var(--ink)}
 .opt.sel{background:var(--forest);border-color:var(--forest);color:#F4F3EE}
-.opt.sel::before{content:"â ";color:#EBE2F5}
+.opt.sel::before{content:"\2713  ";color:#DED4F0}
 #quizEmail{display:block;width:100%;max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--line);
   border-radius:100px;padding:15px 22px;font-family:inherit;font-size:16px;outline:none;transition:border .3s;text-align:center}
 #quizEmail:focus{border-color:var(--moss)}
@@ -366,7 +347,7 @@ p{margin:0}
 .quiz-result p{color:rgba(237,237,229,.85);font-size:16px;max-width:48ch;margin:0 0 22px;line-height:1.6}
 .qr-media{position:absolute;inset:0;z-index:0}
 .qr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(22,30,24,.84),rgba(22,30,24,.5) 42%,rgba(22,30,24,.1) 72%,rgba(22,30,24,0))}
+.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(26,16,40,.84),rgba(26,16,40,.5) 42%,rgba(26,16,40,.1) 72%,rgba(26,16,40,0))}
 
 /* reviews */
 .reviews{padding:60px 0;overflow:hidden}
@@ -386,8 +367,8 @@ p{margin:0}
 /* offer */
 .offer{padding:30px 0 26px}
 .offer-card{position:relative;border-radius:26px;overflow:hidden;color:#F4F3EE;
-  background-color:#1E0B33;
-  background-image:linear-gradient(90deg,rgba(24,18,34,.9),rgba(24,18,34,.55) 58%,rgba(24,18,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
+  background-color:#221733;
+  background-image:linear-gradient(90deg,rgba(22,14,34,.9),rgba(22,14,34,.55) 58%,rgba(22,14,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
   background-size:cover;background-position:center;background-repeat:no-repeat;
   padding:clamp(36px,5.4vw,76px);text-align:left}
 .offer-card h2{font-size:clamp(25px,3.6vw,40px);font-weight:500;max-width:22ch;margin:0}
@@ -408,7 +389,7 @@ p{margin:0}
 .finalcta .row{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* footer */
-.footer{background:var(--forest);color:#D8D2E6;padding:60px 0 28px}
+.footer{background:var(--forest);color:#D9DAD0;padding:60px 0 28px}
 .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(217,218,208,.14)}
 .foot-brand b{font-size:24px;font-weight:700;color:#F4F3EE;letter-spacing:-.03em}
 .foot-logo{height:40px;width:auto;display:block;margin-bottom:4px;filter:brightness(0) invert(1);opacity:.92}
@@ -416,7 +397,7 @@ p{margin:0}
 .foot-brand p{font-size:19px;color:rgba(217,218,208,.6);margin-top:12px;max-width:34ch;line-height:1.6}
 .foot-brand .hwh{font-style:italic;font-size:18px;color:var(--sage);margin-top:14px}
 .foot-col h4{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:rgba(217,218,208,.5);margin:0 0 14px}
-.foot-col a{display:block;font-size:16px;color:#D8D2E6;padding:5px 0;transition:color .3s}
+.foot-col a{display:block;font-size:16px;color:#D9DAD0;padding:5px 0;transition:color .3s}
 .foot-col a:hover{color:var(--sage)}
 .disclaimer{font-size:16px;color:rgba(217,218,208,.5);line-height:1.6;max-width:80ch;margin:26px 0 0}
 .foot-fine{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:16px;color:rgba(217,218,208,.5);
@@ -425,11 +406,11 @@ p{margin:0}
 /* responsive */
 @media(max-width:980px){
   .nav-links{display:none}.menu-btn{display:inline-flex}.nav-cta{display:none}
-  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(94,110,84,.14);backdrop-filter:blur(14px);
+  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(106,76,147,.14);backdrop-filter:blur(14px);
     box-shadow:0 14px 34px -26px rgba(34,39,30,.5)}
-  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(94,110,84,.22);
+  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(106,76,147,.22);
     box-shadow:0 18px 46px -30px rgba(34,39,30,.58)}
-  .menu-btn{background:rgba(94,110,84,.1);border-color:rgba(94,110,84,.2)}
+  .menu-btn{background:rgba(106,76,147,.1);border-color:rgba(106,76,147,.2)}
   .mobile-menu{top:126px;max-height:calc(100dvh - 146px)}
   .nav.top0 + .mobile-menu{top:88px;max-height:calc(100dvh - 108px)}
   .sci-split{grid-template-columns:1fr;gap:28px}.proto-grid{grid-template-columns:1fr}
@@ -462,7 +443,7 @@ p{margin:0}
   .finalcta{padding-top:28px;padding-bottom:44px}
   .hero-card{display:flex;align-items:flex-start;min-height:104vh;background:var(--forest)}
   .hero-photo{position:absolute;inset:0;height:auto;min-height:0;background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_2_ho4pgg.png");background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#23281F}
-  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(8,18,12,.9) 0%,rgba(8,18,12,.72) 30%,rgba(8,18,12,.5) 55%,rgba(8,18,12,.18) 80%,rgba(8,18,12,0) 100%)}
+  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(14,8,24,.9) 0%,rgba(14,8,24,.72) 30%,rgba(14,8,24,.5) 55%,rgba(14,8,24,.18) 80%,rgba(14,8,24,0) 100%)}
   .hero-content{padding:clamp(18px,5vw,26px) clamp(15px,4.2vw,20px) clamp(30px,8vw,44px);max-width:none}
   .hero h1{font-size:clamp(22px,6.3vw,28px)}
   .hero h1 .ln{display:inline;overflow:visible;padding:0}
@@ -471,7 +452,7 @@ p{margin:0}
   .hero-ticks{grid-template-columns:1fr}
   .trustbar-grid{grid-template-columns:1fr}
   .hero-kicker{white-space:normal;letter-spacing:.04em}
-  .offer-card{background-image:linear-gradient(180deg,rgba(24,18,34,.93) 0%,rgba(24,18,34,.8) 32%,rgba(24,18,34,.45) 58%,rgba(24,18,34,.12) 82%,rgba(24,18,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#1E0B33;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
+  .offer-card{background-image:linear-gradient(180deg,rgba(22,14,34,.93) 0%,rgba(22,14,34,.8) 32%,rgba(22,14,34,.45) 58%,rgba(22,14,34,.12) 82%,rgba(22,14,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#221733;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
   .offer-card::after{display:none}
   .qr-grid{grid-template-columns:1fr;display:grid;min-height:0;align-items:stretch}
   .qr-media{position:static;inset:auto;z-index:auto;min-height:0;order:-1}
@@ -488,21 +469,13 @@ p{margin:0}
 }
 
 /* ============ ABOUT PAGE ============ */
-.ab-hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;
-  padding:calc(108px + 30px) 0 70px;
-  background-image:url('https://cdn.katalyst-crm.com/t1/DSC_0695%202.png');
-  background-size:cover;background-position:center;background-repeat:no-repeat}
-.ab-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,rgba(26,18,38,.80) 0%,rgba(26,18,38,.56) 38%,rgba(26,18,38,.14) 70%,rgba(26,18,38,0) 100%)}
-.ab-hero>.wrap{position:relative;z-index:1;width:100%}
-.ab-hero-box{max-width:940px;margin-right:auto;text-align:left;text-shadow:0 1px 20px rgba(0,0,0,.30)}
-.ab-hero .eyebrow{color:var(--sage)}
-.ab-hero h1{font-size:clamp(30px,5vw,66px);margin:14px 0 0;white-space:nowrap;color:#F7F7F2;letter-spacing:-.02em}
-.ab-hero .sub{margin-top:22px;font-size:clamp(20px,2.2vw,26px);line-height:1.5;color:#EFF1E9;max-width:48ch}
-.ab-hero .lines{margin-top:26px;display:flex;flex-direction:column;gap:12px;max-width:68ch}
-.ab-hero .lines p{color:rgba(238,240,231,.92);font-size:clamp(19px,1.8vw,22px);line-height:1.6}
-.ab-hero .btn--ghost{background:rgba(248,247,242,.10);color:#F4F3EE;border-color:rgba(255,255,255,.34);text-shadow:none}
-.ab-hero .btn--ghost:hover{background:rgba(248,247,242,.20)}
+.ab-hero{padding:calc(108px + 38px) 0 70px}
+.ab-hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(30px,5vw,70px);align-items:center}
+.ab-hero-photo img{width:100%;height:auto;border-radius:22px}
+.ab-hero h1{font-size:clamp(34px,5.4vw,66px);margin:14px 0 0}
+.ab-hero .sub{margin-top:22px;font-size:clamp(20px,2.2vw,25px);line-height:1.5;color:var(--ink);max-width:34ch}
+.ab-hero .lines{margin-top:26px;display:flex;flex-direction:column;gap:12px;max-width:52ch}
+.ab-hero .lines p{color:var(--ink-soft);font-size:clamp(19px,1.8vw,21px);line-height:1.6}
 .ab-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 
 /* credential strip */
@@ -522,11 +495,8 @@ p{margin:0}
 .who-media img{width:100%;height:auto;border-radius:22px}
 
 /* belief band */
-.belief{position:relative;background:var(--forest);color:#F1F2EA;padding:clamp(64px,8vw,110px) 0;text-align:center;
-  background-image:linear-gradient(rgba(45,32,66,.80),rgba(45,32,66,.84)),url('https://cdn.katalyst-crm.com/t1/DSC_0064.jpg');
-  background-size:cover;background-position:center;background-repeat:no-repeat}
-.belief>.wrap{position:relative;z-index:1}
-.belief .q{font-size:clamp(30px,4.8vw,60px);font-weight:500;letter-spacing:-.03em;line-height:1.14;max-width:34ch;margin:0 auto}
+.belief{background:var(--forest);color:#F1F2EA;padding:clamp(64px,8vw,110px) 0;text-align:center}
+.belief .q{font-size:clamp(28px,4.4vw,56px);font-weight:500;letter-spacing:-.03em;line-height:1.15;max-width:20ch;margin:0 auto}
 .belief .hwh{margin-top:20px;font-size:clamp(22px,2.6vw,30px);color:var(--sage);font-style:italic}
 .belief .support{margin:34px auto 0;max-width:74ch;display:flex;flex-direction:column;gap:16px}
 .belief .support p{color:rgba(241,242,234,.86);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
@@ -552,53 +522,35 @@ p{margin:0}
 .built-media{position:sticky;top:110px}
 .built-media img{width:100%;height:auto;border-radius:22px}
 
-/* approach cards â 2 columns, independently collapsible */
+/* approach cards */
 .approach{padding:78px 0;background:var(--paper-2)}
-.appr-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.6vw,32px);margin-top:34px;align-items:start}
-.appr{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden}
-.appr-head{width:100%;text-align:left;background:none;border:0;cursor:pointer;font:inherit;color:inherit;
-  display:flex;align-items:flex-start;gap:18px;justify-content:space-between;
-  padding:clamp(26px,3vw,40px)}
-.appr-head h3{font-size:clamp(18px,2vw,23px);font-weight:500;line-height:1.22;color:var(--purple);margin:0;
-  transition:color .3s var(--ease)}
-.appr-head:hover h3,.appr.open .appr-head h3{color:var(--purple-d)}
-.appr-ico{position:relative;flex:0 0 30px;width:30px;height:30px;margin-top:3px;border-radius:50%;
-  border:1.5px solid var(--moss);transition:transform .45s var(--ease),background .3s}
-.appr-ico::before,.appr-ico::after{content:"";position:absolute;left:50%;top:50%;background:var(--moss);
-  transition:opacity .3s,background .3s}
-.appr-ico::before{width:12px;height:1.6px;transform:translate(-50%,-50%)}
-.appr-ico::after{width:1.6px;height:12px;transform:translate(-50%,-50%)}
-.appr.open .appr-ico{transform:rotate(90deg)}
-.appr.open .appr-ico::after{opacity:0}
-.appr-panel{overflow:hidden;max-height:0;transition:max-height .55s var(--ease)}
-.appr-body{padding:0 clamp(26px,3vw,40px) clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:16px}
-.appr-body p{color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.65;margin:0}
-.appr-body p.beat{color:var(--ink);font-weight:500}
+.appr-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.6vw,32px);margin-top:34px}
+.appr{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r);padding:clamp(28px,3vw,44px);
+  display:flex;flex-direction:column;gap:18px}
+.appr h3{font-size:clamp(22px,2.5vw,29px);font-weight:500;line-height:1.2;color:var(--ink)}
+.appr p{color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.65}
+.appr p.beat{color:var(--ink);font-weight:500}
 
 /* people and animals */
 .animals{padding:78px 0}
-.an-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center}
-.an-media img{width:100%;height:auto;border-radius:22px}
-.an-copy{max-width:60ch}
+.an-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px);margin-bottom:44px}
+.an-row img{width:100%;height:clamp(220px,26vw,380px);object-fit:cover;border-radius:18px}
+.an-copy{max-width:80ch}
 .an-copy h2{font-size:clamp(28px,3.6vw,44px);margin-bottom:26px}
 .an-copy .body{display:flex;flex-direction:column;gap:17px}
 .an-copy p{color:var(--ink-soft);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
 .an-copy p.beat{color:var(--ink);font-weight:500}
 
 /* about you */
-.aboutyou{padding:clamp(64px,8vw,104px) 0;text-align:center;background:var(--purple);color:#fff}
+.aboutyou{padding:clamp(64px,8vw,104px) 0;text-align:center;background:var(--paper)}
 .ay{max-width:900px;margin:0 auto}
-.ay .q{font-size:clamp(27px,4vw,48px);font-weight:500;letter-spacing:-.03em;line-height:1.16;color:#fff}
+.ay .q{font-size:clamp(27px,4vw,48px);font-weight:500;letter-spacing:-.03em;line-height:1.16}
 .ay .body{margin-top:28px;display:flex;flex-direction:column;gap:16px}
-.ay .body p{color:rgba(255,255,255,.82);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
-.ay .body p.beat{color:#fff;font-weight:500;font-size:clamp(21px,2.2vw,26px);line-height:1.35}
+.ay .body p{color:var(--ink-soft);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
+.ay .body p.beat{color:var(--ink);font-weight:500;font-size:clamp(21px,2.2vw,26px);line-height:1.35}
 .ay-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
-.aboutyou .btn{background:#fff;color:var(--purple);border-color:#fff}
-.aboutyou .btn:not(.btn--ghost):hover{background:#F1ECF7;color:var(--purple-d);border-color:#F1ECF7}
-.aboutyou .btn--ghost{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.45)}
-.aboutyou .btn--ghost:hover{background:rgba(255,255,255,.20);box-shadow:none}
-.ay-trust{margin-top:22px;font-size:16px;color:rgba(255,255,255,.82);display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
-.ay-trust .st{color:#E8C36B;letter-spacing:.1em}
+.ay-trust{margin-top:22px;font-size:16px;color:var(--ink-soft);display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.ay-trust .st{color:var(--purple);letter-spacing:.1em}
 
 /* faq */
 .faq{padding:78px 0}
@@ -619,39 +571,21 @@ p{margin:0}
   font-size:clamp(18px,1.75vw,20px);line-height:1.65}
 
 @media(max-width:980px){
-  .who-grid,.built-grid,.appr-grid,.an-grid{grid-template-columns:1fr}
+  .ab-hero-grid,.who-grid,.built-grid,.appr-grid{grid-template-columns:1fr}
+  .ab-hero-photo{order:-1}
   .cred-grid{grid-template-columns:1fr 1fr}
   .built-media{position:static}
   .who-media{order:-1}
-  .an-media{order:-1}
-}
-@media(max-width:760px){
-  .ab-hero{background-image:url('https://cdn.katalyst-crm.com/t1/DSC_0695%203.png');
-    min-height:100vh;min-height:100dvh;padding:calc(96px + 20px) 0 48px}
-  .ab-hero::before{background:linear-gradient(180deg,rgba(26,18,38,.30) 0%,rgba(26,18,38,.42) 45%,rgba(26,18,38,.74) 100%)}
-  .ab-hero-box{max-width:none;margin-right:0}
-  .ab-hero h1{white-space:normal}
 }
 @media(max-width:560px){
+  .ab-hero{padding:86px 0 44px}
+  .an-row{grid-template-columns:1fr;gap:12px}
+  .an-row img{height:clamp(220px,60vw,320px)}
   .ay-cta .btn{width:100%;justify-content:center}
 }
-
-/* accessibility & typography polish */
-.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--purple);color:#fff;
-  padding:10px 16px;border-radius:10px;font-weight:600;transition:top .2s}
-.skip-link:focus{top:12px;outline:2px solid #fff;outline-offset:2px}
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible,.nav-drop-btn:focus-visible{
-  outline:2px solid var(--purple);outline-offset:3px;border-radius:6px}
-h1,h2,h3,h4{text-wrap:balance}
-p,li,.hero-sub,.lede{text-wrap:pretty}
-/* brand type: humanist body face (Montserrat/Gotham kept for headings, nav, buttons, labels) */
-p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
-/* brand accent (PMS 123 yellow) â white backgrounds only, used sparingly */
-.rating-badge .rstars,.rev .s{color:var(--accent)}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></svg>
 <div class="progress" id="progress"></div>
@@ -659,8 +593,8 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
 <!-- ANNOUNCEMENT -->
 <div class="anews" id="anews">
   <div class="row">
-    <span><b>Heal Without Harmâ¢</b></span><span class="sep">Â·</span>
-    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">Â·</span>
+    <span><b>Heal Without Harm&trade;</b></span><span class="sep">&middot;</span>
+    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">&middot;</span>
     <span>30% Off Plus Free U.S. Shipping on Your First Order</span>
   </div>
 </div>
@@ -669,9 +603,9 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html">
-      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <span style="display:none;flex-direction:column;line-height:1">
-        <b>Dr. Garber<span>âs</span></b>
+        <b>Dr. Garber<span>&rsquo;s</span></b>
         <small>Bioformulas</small>
       </span>
     </a>
@@ -680,19 +614,11 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
       <a href="#top">Dr. Garber</a>
       <a href="the-science.html">The Science</a>
       <a href="index.html#protocols">Protocols</a>
-      <a href="#journey">My Journey</a>
+      <a href="index.html#journey">My Journey</a>
       <a href="index.html#quiz">Find Yours</a>
       <a href="index.html#reviews">Reviews</a>
-      <div class="nav-drop">
-        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Blog <span class="caret" aria-hidden="true"></span></button>
-        <div class="nav-drop-menu" role="menu">
-          <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener" role="menuitem">Blog for Human Health</a>
-          <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener" role="menuitem">Blog for Animal Health</a>
-        </div>
-      </div>
     </div>
     <div class="nav-right">
-      <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener" class="btn btn--ghost nav-cta" style="padding:11px 18px">Practitioner Sign Up</a>
       <a href="index.html#protocols" class="btn btn--moss nav-cta" style="padding:11px 20px">Choose Your Protocol</a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span class="bars"><i></i><i></i><i></i></span>
@@ -706,12 +632,9 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
     <a href="#top">Dr. Garber</a>
     <a href="the-science.html">The Science</a>
     <a href="index.html#protocols">Protocols</a>
-    <a href="#journey">My Journey</a>
+    <a href="index.html#journey">My Journey</a>
     <a href="index.html#quiz">Find Yours</a>
     <a href="index.html#reviews">Reviews</a>
-    <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener">Blog for Human Health</a>
-    <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener">Blog for Animal Health</a>
-    <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener">Practitioner Sign Up</a>
     <a href="index.html#protocols" class="mm-cta">Choose Your Protocol</a>
   </nav>
 </div>
@@ -719,20 +642,25 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
 <span id="top"></span>
 
 <!-- 1. HERO -->
-<header class="ab-hero" id="main-content" tabindex="-1">
+<header class="ab-hero">
   <div class="wrap">
-    <div class="ab-hero-box reveal">
-      <span class="eyebrow">Heal Without Harm&trade;</span>
-      <h1>Meet Dr. Stuart Garber</h1>
-      <p class="sub">I&rsquo;ve spent forty years pursuing one question: How do you help the body heal without compromise?</p>
-      <div class="lines">
-        <p>Homeopath. Chiropractor. Chemist by temperament. Animal lover.</p>
-        <p>The first person in the United States to earn a PhD in homeopathy.</p>
-        <p>The one who put three homeopathic biotherapies in a single bottle, he saw a possibility others had overlooked.</p>
+    <div class="ab-hero-grid reveal">
+      <div class="ab-hero-photo">
+        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/drgarber-headshot_LE_upscale_prime_ahc1zo.jpg" alt="Dr. Stuart Garber">
       </div>
-      <div class="ab-cta-row">
-        <a href="index.html#quiz" class="btn">Find your remedy <span class="arr">&rarr;</span></a>
-        <a href="#journey" class="btn btn--ghost">Read my story</a>
+      <div class="ab-hero-text">
+        <span class="eyebrow">Heal Without Harm&trade;</span>
+        <h1>Meet Dr. Stuart Garber</h1>
+        <p class="sub">I&rsquo;ve spent forty years pursuing one question: How do you help the body heal without compromise?</p>
+        <div class="lines">
+          <p>Homeopath. Chiropractor. Chemist by temperament. Animal lover.</p>
+          <p>The first person in the United States to earn a PhD in homeopathy.</p>
+          <p>The one who put three homeopathic biotherapies in a single bottle, he saw a possibility others had overlooked.</p>
+        </div>
+        <div class="ab-cta-row">
+          <a href="index.html#quiz" class="btn">Find your remedy <span class="arr">&rarr;</span></a>
+          <a href="index.html#journey" class="btn btn--ghost">Read my story</a>
+        </div>
       </div>
     </div>
   </div>
@@ -767,7 +695,7 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
         </div>
       </div>
       <div class="who-media">
-        <img src="https://cdn.katalyst-crm.com/t1/DSC_8595.jpeg" alt="Dr. Garber at work" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/in-action_eubxpp.jpg" alt="Dr. Garber at work" loading="lazy">
       </div>
     </div>
   </div>
@@ -791,11 +719,16 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
     <div class="built-grid reveal">
       <div class="built-text">
         <span class="eyebrow">Why I built the bioformulas</span>
-        <h2 style="margin-top:14px">Nobody had combined all three.<br>So I did.</h2>
+        <h2 style="margin-top:14px">Nobody had combined all three. So I did.</h2>
         <div class="built-body">
           <p>The turning point in my career didn&rsquo;t happen in a clinic. It happened in a classroom.</p>
           <p>By 1995, the demands of running Los Angeles&rsquo; first comprehensive integrative health clinic had begun to overshadow the work I loved most: helping patients heal. I took a sabbatical to return to the study and practice of homeopathy on a deeper level. It was there that I heard Dr. Trevor Cook, homeopath to the Queen Mother, speak about biotherapies. In that moment, I knew I had discovered something that would change the way I practiced medicine.</p>
           <p>There were three biotherapies. One made from young plant parts. One from mineral-rich rocks. One from healthy organ tissue. Each had been used successfully for generations.</p>
+          <div class="bio3">
+            <span class="bt" tabindex="0">Gemmotherapy<span class="def">Made from the buds and young shoots of plants, the parts still actively growing, used to support the body&rsquo;s drainage and repair.</span></span>
+            <span class="bt" tabindex="0">Lithotherapy<span class="def">Made from mineral-rich rocks, prepared homeopathically to supply the trace minerals cells rely on to regulate themselves.</span></span>
+            <span class="bt" tabindex="0">Organotherapy<span class="def">Made from healthy organ tissue, prepared homeopathically to encourage a corresponding organ to return to normal function.</span></span>
+          </div>
           <p>Yet, after more than two centuries of homeopathy, no one had ever combined all three in a single formula. No one had even asked what might happen if they were combined together.</p>
           <p>I went back to my graduated cylinders and Erlenmeyer flasks. I started blending fig tree buds with silver birch seeds, then adding lepidolite, and finally hypothalamus extract, bringing together all three biotherapies in a single formula.</p>
           <p>Then I gave them to patients whose chronic conditions had stopped responding to everything else.</p>
@@ -808,225 +741,12 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
         </div>
       </div>
       <div class="built-media">
-        <img src="https://cdn.katalyst-crm.com/t1/IMG_1256.JPG" alt="Dr. Garber&rsquo;s Bioformulas" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_23_43_58_vbxvqh.png" alt="Dr. Garber&rsquo;s Bioformulas" loading="lazy">
       </div>
     </div>
   </div>
 </section>
-<!-- 6. MY JOURNEY -->
-<section class="journey" id="journey">
-  <div class="wrap">
-    <div class="sec-head sec-head--center reveal">
-      <span class="eyebrow">My Journey</span>
-      <h2>None of this was a straight line.</h2>
-      <p class="lede" style="max-width:760px">The moments that shaped how I practice, in order. Scroll sideways through the years.</p>
-    </div>
-
-    <div class="htl-wrap reveal">
-      <div class="htl-track" id="timeline">
-      <article class="htl-item">
-        <div class="htl-year">2024</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <h3 class="htl-title">Rebrands the Natural Solutions remedies as Dr. Garber&rsquo;s bioformulas for people and brings his Maxwell Pet remedies under the same banner&mdash;now known as canine bioformulas and equine bioformulas.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2023</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1711123250543_drg-2023-timeline.jpg" alt="Dr. Garber, 2023" loading="lazy"></div>
-          <h3 class="htl-title">Expands animal line with Dr. Garber&rsquo;s equine bioformulas: Bone &amp; Joint, Lung &amp; Allergy, Skin &amp; Allergy, and Calm &amp; Happy.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2020</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1711130682077_drg-2019-timeline.jpg" alt="Dr. Garber, 2020" loading="lazy"></div>
-          <h3 class="htl-title">Authorized as a canine chiropractor for Assistance Dogs of the West, where he provides weekly treatments for dogs in training at their Santa Fe, NM headquarters.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2019</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974732097_Dr_Garber_sees_small_animals_at_Veterinary_Cancer_Care_-_2019.jpg" alt="Dr. Garber, 2019" loading="lazy"></div>
-          <h3 class="htl-title">Begins seeing small animals at Veterinary Cancer Care, providing chiropractic treatment to patients as part of the clinic&rsquo;s integrative approach.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2018</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1711130706794_drg-2018-timeline.jpg" alt="Dr. Garber, 2018" loading="lazy"></div>
-          <h3 class="htl-title">Joined the board of New Mexico Center for Therapeutic Riding &ndash; a nonprofit focused on enriching the lives of children and adults with special needs through equine-assisted activities and therapies.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2018</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1711130751751_drg-2017-1-timeline.jpg" alt="Dr. Garber, 2018" loading="lazy"></div>
-          <h3 class="htl-title">Receives his Animal Chiropractor certification from the American Veterinary Chiropractic Association.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2017</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1711130734157_drg-2017-timeline.jpg" alt="Dr. Garber, 2017" loading="lazy"></div>
-          <h3 class="htl-title">Launches an equine navicular syndrome pilot study with Dr. Mark Meddleton, DVM and successfully treats horses combining Dr. Garber&rsquo;s Equine Bone &amp; Joint bioformula with targeted chiropractic care.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2017</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974739410_Maxwell_Pet_canine_bioformulas_launch_-_2017.jpg" alt="Dr. Garber, 2017" loading="lazy"></div>
-          <h3 class="htl-title">Launches the Maxwell Pet canine line of bioformulas addressing prevalent conditions in most dogs &ndash; Hip &amp; Joint, Skin &amp; Allergy and Calm &amp; Happy.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2016</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974743707_The_Garbers_and_family_of_Springer_Spaniels_move_to_Santa_Fe_-_2016.jpg" alt="Dr. Garber, 2016" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber and his wife Helen relocate with their family of rescued Springer Spaniels to Santa Fe, New Mexico.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2005&ndash;2015</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974735792_Dr._Garbers_Natural_Solutions_expands_through_Whole_Foods_and_B2B_distributors_-_2005-15.jpg" alt="Dr. Garber, 2005-2015" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber expands his brand of bioformulas throughout Whole Foods&rsquo; western region and nationally with B2B distributors to integrative practitioners, medical doctors and health food stores.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">2005</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974738303_Launch_of_Dr_Garbers_Natural_Solutions_-_2005.jpg" alt="Dr. Garber, 2005" loading="lazy"></div>
-          <h3 class="htl-title">After success treating patients with his bioformulas, Dr. Garber launches Dr. Garber&rsquo;s Natural Solutions &ndash; Heal Different.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1998</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974734728_Dr._Garber_begins_work_on_first_biotherapy_bioformulas_-_1998.jpg" alt="Dr. Garber, 1998" loading="lazy"></div>
-          <h3 class="htl-title">Dr Garber returns to private practice, in chiropractic and homeopathy, in Santa Monica and begins work on the development of his first biotherapy bioformulas.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1997</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1714076091317_First_PhD_in_Homeopathy_in_the_US_-_Dr._Stuart_Garber_DC.jpg" alt="Dr. Garber, 1997" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber becomes the first practitioner in the U.S. to be awarded a PhD in Homeopathy&mdash;from Curentur University (later became American University of Complementary Medicine), the U.S. partner hosting the Hahnemann College program.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1995&ndash;1997</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1714076094038_Dr_Garbers_PhD_sabbatical_with_Hahnemann_College_of_Homeopathy_-_1995-1997.jpg" alt="Dr. Garber, 1995-1997" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber takes sabbatical to pursue a PhD in the U.S. through London&rsquo;s Hahnemann College of Homeopathy. Where he first learns of biotherapies in a lecture by Dr. Trevor Cook, homeopath to Great Britain&rsquo;s Queen Mother.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1992&ndash;present</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974737019_International_Speaker_-_1992.jpg" alt="Dr. Garber, 1992-present" loading="lazy"></div>
-          <h3 class="htl-title">International keynote speaker to Naturopaths, Chiropractors, Homeopaths, Medical Doctors, Acupuncturists, and Veterinarians.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1989&ndash;1995</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974729816_Dr_Garber_chiropractor_for_Cirque_da_Soleil_-_1989-95.jpg" alt="Dr. Garber, 1989-1995" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber serves as chiropractor to Cirque du Soleil&mdash;providing chiropractic care for the troupe from their earliest days touring the USA, before they became an international sensation.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1985&ndash;1995</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974744804_Westside_Health_Institute_-_LAs_first_integrative_clinic_-_1985-95.jpg" alt="Dr. Garber, 1985-1995" loading="lazy"></div>
-          <h3 class="htl-title">Director of LA&rsquo;s first integrative health clinic (tagline: We&rsquo;ve come together to keep you from falling apart); Westside&rsquo;s clients include people from all walks of life, plus celebs like Sharon Stone and Bob Dylan, among others.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1985</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974728485_Dr_Garber_buys_Westside_Chiropractic_and_expands_Integrative_model-1985.jpg" alt="Dr. Garber, 1985" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber accepts Dr. Denton&rsquo;s offer&mdash;and purchases Westside Chiropractic. He then expands the Clinic&rsquo;s healthcare model, recruits 20+ integrative and medical practitioners, and rechristens WCC as the Westside Health Institute.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1984</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974727012_Dr_Garber_becomes_Chief_of_Staff_-_1984.jpg" alt="Dr. Garber, 1984" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber becomes Chief of Staff at Westside Chiropractic Center and soon, Dr. Denton invites him to purchase the center.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1982</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974731027_Dr_Garber_DC_joins_Westside_Chiropractic_under_Dr._David_Denton_DC-1982.jpg" alt="Dr. Garber, 1982" loading="lazy"></div>
-          <h3 class="htl-title">Dr. Garber joins Los Angeles&rsquo; preeminent Westside Chiropractic Center. WCC was founded by Dr. David Denton, a chiropractic pioneer who developed Vector Point Cranial Therapy and who soon becomes Dr. Garber&rsquo;s mentor.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1981</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974741650_Stuart_graduates_from_LA_College_of_Chiropractic-1981.jpg" alt="Dr. Garber, 1981" loading="lazy"></div>
-          <h3 class="htl-title">Stuart graduates (summa cum laude) from the Los Angeles College of Chiropractic.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1977</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974742779_Stuart_meets_Helen_at_SUNY-1977.jpg" alt="Dr. Garber, 1977" loading="lazy"></div>
-          <h3 class="htl-title">SUNY-New Paltz Biology major/Chemistry minor; Stuart&rsquo;s first hands-on experience with chiropractic&mdash;and where he meets his future wife, Helen.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1972</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974745073_Stuart_works_summer_veterinary_clinic-1972.jpg" alt="Dr. Garber, 1972" loading="lazy"></div>
-          <h3 class="htl-title">Stuart embarks on two passions, working in the summer at an area veterinary clinic and part-time throughout the school year at a health food store.</h3>
-        </div>
-      </article>
-      <article class="htl-item">
-        <div class="htl-year">1955</div>
-        <span class="htl-node" aria-hidden="true"></span>
-        <div class="htl-card">
-          <div class="htl-photos"><img class="htl-photo" src="https://dashboard.katalyst-crm.com/files/t1/1713974743902_Stuart_with_parents_Corrine_and_Milton_Garber-1955.jpg" alt="Dr. Garber, 1955" loading="lazy"></div>
-          <h3 class="htl-title">Stuart Garber is born in New York to parents Milton and Corrine, and into the Kennedy era.</h3>
-        </div>
-      </article>
-      </div>
-    </div>
-
-    <div class="tl-closer reveal">
-      <p>Fifty years of questions, and it comes down to something simple. Remedies that remind your body how to repair itself.</p>
-      <a href="index.html#quiz" class="btn">Find yours. <span class="arr">â</span></a>
-    </div>
-  </div>
-</section>
-
-
-<!-- 7. WHY MY APPROACH IS DIFFERENT -->
+<!-- 6. WHY MY APPROACH IS DIFFERENT -->
 <section class="approach" id="approach">
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
@@ -1035,67 +755,52 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
     </div>
     <div class="appr-grid reveal">
       <article class="appr">
-        <button class="appr-head" aria-expanded="false">
-          <h3>I do not have to be the one who fixes you.</h3>
-          <span class="appr-ico" aria-hidden="true"></span>
-        </button>
-        <div class="appr-panel">
-          <div class="appr-body">
-            <p>My goal has always been to help people get better. But not long after I started at Westside, I realized something that changed the way I practiced.</p>
-            <p>Even when a patient didn&rsquo;t get better with me, I had still helped them. I had become part of their healing journey. Sometimes I was the practitioner who helped them recover. Sometimes it was the chiropractor, acupuncturist, nutritionist, herbalist, or physician they saw before me or after me.</p>
-            <p>What matters is not who gets the credit. What matters is the patient.</p>
-            <p class="beat">You.</p>
-            <p>Healing is rarely the result of one practitioner. More often, it&rsquo;s the result of many people contributing at the right time. If I move you one step closer to health, then I&rsquo;ve done my job.</p>
-          </div>
-        </div>
+        <h3>I do not have to be the one who fixes you.</h3>
+        <p>My goal has always been to help people get better. But not long after I started at Westside, I realized something that changed the way I practiced.</p>
+        <p>Even when a patient didn&rsquo;t get better with me, I had still helped them. I had become part of their healing journey. Sometimes I was the practitioner who helped them recover. Sometimes it was the chiropractor, acupuncturist, nutritionist, herbalist, or physician they saw before me or after me.</p>
+        <p class="beat">What matters is not who gets the credit. What matters is the patient. You.</p>
+        <p>Healing is rarely the result of one practitioner. More often, it&rsquo;s the result of many people contributing at the right time. If I move you one step closer to health, then I&rsquo;ve done my job.</p>
       </article>
       <article class="appr">
-        <button class="appr-head" aria-expanded="false">
-          <h3>There is never only one way in.</h3>
-          <span class="appr-ico" aria-hidden="true"></span>
-        </button>
-        <div class="appr-panel">
-          <div class="appr-body">
-            <p>On my first morning back from sabbatical, my very first patient came in with severe sciatica.</p>
-            <p>Before my sabbatical, I would have adjusted him and sent him home. Instead, I wanted to know whether homeopathy alone could help.</p>
-            <p>So I prescribed a remedy.</p>
-            <p class="beat">His sciatica disappeared.</p>
-            <p>That day, I realized something profound: neither I nor my patients were limited to a single modality. Chiropractic, homeopathy, acupuncture, herbal medicine&mdash;each offers a different path to healing.</p>
-            <p>What matters isn&rsquo;t the modality. What matters is finding the approach that gives the body what it needs to heal.</p>
-            <p class="beat">Healing doesn&rsquo;t belong to a single modality, because there is never only one way in.</p>
-          </div>
-        </div>
+        <h3>There is never only one way in.</h3>
+        <p>On my first morning back from sabbatical, my very first patient came in with severe sciatica.</p>
+        <p>Before my sabbatical, I would have adjusted him and sent him home. Instead, I wanted to know whether homeopathy alone could help.</p>
+        <p>So I prescribed a remedy.</p>
+        <p class="beat">His sciatica disappeared.</p>
+        <p>That day, I realized something profound: neither I nor my patients were limited to a single modality. Chiropractic, homeopathy, acupuncture, herbal medicine, each offers a different path to healing.</p>
+        <p>What matters isn&rsquo;t the modality. What matters is finding the approach that gives the body what it needs to heal.</p>
+        <p class="beat">Healing doesn&rsquo;t belong to a single modality, because there is never only one way in.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- 8. PEOPLE AND ANIMALS -->
+<!-- 7. PEOPLE AND ANIMALS -->
 <section class="animals" id="animals">
   <div class="wrap">
-    <div class="an-grid reveal">
-      <div class="an-copy">
-        <span class="eyebrow">People and animals</span>
-        <h2 style="margin-top:14px">My clients&rsquo; dogs got there before I did.</h2>
-        <div class="body">
-          <p>Helen and I moved to Santa Fe in 2016. Not for the dogs, the open skies and the nature, we had all of that in Santa Monica, but to bring horses into our lives in a more meaningful way.</p>
-          <p>Within a year I had earned my Animal Chiropractic Certification, started working with Assistance Dogs of the West, joined the board of the New Mexico Center for Therapeutic Riding, and adopted more Springer Spaniels.</p>
-          <p>Then I found out my clients had quietly been giving my human formulas to their dogs and horses, and getting results. So I went back to the lab and did it properly. Canine first, then the equine line: horses, donkeys, ponies, mules.</p>
-          <p class="beat">Same biotherapies. Same standards. Chemistry built for the animal taking them.</p>
-          <p>The kid who assisted a vet on Long Island had come full circle.</p>
-        </div>
-        <div class="ab-cta-row">
-          <a href="https://drgarbers.com/collections/animals" target="_blank" rel="noopener" class="btn">Remedies for dogs and horses <span class="arr">&rarr;</span></a>
-        </div>
+    <div class="an-row reveal">
+      <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/R0012111_dlnbfe.jpg" alt="Horses in Santa Fe" loading="lazy">
+      <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/IMG_0271_l22l0f.jpg" alt="A rescue dog" loading="lazy">
+      <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/in-action_eubxpp.jpg" alt="Dr. Garber working on an animal" loading="lazy">
+    </div>
+    <div class="an-copy reveal">
+      <span class="eyebrow">People and animals</span>
+      <h2 style="margin-top:14px">My clients&rsquo; dogs got there before I did.</h2>
+      <div class="body">
+        <p>Helen and I moved to Santa Fe in 2016. Not for the dogs, the open skies and the nature, we had all of that in Santa Monica, but to bring horses into our lives in a more meaningful way.</p>
+        <p>Within a year I had earned my Animal Chiropractic Certification, started working with Assistance Dogs of the West, joined the board of the New Mexico Center for Therapeutic Riding, and adopted more Springer Spaniels.</p>
+        <p>Then I found out my clients had quietly been giving my human formulas to their dogs and horses, and getting results. So I went back to the lab and did it properly. Canine first, then the equine line: horses, donkeys, ponies, mules.</p>
+        <p class="beat">Same biotherapies. Same standards. Chemistry built for the animal taking them.</p>
+        <p>The kid who assisted a vet on Long Island had come full circle.</p>
       </div>
-      <div class="an-media">
-        <img src="https://cdn.katalyst-crm.com/t1/IMG_3861.jpeg" alt="Dr. Garber with his animals" loading="lazy">
+      <div class="ab-cta-row">
+        <a href="https://drgarbers.com/collections/all-items" target="_blank" rel="noopener" class="btn">Remedies for dogs and horses <span class="arr">&rarr;</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 9. THIS PART IS ABOUT YOU -->
+<!-- 8. THIS PART IS ABOUT YOU -->
 <section class="aboutyou" id="you">
   <div class="wrap">
     <div class="ay reveal">
@@ -1117,7 +822,7 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
   </div>
 </section>
 
-<!-- 10. FAQ -->
+<!-- 9. FAQ -->
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
@@ -1153,9 +858,9 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas">
+        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas">
         <p>Three healing sciences: gemmotherapy, lithotherapy, and organotherapy, integrated into a single formula. Supporting your whole body as one connected system.</p>
-        <div class="hwh">Heal Without Harmâ¢</div>
+        <div class="hwh">Heal Without Harm&trade;</div>
       </div>
       <div class="foot-col">
         <h4>Protocols</h4>
@@ -1168,8 +873,8 @@ p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
     </div>
     <p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>
     <div class="foot-fine">
-      <span>Â© 2026 Dr. Garberâs Bioformulas. All rights reserved.</span>
-      <span>60-Day Unconditional Money-Back Guarantee Â· Heal Without Harmâ¢</span>
+      <span>&#169; 2026 Dr. Garber&rsquo;s Bioformulas. All rights reserved.</span>
+      <span>60-Day Unconditional Money-Back Guarantee &middot; Heal Without Harm&trade;</span>
     </div>
   </div>
 </footer>
@@ -1205,7 +910,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classLis
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* accordions: timeline + faq */
+/* accordions: faq */
 function accordion(scopeSel,itemSel,headSel,panelSel){
   document.querySelectorAll(scopeSel+' '+itemSel).forEach(item=>{
     const btn=item.querySelector(headSel), panel=item.querySelector(panelSel);
@@ -1226,20 +931,8 @@ function accordion(scopeSel,itemSel,headSel,panelSel){
   });
 }
 accordion('#faqList','.faq-item','.faq-head','.faq-panel');
-
-/* approach cards toggle independently (side-by-side, not mutually exclusive) */
-document.querySelectorAll('#approach .appr').forEach(card=>{
-  const btn=card.querySelector('.appr-head'), panel=card.querySelector('.appr-panel');
-  if(!btn||!panel) return;
-  btn.addEventListener('click',()=>{
-    const open=card.classList.toggle('open');
-    panel.style.maxHeight=open?panel.scrollHeight+'px':null;
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-});
-
 window.addEventListener('resize',()=>{
-  document.querySelectorAll('.faq-item.open .faq-panel,.appr.open .appr-panel').forEach(p=>{p.style.maxHeight=p.scrollHeight+'px';});
+  document.querySelectorAll('.faq-item.open .faq-panel').forEach(p=>{p.style.maxHeight=p.scrollHeight+'px';});
 });
 </script>
 </body>
