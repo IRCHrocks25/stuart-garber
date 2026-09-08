@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dr. Garber's Bioformulas | Heal Without Harm&trade;</title>
+<title>Dr. Garber's Bioformulas | Heal Without Harmâ¢</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F6F3; --paper:#FFFFFF; --paper-2:#EDEDE8;
-  --ink:#23281F; --ink-soft:#5C5766;
-  --forest:#3B2C57; --forest-2:#4A3A69;
-  --sage:#DED4F0; --moss:#6A4C93; --olive:#7C63A5;
-  --clay:#6A4C93; --stone:#C7C7BF; --mist:#E3E3DC;
-  --ice:#DED4F0; --rose:#EDE6F7; --indigo:#4A3A69; --indigo-2:#5B4680;
-  --purple:#6A4C93; --purple-d:#573D7B;
+  --ink:#23281F; --ink-soft:#5B635A;
+  --forest:#3A1360; --forest-2:#4A1877;
+  --sage:#EBE2F5; --moss:#5B1F91; --olive:#6E4BA6;
+  --clay:#5B1F91; --stone:#C7C7BF; --mist:#E3E3DC;
+  --ice:#EBE2F5; --rose:#F0E9F8; --indigo:#4A1877; --indigo-2:#5B1F91;
+  --purple:#5B1F91; --purple-d:#4A1877; --accent:#F6C324;
   --line:rgba(35,40,31,.12); --line-soft:rgba(35,40,31,.07);
   --shadow:0 1px 2px rgba(34,39,30,.04),0 18px 50px -28px rgba(34,39,30,.30);
   --r:18px; --maxw:1560px; --ease:cubic-bezier(.2,.7,.2,1);
@@ -50,11 +50,11 @@ p{margin:0}
   background:var(--moss);transition:width .1s linear}
 
 /* announcement */
-.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#EAE4F3;
+.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#E9E3F3;
   font-size:16px;letter-spacing:.02em;transition:transform .45s var(--ease)}
 .anews.hide{transform:translateY(-100%)}
 .anews .row{display:flex;gap:26px;justify-content:center;align-items:center;flex-wrap:wrap;padding:9px 16px;text-align:center}
-.anews b{color:#DED4F0;font-weight:600}
+.anews b{color:#EBE2F5;font-weight:600}
 .anews .sep{opacity:.4}
 
 /* nav */
@@ -76,6 +76,20 @@ p{margin:0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1.5px;width:0;background:var(--moss);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{width:100%}
+.nav-drop{position:relative;display:inline-flex;align-items:center}
+.nav-drop>.nav-drop-btn{font:inherit;color:var(--ink-soft);background:none;border:0;cursor:pointer;padding:0;
+  display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:500;transition:color .3s}
+.nav-drop>.nav-drop-btn:hover{color:var(--ink)}
+.nav-drop .caret{width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform .3s}
+.nav-drop:hover .caret,.nav-drop:focus-within .caret{transform:translateY(0) rotate(225deg)}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);
+  min-width:214px;background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;
+  box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:120}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-drop-menu a{display:block;padding:10px 12px;border-radius:9px;font-size:15px;color:var(--ink-soft);white-space:nowrap;transition:background .2s,color .2s}
+.nav-drop-menu a::after{display:none}
+.nav-drop-menu a:hover{background:var(--paper-2);color:var(--ink)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none;width:46px;height:42px;align-items:center;justify-content:center;
   background:rgba(255,255,255,.5);border:1px solid var(--line-soft);border-radius:100px;cursor:pointer;padding:0;z-index:121;position:relative}
@@ -89,8 +103,8 @@ p{margin:0}
 .menu-btn.open .bars i:nth-child(2){opacity:0}
 .menu-btn.open .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .mobile-menu{position:fixed;top:88px;left:clamp(12px,4vw,22px);right:clamp(12px,4vw,22px);z-index:99;
-  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(106,76,147,.18);
-  border-radius:22px;box-shadow:0 22px 60px -34px rgba(26,16,40,.48);backdrop-filter:blur(16px);
+  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(94,110,84,.18);
+  border-radius:22px;box-shadow:0 22px 60px -34px rgba(22,30,18,.48);backdrop-filter:blur(16px);
   opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px) scale(.98);transform-origin:top right;
   transition:opacity .28s var(--ease),visibility .28s var(--ease),transform .28s var(--ease)}
 .mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
@@ -98,7 +112,7 @@ p{margin:0}
 .mm-inner a{color:var(--ink);font-size:16px;font-weight:600;letter-spacing:0;line-height:1.25;
   padding:14px 14px;border-bottom:1px solid rgba(35,40,31,.08);border-radius:12px;text-decoration:none;
   opacity:0;transform:translateY(8px);transition:opacity .34s var(--ease),transform .34s var(--ease),background .2s,color .2s}
-.mm-inner a:hover,.mm-inner a:active{background:rgba(106,76,147,.1);color:var(--forest)}
+.mm-inner a:hover,.mm-inner a:active{background:rgba(94,110,84,.1);color:var(--forest)}
 .mobile-menu.open .mm-inner a{opacity:1;transform:none}
 .mobile-menu.open .mm-inner a:nth-child(1){transition-delay:.08s}
 .mobile-menu.open .mm-inner a:nth-child(2){transition-delay:.13s}
@@ -116,12 +130,12 @@ p{margin:0}
 .hero{padding:128px 0 26px}
 .hero>.wrap{max-width:1840px;padding-left:clamp(10px,1.1vw,16px);padding-right:clamp(10px,1.1vw,16px)}
 .hero-card{position:relative;border-radius:26px;overflow:hidden;min-height:84vh;display:flex;align-items:flex-end;
-  background:#3B2C57}
+  background:#3A1360}
 .hero-photo{position:absolute;inset:0;background-size:cover;background-position:right center;
   background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_1_gszne7.png");
   opacity:1}
 .hero-card::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(16,8,26,.92) 0%,rgba(16,8,26,.80) 34%,rgba(16,8,26,.52) 56%,rgba(16,8,26,.20) 76%,rgba(16,8,26,0) 94%)}
+  background:linear-gradient(90deg,rgba(20,12,30,.92) 0%,rgba(20,12,30,.80) 34%,rgba(20,12,30,.52) 56%,rgba(20,12,30,.20) 76%,rgba(20,12,30,0) 94%)}
 .hero-noise{position:absolute;inset:0;opacity:.45;mix-blend-mode:overlay;pointer-events:none}
 .hero-kicker{display:inline-flex;align-items:center;background:rgba(248,247,242,.14);
   backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:8px 16px;
@@ -137,7 +151,7 @@ p{margin:0}
 .hero-card.in h1 .ln:nth-child(2) i{transition-delay:.26s}
 .hero-card.in h1 .ln:nth-child(3) i{transition-delay:.40s}
 .hero-card.in h1 .ln i{transform:translateY(0)}
-.hero h1 .accent{color:#DED4F0}
+.hero h1 .accent{color:#EBE2F5}
 .hero-sub{margin-top:18px;font-size:clamp(19px,1.9vw,22px);max-width:600px;color:rgba(244,243,238,.9);
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .5s}
 .hero-card.in .hero-sub{opacity:1;transform:none}
@@ -145,7 +159,7 @@ p{margin:0}
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .6s}
 .hero-card.in .hero-ticks{opacity:1;transform:none}
 .hero-ticks li{list-style:none;display:flex;align-items:flex-start;gap:8px;font-size:16px;line-height:1.4;color:rgba(244,243,238,.92)}
-.hero-ticks .ck{color:#DED4F0;flex:none}
+.hero-ticks .ck{color:#EBE2F5;flex:none}
 .hero-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .72s}
 .hero-card.in .hero-cta{opacity:1;transform:none}
 .hero-cta .btn{background:#F4F3EE;color:var(--ink);border-color:transparent}
@@ -223,7 +237,7 @@ p{margin:0}
 .meet-photo{position:relative}
 .meet-photo .meet-img{display:block;width:100%;height:auto;border-radius:20px}
 .meet-photo::before{content:"";position:absolute;inset:0;background:rgba(35,40,31,.08);border-radius:20px}
-.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(24,15,36,.46);backdrop-filter:blur(8px);
+.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(20,24,17,.46);backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 16px;font-size:16px;color:#EDEDE5}
 .meet-photo .cap b{display:block;font-size:16px;margin-bottom:2px}
 .meet-body{padding:0;display:flex;flex-direction:column;justify-content:center;gap:20px}
@@ -264,18 +278,18 @@ p{margin:0}
 .tri .ic svg{width:27px;height:27px}
 .tri h3{font-size:20px;font-weight:500;letter-spacing:-.02em;align-self:center}
 .tri p{font-size:19px;color:var(--ink-soft);line-height:1.5}
-.ic-gem{background:#3B2C57}
-.ic-lith{background:#4A3A69}
-.ic-org{background:#5B4680}
-.trust-list{background:var(--forest);color:#EAE4F3;border-radius:22px;padding:clamp(26px,4vw,48px);
+.ic-gem{background:#3A1360}
+.ic-lith{background:#4A1877}
+.ic-org{background:#5B1F91}
+.trust-list{background:var(--forest);color:#E9E3F3;border-radius:22px;padding:clamp(26px,4vw,48px);
   display:grid;grid-template-columns:0.88fr 1.12fr;gap:clamp(28px,4vw,48px);align-items:stretch}
 .trust-list h3{font-size:clamp(25px,3.2vw,38px);font-weight:500;color:#fff;margin-bottom:26px;max-width:22ch;line-height:1.12;letter-spacing:-.02em}
 .trust-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(234,228,243,.92)}
-.trust-grid .ck{color:#DED4F0;flex:none;margin-top:2px}
+.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(231,232,221,.92)}
+.trust-grid .ck{color:#EBE2F5;flex:none;margin-top:2px}
 .trust-media{position:relative;align-self:stretch;border-radius:16px;overflow:hidden;min-height:340px}
 .trust-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(234,228,243,.16);
+.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(231,232,221,.16);
   font-style:italic;font-size:clamp(19px,2.1vw,24px);color:#fff}
 
 /* protocols */
@@ -285,15 +299,15 @@ p{margin:0}
   transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .proto:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
 .proto .top{position:relative;padding:0;color:#F4F3EE;overflow:hidden;aspect-ratio:1/1;display:flex;align-items:flex-end}
-.proto .top.t-age{background:#3B2C57}
-.proto .top.t-imm{background:#4A3A69}
-.proto .top.t-str{background:#5B4680}
+.proto .top.t-age{background:#3A1360}
+.proto .top.t-imm{background:#4A1877}
+.proto .top.t-str{background:#5B1F91}
 .proto .top .top-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,8,26,0) 36%,rgba(16,8,26,.4) 62%,rgba(16,8,26,.92) 100%)}
+.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,22,15,0) 36%,rgba(8,22,15,.4) 62%,rgba(8,22,15,.92) 100%)}
 .proto .top-meta{position:relative;z-index:2;width:100%;padding:22px 24px}
 .proto .top .kick{font-size:16px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
 .proto .top h3{font-size:23px;font-weight:500;margin-top:6px;letter-spacing:-.02em}
-.proto .top .tag{margin-top:12px;background:rgba(24,15,36,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
+.proto .top .tag{margin-top:12px;background:rgba(20,24,17,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
 .proto .mid{padding:22px 24px;flex:1;display:flex;flex-direction:column;gap:14px}
 .proto .desc{font-size:19px;color:var(--ink-soft);line-height:1.55}
 .proto .inside{display:flex;flex-direction:column;gap:11px}
@@ -329,7 +343,7 @@ p{margin:0}
   transition:all .25s var(--ease);position:relative;user-select:none}
 .opt:hover{border-color:var(--olive);color:var(--ink)}
 .opt.sel{background:var(--forest);border-color:var(--forest);color:#F4F3EE}
-.opt.sel::before{content:"\2713  ";color:#DED4F0}
+.opt.sel::before{content:"â ";color:#EBE2F5}
 #quizEmail{display:block;width:100%;max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--line);
   border-radius:100px;padding:15px 22px;font-family:inherit;font-size:16px;outline:none;transition:border .3s;text-align:center}
 #quizEmail:focus{border-color:var(--moss)}
@@ -348,7 +362,7 @@ p{margin:0}
 .quiz-result p{color:rgba(237,237,229,.85);font-size:16px;max-width:48ch;margin:0 0 22px;line-height:1.6}
 .qr-media{position:absolute;inset:0;z-index:0}
 .qr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(26,16,40,.84),rgba(26,16,40,.5) 42%,rgba(26,16,40,.1) 72%,rgba(26,16,40,0))}
+.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(22,30,24,.84),rgba(22,30,24,.5) 42%,rgba(22,30,24,.1) 72%,rgba(22,30,24,0))}
 
 /* reviews */
 .reviews{padding:60px 0;overflow:hidden}
@@ -368,8 +382,8 @@ p{margin:0}
 /* offer */
 .offer{padding:30px 0 26px}
 .offer-card{position:relative;border-radius:26px;overflow:hidden;color:#F4F3EE;
-  background-color:#221733;
-  background-image:linear-gradient(90deg,rgba(22,14,34,.9),rgba(22,14,34,.55) 58%,rgba(22,14,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
+  background-color:#1E0B33;
+  background-image:linear-gradient(90deg,rgba(24,18,34,.9),rgba(24,18,34,.55) 58%,rgba(24,18,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
   background-size:cover;background-position:center;background-repeat:no-repeat;
   padding:clamp(36px,5.4vw,76px);text-align:left}
 .offer-card h2{font-size:clamp(25px,3.6vw,40px);font-weight:500;max-width:22ch;margin:0}
@@ -390,7 +404,7 @@ p{margin:0}
 .finalcta .row{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* footer */
-.footer{background:var(--forest);color:#D9DAD0;padding:60px 0 28px}
+.footer{background:var(--forest);color:#D8D2E6;padding:60px 0 28px}
 .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(217,218,208,.14)}
 .foot-brand b{font-size:24px;font-weight:700;color:#F4F3EE;letter-spacing:-.03em}
 .foot-logo{height:40px;width:auto;display:block;margin-bottom:4px;filter:brightness(0) invert(1);opacity:.92}
@@ -398,7 +412,7 @@ p{margin:0}
 .foot-brand p{font-size:19px;color:rgba(217,218,208,.6);margin-top:12px;max-width:34ch;line-height:1.6}
 .foot-brand .hwh{font-style:italic;font-size:18px;color:var(--sage);margin-top:14px}
 .foot-col h4{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:rgba(217,218,208,.5);margin:0 0 14px}
-.foot-col a{display:block;font-size:16px;color:#D9DAD0;padding:5px 0;transition:color .3s}
+.foot-col a{display:block;font-size:16px;color:#D8D2E6;padding:5px 0;transition:color .3s}
 .foot-col a:hover{color:var(--sage)}
 .disclaimer{font-size:16px;color:rgba(217,218,208,.5);line-height:1.6;max-width:80ch;margin:26px 0 0}
 .foot-fine{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:16px;color:rgba(217,218,208,.5);
@@ -407,11 +421,11 @@ p{margin:0}
 /* responsive */
 @media(max-width:980px){
   .nav-links{display:none}.menu-btn{display:inline-flex}.nav-cta{display:none}
-  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(106,76,147,.14);backdrop-filter:blur(14px);
+  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(94,110,84,.14);backdrop-filter:blur(14px);
     box-shadow:0 14px 34px -26px rgba(34,39,30,.5)}
-  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(106,76,147,.22);
+  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(94,110,84,.22);
     box-shadow:0 18px 46px -30px rgba(34,39,30,.58)}
-  .menu-btn{background:rgba(106,76,147,.1);border-color:rgba(106,76,147,.2)}
+  .menu-btn{background:rgba(94,110,84,.1);border-color:rgba(94,110,84,.2)}
   .mobile-menu{top:126px;max-height:calc(100dvh - 146px)}
   .nav.top0 + .mobile-menu{top:88px;max-height:calc(100dvh - 108px)}
   .sci-split{grid-template-columns:1fr;gap:28px}.proto-grid{grid-template-columns:1fr}
@@ -444,7 +458,7 @@ p{margin:0}
   .finalcta{padding-top:28px;padding-bottom:44px}
   .hero-card{display:flex;align-items:flex-start;min-height:104vh;background:var(--forest)}
   .hero-photo{position:absolute;inset:0;height:auto;min-height:0;background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_2_ho4pgg.png");background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#23281F}
-  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(14,8,24,.9) 0%,rgba(14,8,24,.72) 30%,rgba(14,8,24,.5) 55%,rgba(14,8,24,.18) 80%,rgba(14,8,24,0) 100%)}
+  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(8,18,12,.9) 0%,rgba(8,18,12,.72) 30%,rgba(8,18,12,.5) 55%,rgba(8,18,12,.18) 80%,rgba(8,18,12,0) 100%)}
   .hero-content{padding:clamp(18px,5vw,26px) clamp(15px,4.2vw,20px) clamp(30px,8vw,44px);max-width:none}
   .hero h1{font-size:clamp(22px,6.3vw,28px)}
   .hero h1 .ln{display:inline;overflow:visible;padding:0}
@@ -453,7 +467,7 @@ p{margin:0}
   .hero-ticks{grid-template-columns:1fr}
   .trustbar-grid{grid-template-columns:1fr}
   .hero-kicker{white-space:normal;letter-spacing:.04em}
-  .offer-card{background-image:linear-gradient(180deg,rgba(22,14,34,.93) 0%,rgba(22,14,34,.8) 32%,rgba(22,14,34,.45) 58%,rgba(22,14,34,.12) 82%,rgba(22,14,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#221733;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
+  .offer-card{background-image:linear-gradient(180deg,rgba(24,18,34,.93) 0%,rgba(24,18,34,.8) 32%,rgba(24,18,34,.45) 58%,rgba(24,18,34,.12) 82%,rgba(24,18,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#1E0B33;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
   .offer-card::after{display:none}
   .qr-grid{grid-template-columns:1fr;display:grid;min-height:0;align-items:stretch}
   .qr-media{position:static;inset:auto;z-index:auto;min-height:0;order:-1}
@@ -468,9 +482,23 @@ p{margin:0}
   .rev-track{animation:none!important}.rev-track-wrap{overflow-x:auto}
   .gallery-track{animation:none!important}.gallery-track-wrap{overflow-x:auto}
 }
+
+/* accessibility & typography polish */
+.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--purple);color:#fff;
+  padding:10px 16px;border-radius:10px;font-weight:600;transition:top .2s}
+.skip-link:focus{top:12px;outline:2px solid #fff;outline-offset:2px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible,.nav-drop-btn:focus-visible{
+  outline:2px solid var(--purple);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{text-wrap:balance}
+p,li,.hero-sub,.lede{text-wrap:pretty}
+/* brand type: humanist body face (Montserrat/Gotham kept for headings, nav, buttons, labels) */
+p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
+/* brand accent (PMS 123 yellow) â white backgrounds only, used sparingly */
+.rating-badge .rstars,.rev .s{color:var(--accent)}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></svg>
 <div class="progress" id="progress"></div>
@@ -478,8 +506,8 @@ p{margin:0}
 <!-- ANNOUNCEMENT -->
 <div class="anews" id="anews">
   <div class="row">
-    <span><b>Heal Without Harm&trade;</b></span><span class="sep">&middot;</span>
-    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">&middot;</span>
+    <span><b>Heal Without Harmâ¢</b></span><span class="sep">Â·</span>
+    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">Â·</span>
     <span>30% Off Plus Free U.S. Shipping on Your First Order</span>
   </div>
 </div>
@@ -488,9 +516,9 @@ p{margin:0}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="#top">
-      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <span style="display:none;flex-direction:column;line-height:1">
-        <b>Dr. Garber<span>&rsquo;s</span></b>
+        <b>Dr. Garber<span>âs</span></b>
         <small>Bioformulas</small>
       </span>
     </a>
@@ -499,11 +527,19 @@ p{margin:0}
       <a href="meet-dr-garber.html">Dr. Garber</a>
       <a href="the-science.html">The Science</a>
       <a href="#protocols">Protocols</a>
-      <a href="#journey">My Journey</a>
+      <a href="meet-dr-garber.html#journey">My Journey</a>
       <a href="#quiz">Find Yours</a>
       <a href="#reviews">Reviews</a>
+      <div class="nav-drop">
+        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Blog <span class="caret" aria-hidden="true"></span></button>
+        <div class="nav-drop-menu" role="menu">
+          <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener" role="menuitem">Blog for Human Health</a>
+          <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener" role="menuitem">Blog for Animal Health</a>
+        </div>
+      </div>
     </div>
     <div class="nav-right">
+      <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener" class="btn btn--ghost nav-cta" style="padding:11px 18px">Practitioner Sign Up</a>
       <a href="#protocols" class="btn btn--moss nav-cta" style="padding:11px 20px">Choose Your Protocol</a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span class="bars"><i></i><i></i><i></i></span>
@@ -517,9 +553,12 @@ p{margin:0}
     <a href="meet-dr-garber.html">Dr. Garber</a>
     <a href="the-science.html">The Science</a>
     <a href="#protocols">Protocols</a>
-    <a href="#journey">My Journey</a>
+    <a href="meet-dr-garber.html#journey">My Journey</a>
     <a href="#quiz">Find Yours</a>
     <a href="#reviews">Reviews</a>
+    <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener">Blog for Human Health</a>
+    <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener">Blog for Animal Health</a>
+    <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener">Practitioner Sign Up</a>
     <a href="#protocols" class="mm-cta">Choose Your Protocol</a>
   </nav>
 </div>
@@ -527,7 +566,7 @@ p{margin:0}
 <span id="top"></span>
 
 <!-- 1. HERO -->
-<header class="hero">
+<header class="hero" id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="hero-card" id="heroCard">
       <div class="hero-photo"></div>
@@ -535,13 +574,13 @@ p{margin:0}
       <div class="hero-content">
         <span class="hero-kicker">As heard on the Homeopathy Hangout, a Top 1% podcast worldwide</span>
         <h1>
-          <span class="ln"><i>For 45 Years, Hollywood&rsquo;s Biggest</i></span>
+          <span class="ln"><i>For 45 Years, Hollywoodâs Biggest</i></span>
           <span class="ln"><i>Names Trusted One Healer.</i></span>
           <span class="ln"><i class="accent">Now His Protocols Are Yours.</i></span>
         </h1>
-        <p class="hero-sub">Dr. Stuart Garber quietly kept celebrities, artists, and Cirque du Soleil performers at their best for four decades. His Bioformulas don&rsquo;t silence your symptoms. They support your whole body as one connected system. The way healing was meant to work.</p>
+        <p class="hero-sub">Dr. Stuart Garber quietly kept celebrities, artists, and Cirque du Soleil performers at their best for four decades. His Bioformulas donât silence your symptoms. They support your whole body as one connected system. The way healing was meant to work.</p>
         <div class="hero-cta">
-          <a href="#protocols" class="btn">Choose Your Protocol <span class="arr">&rarr;</span></a>
+          <a href="#protocols" class="btn">Choose Your Protocol <span class="arr">â</span></a>
           <a href="#quiz" class="btn btn--ghost">Take the 60-Second Quiz</a>
         </div>
       </div>
@@ -562,7 +601,7 @@ p{margin:0}
       </div>
       <div class="tb">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 22c0-5 4-8 9-9"/></svg>
-        <span>No known side effects, and won&rsquo;t interfere with your medications</span>
+        <span>No known side effects, and wonât interfere with your medications</span>
       </div>
       <div class="tb">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg>
@@ -578,19 +617,19 @@ p{margin:0}
     <div class="shift-grid reveal">
       <div class="shift-head">
         <span class="eyebrow">The Shift</span>
-        <h2>You&rsquo;ve Been Told to Treat Symptoms. <br class="brk">Your Body Wants Something Else.</h2>
+        <h2>Youâve Been Told to Treat Symptoms. <br class="brk">Your Body Wants Something Else.</h2>
       </div>
       <div class="shift-body">
       <div class="shift-lead">
-        <p>You already know the routine. One pill for the energy that never quite returns. Another for the sleep that won&rsquo;t come. Something for the immune system that folds the moment you travel. Each one treats a part, never the whole, and somehow you&rsquo;re managing more symptoms than ever.</p>
+        <p>You already know the routine. One pill for the energy that never quite returns. Another for the sleep that wonât come. Something for the immune system that folds the moment you travel. Each one treats a part, never the whole, and somehow youâre managing more symptoms than ever.</p>
       </div>
       <div class="shift-rest">
-        <p>You&rsquo;ve done your homework. You don&rsquo;t want anything that suppresses what your body is trying to tell you, or that quietly costs you somewhere else. You want to feel like yourself again: clear, strong, steady, without the trade-offs.</p>
-        <p class="close">That&rsquo;s exactly the problem Dr. Garber spent his career solving.</p>
+        <p>Youâve done your homework. You donât want anything that suppresses what your body is trying to tell you, or that quietly costs you somewhere else. You want to feel like yourself again: clear, strong, steady, without the trade-offs.</p>
+        <p class="close">Thatâs exactly the problem Dr. Garber spent his career solving.</p>
       </div>
       </div>
       <div class="shift-media">
-        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_23_43_58_vbxvqh.png" alt="Dr. Garber&rsquo;s Bioformulas: supporting the whole system, not just the symptom" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_23_43_58_vbxvqh.png" alt="Dr. Garberâs Bioformulas: supporting the whole system, not just the symptom" loading="lazy">
       </div>
     </div>
   </div>
@@ -602,23 +641,26 @@ p{margin:0}
     <div class="meet-card reveal">
       <div class="meet-photo">
         <img class="meet-img" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/drgarber-headshot_LE_upscale_prime_ahc1zo.jpg" alt="Dr. Stuart Garber at his desk">
-        <div class="cap"><b>Dr. Stuart Garber, Ph.D., DC</b>Homeopath to the Stars &middot; Santa Fe, NM</div>
+        <div class="cap"><b>Dr. Stuart Garber, Ph.D., DC</b>Homeopath to the Stars Â· Santa Fe, NM</div>
       </div>
       <div class="meet-body">
         <span class="eyebrow">Meet Dr. Garber</span>
-        <h2>Meet the &ldquo;Homeopath to the Stars&rdquo;</h2>
+        <h2>Meet the âHomeopath to the Starsâ</h2>
         <div class="meet-story">
-          <p>In 1985 I turned a small Los Angeles practice into the city&rsquo;s first integrative health institute: homeopathy, chiropractic, acupuncture, and nutrition under one roof. Soon I was caring for some of the most recognizable people in the world.</p>
+          <p>In 1985 I turned a Los Angeles practice into the cityâs first integrative health institute: homeopathy, chiropractic, acupuncture, and nutrition under one roof. Soon I was caring for some of the most recognizable people in the world.</p>
         </div>
-        <div class="names">Penny Marshall, Sharon Stone, Barbra Streisand, Seal, and Raquel Welch, plus the artists of Cirque du Soleil, whose official chiropractor I became on the West Coast.</div>
+        <div class="names">Penny Marshall, Sharon Stone, Seal, and Raquel Welch, among others, plus the artists of Cirque du Soleil, whose official chiropractor I became on the West Coast.</div>
         <div class="meet-story">
           <p>But the famous were never the point. In 1997 I became the first person in the United States ever awarded a Ph.D. in homeopathy, and went on to lead the California Homeopathic Medical Society. Today my wife Helen and I work from a horse ranch in Santa Fe, closer to the land, the animals, and the kind of healing I believe in.</p>
-          <p>After 45 years, my mission hasn&rsquo;t changed: <em>help people take ownership of their health, and heal without harm.</em></p>
+          <p>After 45 years, my mission hasnât changed: <em>help people take ownership of their health, and heal without harm.</em></p>
         </div>
         <div class="meet-creds">
           <div><b data-count="45">0</b><span>Years in practice</span></div>
           <div><b>1997</b><span>First U.S. Ph.D. in homeopathy</span></div>
           <div><b>1981</b><span>In practice since</span></div>
+        </div>
+        <div class="ab-cta-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+          <a href="meet-dr-garber.html" class="btn btn--ghost">Read Dr. Garberâs full story <span class="arr">â</span></a>
         </div>
       </div>
     </div>
@@ -628,15 +670,15 @@ p{margin:0}
 <section class="gallery">
   <div class="gallery-track-wrap reveal">
     <div class="gallery-track" id="galleryTrack">
-      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/wholefoodslb2_q9s6ii.jpg" alt="Dr. Garber&rsquo;s Bioformulas on shelf at Whole Foods" loading="lazy"></div>
+      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/wholefoodslb2_q9s6ii.jpg" alt="Dr. Garberâs Bioformulas on shelf at Whole Foods" loading="lazy"></div>
       <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/wholefoods-hillcrest2_fywb4k.jpg" alt="Whole Foods Hillcrest display" loading="lazy"></div>
       <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/wholefoodshilcrest_n3wpoq.jpg" alt="Whole Foods Hillcrest shelf" loading="lazy"></div>
-      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/sign_jhcykw.jpg" alt="Dr. Garber&rsquo;s Bioformulas in-store signage" loading="lazy"></div>
-      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/R0012111_dlnbfe.jpg" alt="Dr. Garber&rsquo;s Bioformulas in store" loading="lazy"></div>
+      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/sign_jhcykw.jpg" alt="Dr. Garberâs Bioformulas in-store signage" loading="lazy"></div>
+      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/R0012111_dlnbfe.jpg" alt="Dr. Garberâs Bioformulas in store" loading="lazy"></div>
       <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/lafayette-2_l9tckl.jpg" alt="Lafayette store shelf" loading="lazy"></div>
       <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/lafayette1_daowoo.jpg" alt="Lafayette store display" loading="lazy"></div>
-      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/IMG_0271_l22l0f.jpg" alt="Dr. Garber&rsquo;s Bioformulas retail" loading="lazy"></div>
-      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/in-action_eubxpp.jpg" alt="Dr. Garber&rsquo;s Bioformulas in action" loading="lazy"></div>
+      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/IMG_0271_l22l0f.jpg" alt="Dr. Garberâs Bioformulas retail" loading="lazy"></div>
+      <div class="gshot"><img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/in-action_eubxpp.jpg" alt="Dr. Garberâs Bioformulas in action" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -648,14 +690,17 @@ p{margin:0}
     <div class="sci-intro reveal">
       <span class="eyebrow">The Science</span>
       <h2 style="margin-top:14px">I Combined Three Healing Sciences Into One Formula. No Homeopath<br>Had Ever Done It.</h2>
-      <p>Over twenty years in clinical practice, I couldn&rsquo;t find products that met my standards, so I made my own. In my lab, I began blending three biotherapies that had always been used separately. Brought together in exactly the right way, they work in a synergy the body recognizes. I call them my Bioformulas. To this day, I know of no other homeopath who integrates all three into a single formula.</p>
+      <p>Over twenty years in clinical practice, I couldnât find products that met my standards, so I made my own. In my lab, I began blending three biotherapies that had always been used separately. Brought together in exactly the right way, they work in a synergy the body recognizes. I call them my Bioformulas. To this day, I know of no other product that integrates all three into a single formula.</p>
+      <div class="ab-cta-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+        <a href="the-science.html" class="btn btn--ghost">See the full science <span class="arr">â</span></a>
+      </div>
     </div>
 
     <div class="triad" data-stagger>
       <article class="tri">
-        <div class="ic ic-gem"><svg viewBox="0 0 24 24"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14Z" fill="#fff" opacity=".95"/><path d="M5 19C8 14 13 9 18 6" stroke="#4A3A69" stroke-width="1.4" fill="none"/></svg></div>
+        <div class="ic ic-gem"><svg viewBox="0 0 24 24"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14Z" fill="#fff" opacity=".95"/><path d="M5 19C8 14 13 9 18 6" stroke="#445233" stroke-width="1.4" fill="none"/></svg></div>
         <h3>Gemmotherapy</h3>
-        <p>The regenerative energy of plant buds and young shoots, often called &ldquo;plant stem cells.&rdquo;</p>
+        <p>The regenerative energy of plant buds and young shoots, often called âplant stem cells.â</p>
       </article>
       <article class="tri">
         <div class="ic ic-lith"><svg viewBox="0 0 24 24"><path d="M12 2 4 9l3 11h10l3-11-8-7Z" fill="#fff" opacity=".95"/><path d="M12 2 7 20M12 2l5 18M4 9h16" stroke="#7a6a48" stroke-width="1" fill="none"/></svg></div>
@@ -674,15 +719,15 @@ p{margin:0}
       <div class="trust-text">
         <h3>Why people (and their doctors) trust them:</h3>
         <ul class="trust-grid">
-          <li><span class="ck">&#10003;</span> No known side effects.</li>
-          <li><span class="ck">&#10003;</span> Won&rsquo;t interfere with allopathic drugs like SSRIs, blood-pressure meds, statins, or diabetes medication.</li>
-          <li><span class="ck">&#10003;</span> Works with your supplements, and helps your body use key minerals.</li>
-          <li><span class="ck">&#10003;</span> Supports the whole body as one system, not isolated symptoms.</li>
+          <li><span class="ck">â</span> No known side effects.</li>
+          <li><span class="ck">â</span> Wonât interfere with allopathic drugs like SSRIs, blood-pressure meds, statins, or diabetes medication.</li>
+          <li><span class="ck">â</span> Works with your supplements, and helps your body use key minerals.</li>
+          <li><span class="ck">â</span> Supports the whole body as one system, not isolated symptoms.</li>
         </ul>
-        <p class="trust-foot">Take them alongside whatever you&rsquo;re already on. Over time, many people find they need less. That&rsquo;s what healing without harm looks like.</p>
+        <p class="trust-foot">Take them alongside whatever youâre already on. Over time, many people find they need less. Thatâs what healing without harm looks like.</p>
       </div>
       <div class="trust-media">
-        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_00_00_10_eysptv.png" alt="Dr. Garber&rsquo;s Bioformulas working safely alongside everyday medications and supplements" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_00_00_10_eysptv.png" alt="Dr. Garberâs Bioformulas working safely alongside everyday medications and supplements" loading="lazy">
       </div>
     </div>
   </div>
@@ -693,294 +738,78 @@ p{margin:0}
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
       <h2>Three Protocols. One Philosophy:<br>Support the System, Not the Symptom.</h2>
-      <p class="lede" style="max-width:860px">Each protocol pairs three of Dr. Garber&rsquo;s Bioformulas, designed to work together with a complete, synergistic approach, all in one box.</p>
+      <p class="lede" style="max-width:860px">Each protocol pairs three of Dr. Garberâs Bioformulas, designed to work together with a complete, synergistic approach, all in one box.</p>
     </div>
 
     <div class="proto-grid" data-stagger>
       <!-- AGING WELL -->
       <article class="proto">
         <div class="top t-age">
-          <img class="top-img" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_22_15_o6llvh.png" alt="Aging Well Protocol: Bone Strength, Joint Health, Metabolic Vitality" loading="lazy">
+          <img class="top-img" src="https://dashboard.katalyst-crm.com/files/t1/ChatGPT%20Image%2026%20Haz%202026%2016_57_57%201.png" alt="Aging Well Protocol: Bone Strength, Joint Health, Metabolic Vitality" loading="lazy">
           <div class="top-meta">
             <div class="kick">The longevity protocol</div>
             <h3>Aging Well Protocol</h3>
           </div>
         </div>
         <div class="mid">
-          <p class="desc">Aging well isn&rsquo;t about slowing down. It&rsquo;s about keeping the strength, mobility, and vitality to live fully. This protocol supports the systems that quietly carry you: your bones, your joints, and your metabolism.</p>
+          <p class="desc">Aging well isnât about slowing down. Itâs about keeping the strength, mobility, and vitality to live fully. This protocol supports the systems that quietly carry you: your bones, your joints, and your metabolism.</p>
           <div class="inside">
-            <div class="it"><span class="ck">&#10003;</span><div><b>Bone Strength</b>: <span>skeletal support to help you stay sturdy and capable.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Joint Health</b>: <span>mobility and comfort support for the joints that keep you moving.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Metabolic Vitality</b>: <span>natural hormone balance to support energy and a steady metabolism.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Bone Strength</b>: <span>skeletal support to help you stay sturdy and capable.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Joint Health</b>: <span>mobility and comfort support for the joints that keep you moving.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Metabolic Vitality</b>: <span>natural hormone balance to support energy and a steady metabolism.</span></div></div>
           </div>
         </div>
         <div class="foot">
-          <div class="price"><b>$99.95</b><span>complete protocol &middot; individual bottles $34.99 each</span></div>
-          <a href="https://drgarbers.com/pages/aging-well-protocol" target="_blank" rel="noopener" class="btn">Start with Aging Well <span class="arr">&rarr;</span></a>
+          <div class="price"><b>$99.95</b><span>complete protocol Â· individual bottles $34.99 each</span></div>
+          <a href="https://drgarbers.com/pages/aging-well-protocol" target="_blank" rel="noopener" class="btn">Start with Aging Well <span class="arr">â</span></a>
         </div>
       </article>
 
       <!-- IMMUNE -->
       <article class="proto">
         <div class="top t-imm">
-          <img class="top-img" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_33_50_wjcnuu.png" alt="Staying Well Protocol: Immune Boost, Lung Health, Enviro Defense" loading="lazy">
+          <img class="top-img" src="https://dashboard.katalyst-crm.com/files/t1/ChatGPT%20Image%2026%20Haz%202026%2017_05_54%202.png" alt="Staying Well Protocol: Immune Boost, Lung Health, Enviro Defense" loading="lazy">
           <div class="top-meta">
             <div class="kick">Immune defense &amp; recovery</div>
             <h3>Staying Well Protocol</h3>
           </div>
         </div>
         <div class="mid">
-          <p class="desc">Strong immunity isn&rsquo;t aggressive. It&rsquo;s prepared, adaptable, and resilient. This protocol supports your body&rsquo;s ability to meet challenges and recover without being pushed into overdrive.</p>
+          <p class="desc">Strong immunity isnât aggressive. Itâs prepared, adaptable, and resilient. This protocol supports your bodyâs ability to meet challenges and recover without being pushed into overdrive.</p>
           <div class="inside">
-            <div class="it"><span class="ck">&#10003;</span><div><b>Immune Boost</b>: <span>foundational support to help your immune system respond efficiently, not excessively.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Lung Health</b>: <span>respiratory resilience where your body meets the outside world.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Enviro Defense</b>: <span>support against the everyday environmental burden of pollution, chemicals, and irritants.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Immune Boost</b>: <span>foundational support to help your immune system respond efficiently, not excessively.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Lung Health</b>: <span>respiratory resilience where your body meets the outside world.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Enviro Defense</b>: <span>support against the everyday environmental burden of pollution, chemicals, and irritants.</span></div></div>
           </div>
         </div>
         <div class="foot">
-          <div class="price"><b>$99.95</b><span>complete protocol &middot; individual bottles $34.99 each</span></div>
-          <a href="https://drgarbers.com/pages/immune-defense-recovery-protocol" target="_blank" rel="noopener" class="btn">Start with Staying Well <span class="arr">&rarr;</span></a>
+          <div class="price"><b>$99.95</b><span>complete protocol Â· individual bottles $34.99 each</span></div>
+          <a href="https://drgarbers.com/pages/immune-defense-recovery-protocol" target="_blank" rel="noopener" class="btn">Start with Staying Well <span class="arr">â</span></a>
         </div>
       </article>
 
       <!-- STRESS -->
       <article class="proto">
         <div class="top t-str">
-          <img class="top-img" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_23_30_ndqbr1.png" alt="Resting Well Protocol: Anxiety Relief, Mood Boost, Sleep Aid" loading="lazy">
+          <img class="top-img" src="https://dashboard.katalyst-crm.com/files/t1/ChatGPT%20Image%2026%20Haz%202026%2017_05_54%201.png" alt="Resting Well Protocol: Anxiety Relief, Mood Boost, Sleep Aid" loading="lazy">
           <div class="top-meta">
             <div class="kick">Stress, mood &amp; sleep</div>
             <h3>Resting Well Protocol</h3>
           </div>
         </div>
         <div class="mid">
-          <p class="desc">Steady your nervous system and reclaim your sleep. Support for the stress that doesn&rsquo;t clock out at 5pm, so you feel grounded through the long days and actually rest through the night. This is support for regulation, not suppression.</p>
+          <p class="desc">Steady your nervous system and reclaim your sleep. Support for the stress that doesnât clock out at 5pm, so you feel grounded through the long days and actually rest through the night. This is support for regulation, not suppression.</p>
           <div class="inside">
-            <div class="it"><span class="ck">&#10003;</span><div><b>Anxiety Relief</b>: <span>stress-response support to ease the body out of constant alert.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Mood Boost</b>: <span>emotional-balance support to smooth the highs and lows.</span></div></div>
-            <div class="it"><span class="ck">&#10003;</span><div><b>Sleep Aid</b>: <span>restorative-sleep support so your nervous system can reset.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Anxiety Relief</b>: <span>stress-response support to ease the body out of constant alert.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Mood Boost</b>: <span>emotional-balance support to smooth the highs and lows.</span></div></div>
+            <div class="it"><span class="ck">â</span><div><b>Sleep Aid</b>: <span>restorative-sleep support so your nervous system can reset.</span></div></div>
           </div>
         </div>
         <div class="foot">
-          <div class="price"><b>$99.95</b><span>complete protocol &middot; individual bottles $34.99 each</span></div>
-          <a href="https://drgarbers.com/pages/stress-mood-sleep-protocol" target="_blank" rel="noopener" class="btn">Start with Resting Well <span class="arr">&rarr;</span></a>
+          <div class="price"><b>$99.95</b><span>complete protocol Â· individual bottles $34.99 each</span></div>
+          <a href="https://drgarbers.com/pages/stress-mood-sleep-protocol" target="_blank" rel="noopener" class="btn">Start with Resting Well <span class="arr">â</span></a>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- 6. MY JOURNEY -->
-<section class="journey" id="journey">
-  <div class="wrap">
-    <div class="sec-head sec-head--center reveal">
-      <span class="eyebrow">My Journey</span>
-      <h2>None of this was a straight line.</h2>
-      <p class="lede" style="max-width:760px">The moments that shaped how I practice, in order. Tap any year to open the story.</p>
-    </div>
-
-    <div class="tl reveal" id="timeline">
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1955</span>
-          <span class="tl-title">I was born into a generation that would start questioning everything about health.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I was born in New York to Milton and Corrine Garber, right at the start of a generation that would go on to question a lot of what everyone else took for granted about staying well.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1972</span>
-          <span class="tl-title">At seventeen I was reading Prevention while everyone else read Sports Illustrated.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I spent my summers working at a local veterinary clinic and the school year at a neighborhood health food store, and I paid for my own subscription to Prevention magazine. My Alaskan Malamute, Bandit, was one of my closest companions in those years. Long before I made formulas for dogs and horses, he gave me my first real feel for the bond between people and animals.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1975</span>
-          <span class="tl-title">&ldquo;You&rsquo;ve got to check out this chiropractor.&rdquo;</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>My roommate came barging in one afternoon junior year with that line. I had never even heard the word before. I went anyway, and I walked out thinking: this is really cool. I was studying Biology with a minor in Chemistry at SUNY New Paltz at the time, and it was the same stretch of years I met Helen. Somewhere in there the choice quietly settled itself: chiropractic, not veterinary medicine.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1977</span>
-          <span class="tl-title">I left college with a science degree and no intention of using it the expected way.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I graduated from SUNY New Paltz with a degree in Biology and a minor in Chemistry. On paper that pointed straight at vet school or a lab bench. But that first chiropractic visit had never left me, and by the time I walked out with the diploma the decision was already made. The science was going to serve a different kind of medicine.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1981</span>
-          <span class="tl-title">I graduated summa cum laude, after my own body taught me what chiropractic could do.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>While I was preparing for my board exams the physical stress got so bad I could barely walk. One treatment using Sacral Occipital Technique changed everything. It wasn&rsquo;t just relief. It reshaped what I thought the body was capable of when you give it the right support.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1982</span>
-          <span class="tl-title">I joined the practice that shaped the rest of my career.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I joined Westside Chiropractic Center in Los Angeles, founded by the chiropractic pioneer Dr. David Denton. He became my mentor and a lifelong influence.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1984</span>
-          <span class="tl-title">Denton made me Chief of Staff and started grooming me to take over.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I became Chief of Staff at Westside Chiropractic Center, and Dr. Denton began preparing me to lead the practice.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1985</span>
-          <span class="tl-title">I bought the practice and built LA&rsquo;s first integrative health clinic.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>Dr. Denton offered to sell me Westside Chiropractic Center. I took it, renamed it the Westside Health Institute, and over the next decade built it into the first integrative health clinic in Los Angeles: chiropractic, homeopathy, medicine, acupuncture, nutrition, psychotherapy, and biological dentistry, all under one roof. Our tagline was &ldquo;We&rsquo;ve come together to keep you from falling apart,&rdquo; and we meant it. Our patients ranged from families across the city to Sharon Stone, Bob Dylan, and Barbra Streisand.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1989-1995</span>
-          <span class="tl-title">I became Cirque du Soleil&rsquo;s chiropractor, for tickets.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>After one of Cirque du Soleil&rsquo;s earliest US performances, I couldn&rsquo;t stop thinking about what those artists put their bodies through. I offered to care for the troupe for free, because I admired what they did. They were uncomfortable with that, so we settled on tickets. The relationship lasted years, well before Cirque became an international name. It also led Helen into professional photography, after the performers noticed her talent behind the camera.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1992-Present</span>
-          <span class="tl-title">I started teaching the method around the world.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I began an international speaking career, teaching chiropractors, naturopaths, physicians, homeopaths, acupuncturists, and veterinarians. I still do.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1995</span>
-          <span class="tl-title">One lecture in London gave me the question that shaped everything after.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>While pursuing my PhD through London&rsquo;s Hahnemann College of Homeopathy, I attended a lecture by Dr. Trevor Cook, homeopath to the Queen Mother, and learned about three homeopathic biotherapies: gemmotherapy, lithotherapy, and organotherapy. One question stayed with me for years afterward. What if those three could be combined, synergistically, into a single formula? That question became the foundation of every bioformula I make.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1997</span>
-          <span class="tl-title">I became the first person in the United States to earn a PhD in Homeopathy.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I earned it through Curentur University, the first in the country to do so.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">1998</span>
-          <span class="tl-title">Back in private practice, I went straight back into the lab.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I returned to private practice in Santa Monica and, drawing on my chemistry background and years of clinical work, started combining gemmotherapy, lithotherapy, and organotherapy in ways most homeopaths had never tried. Those experiments became the foundation of what are now Dr. Garber&rsquo;s Bioformulas.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2005</span>
-          <span class="tl-title">I brought the bioformulas to the public.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>After years of clinical success, I launched Dr. Garber&rsquo;s Natural Solutions under a simple idea: Heal Different. Over the next decade the formulas spread through Whole Foods&rsquo; western regions and nationally, through integrative practitioners, medical doctors, and health food stores.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2016</span>
-          <span class="tl-title">Helen and I traded Los Angeles for Santa Fe and a life around horses.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>We wanted horses to be part of everyday life, not just something we visited on weekends. We relocated with our rescued Springer Spaniels and started a new chapter surrounded by open land and animals.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2017</span>
-          <span class="tl-title">My own patients showed me that animals needed their own formulas.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>Clients had quietly started giving my human bioformulas to their dogs, with encouraging results. That was the moment I realized animals deserved formulas made specifically for them, so I launched Maxwell Pet with a canine line. The same year, I ran an equine navicular syndrome pilot study with Dr. Mark Meddleton, DVM, pairing my Equine Bone and Joint formula with targeted chiropractic care.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2018</span>
-          <span class="tl-title">I got certified to adjust animals, and joined a therapeutic riding board.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I earned my Animal Chiropractor certification from the American Veterinary Chiropractic Association, and joined the board of the New Mexico Center for Therapeutic Riding, which uses equine-assisted therapy for children and adults with special needs.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2019</span>
-          <span class="tl-title">I started treating animals at a cancer clinic.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I began caring for small animals at Veterinary Cancer Care in Santa Fe, as part of the clinic&rsquo;s integrative approach to veterinary medicine.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2020</span>
-          <span class="tl-title">I became a service-dog chiropractor.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I became an authorized canine chiropractor for Assistance Dogs of the West, giving weekly care to service dogs in training at their Santa Fe headquarters.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2023</span>
-          <span class="tl-title">I added an equine line.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I expanded the animal formulas with a set of equine bioformulas.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2024</span>
-          <span class="tl-title">I brought everything under one name: Heal Without Harm.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I rebranded Dr. Garber&rsquo;s Natural Solutions as Dr. Garber&rsquo;s Bioformulas, uniting the human, canine, and equine lines under one brand and one philosophy: Heal Without Harm.</p></div>
-      </div>
-
-      <div class="tl-item">
-        <button class="tl-head" aria-expanded="false">
-          <span class="tl-year">2026</span>
-          <span class="tl-title">I launched three flagship protocols.</span>
-          <span class="tl-ico" aria-hidden="true"></span>
-        </button>
-        <div class="tl-panel"><p>I introduced Aging Well, Resting Well, and Staying Well. Each one brings together complementary bioformulas that support interconnected parts of your health, so it&rsquo;s easier to take a whole-systems approach instead of chasing one symptom at a time.</p></div>
-      </div>
-    </div>
-
-    <div class="tl-closer reveal">
-      <p>Fifty years of questions, and it comes down to something simple. Remedies that remind your body how to repair itself.</p>
-      <a href="#quiz" class="btn">Find yours. <span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -991,8 +820,8 @@ p{margin:0}
     <div class="quiz-shell reveal">
       <div class="qhead">
         <span class="eyebrow">Choose Your Protocol</span>
-        <h2>Not Sure Where to Start? Let&rsquo;s Find Your Protocol.</h2>
-        <p>Answer five quick questions, selecting all that apply, and we&rsquo;ll point you to the protocol your body is asking for. About 60 seconds.</p>
+        <h2>Not Sure Where to Start? Letâs Find Your Protocol.</h2>
+        <p>Answer five quick questions, selecting all that apply, and weâll point you to the protocol your body is asking for. About 60 seconds.</p>
       </div>
 
       <div class="quiz-box" id="quizBox">
@@ -1008,7 +837,7 @@ p{margin:0}
             <div class="opt" data-tag="immune">I want to feel more resilient and bounce back faster when life challenges my health.</div>
             <div class="opt" data-tag="stress">I want to feel calmer, sleep better, and handle stress more easily.</div>
             <div class="opt" data-tag="aging">I want to protect my long-term vitality and quality of life.</div>
-            <div class="opt" data-tag="immune">I want to support my body&rsquo;s natural defenses year-round.</div>
+            <div class="opt" data-tag="immune">I want to support my bodyâs natural defenses year-round.</div>
           </div>
         </div>
         <div class="qstep" data-step="1">
@@ -1017,7 +846,7 @@ p{margin:0}
             <div class="opt" data-tag="aging">More strength, energy, and mobility.</div>
             <div class="opt" data-tag="immune">Feeling less vulnerable to seasonal and environmental challenges.</div>
             <div class="opt" data-tag="stress">Better sleep and less overwhelm.</div>
-            <div class="opt" data-tag="aging">Confidence that I&rsquo;m aging as well as possible.</div>
+            <div class="opt" data-tag="aging">Confidence that Iâm aging as well as possible.</div>
             <div class="opt" data-tag="immune">Faster recovery if I catch something.</div>
             <div class="opt" data-tag="stress">Greater emotional balance throughout the day.</div>
           </div>
@@ -1040,30 +869,30 @@ p{margin:0}
             <div class="opt" data-tag="immune">Feeling run down too often.</div>
             <div class="opt" data-tag="stress">Poor sleep due to stress.</div>
             <div class="opt" data-tag="aging">Not feeling as vital as I used to be.</div>
-            <div class="opt" data-tag="immune">Taking longer than I&rsquo;d like to recover.</div>
-            <div class="opt" data-tag="stress">Feeling overwhelmed more often than I&rsquo;d like.</div>
+            <div class="opt" data-tag="immune">Taking longer than Iâd like to recover.</div>
+            <div class="opt" data-tag="stress">Feeling overwhelmed more often than Iâd like.</div>
           </div>
         </div>
         <div class="qstep" data-step="4">
           <h3>What are you hoping to experience more of?</h3>
           <div class="opts">
             <div class="opt" data-tag="stress">More rest and emotional well-being.</div>
-            <div class="opt" data-tag="immune">More confidence in my body&rsquo;s ability to stay well.</div>
+            <div class="opt" data-tag="immune">More confidence in my bodyâs ability to stay well.</div>
             <div class="opt" data-tag="stress">Deeper sleep and a calmer mind.</div>
             <div class="opt" data-tag="aging">I want to stay active, independent, and strong for years to come.</div>
             <div class="opt" data-tag="aging">I want to support my health proactively, not just react when something goes wrong.</div>
-            <div class="opt" data-tag="immune">More resilience, no matter what&rsquo;s going around.</div>
+            <div class="opt" data-tag="immune">More resilience, no matter whatâs going around.</div>
             <div class="opt" data-tag="stress">I want to feel calmer, more focused, and better equipped to handle stress.</div>
           </div>
         </div>
         <div class="qemail" id="qEmailWrap" hidden>
           <label for="quizEmail">Where should we send your recommendation?</label>
           <input id="quizEmail" type="email" name="email" placeholder="Your email address" autocomplete="email">
-          <small>We&rsquo;ll use this to follow up with your quiz result.</small>
+          <small>Weâll use this to follow up with your quiz result.</small>
         </div>
         <div class="qnav">
-          <button class="btn btn--ghost" id="qBack" type="button" style="display:none">&#8592; Back</button>
-          <button class="btn" id="qNext" type="button">Next <span class="arr">&rarr;</span></button>
+          <button class="btn btn--ghost" id="qBack" type="button" style="display:none">â Back</button>
+          <button class="btn" id="qNext" type="button">Next <span class="arr">â</span></button>
         </div>
         <div class="quiz-note" id="quizNote"></div>
       </div>
@@ -1087,66 +916,66 @@ p{margin:0}
 <section class="reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
-      <span class="eyebrow">Real results &middot; real people</span>
-      <h2>Thousands Have Felt the Difference.<br>Here&rsquo;s What That Looks Like.</h2>
+      <span class="eyebrow">Real results Â· real people</span>
+      <h2>Thousands Have Felt the Difference.<br>Hereâs What That Looks Like.</h2>
       <div class="rating-badge">
-        <span class="rstars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="rstars">âââââ</span>
         <b>4.78</b>
-        <span class="rmeta">out of 5 &middot; <strong>288</strong> verified reviews</span>
+        <span class="rmeta">out of 5 Â· <strong>288</strong> verified reviews</span>
       </div>
     </div>
   </div>
   <div class="rev-track-wrap reveal">
     <div class="rev-track" id="revTrack">
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I can&rsquo;t believe how well Immune Boost held up for me on my trip to Japan during their worst flu season in 25 years. We were surrounded by people coughing and sneezing and both stayed completely healthy. Something I now depend on for travel.&rdquo;</blockquote>
-        <div class="by">Ariana S. <span>Immune Boost &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âI canât believe how well Immune Boost held up for me on my trip to Japan during their worst flu season in 25 years. We were surrounded by people coughing and sneezing and both stayed completely healthy. Something I now depend on for travel.â</blockquote>
+        <div class="by">Ariana S. <span>Immune Boost Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I take this whenever I feel something coming on and usually start to feel better overnight. I love that you can take it as needed without overstimulating your immune system, which matters to me since I have autoimmune issues.&rdquo;</blockquote>
-        <div class="by">Rachel S. <span>Immune Boost &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âI take this whenever I feel something coming on and usually start to feel better overnight. I love that you can take it as needed without overstimulating your immune system, which matters to me since I have autoimmune issues.â</blockquote>
+        <div class="by">Rachel S. <span>Immune Boost Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I had tried everything, and I mean EVERYTHING, for these intensely itchy&#8230;&rdquo;</blockquote>
-        <div class="by">Abby Horowitz <span>Skin Health &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âI had tried everything, and I mean EVERYTHING, for these intensely itchyâ¦â</blockquote>
+        <div class="by">Abby Horowitz <span>Skin Health Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;Long shifts in a mask (I&rsquo;m a nurse) did a number on my skin. I was constantly&#8230;&rdquo;</blockquote>
-        <div class="by">Courtney T. <span>Skin Health &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âLong shifts in a mask (Iâm a nurse) did a number on my skin. I was constantlyâ¦â</blockquote>
+        <div class="by">Courtney T. <span>Skin Health Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;My dermatologist wanted to put me on antibiotics for my acne, but my mom&#8230;&rdquo;</blockquote>
-        <div class="by">Lila T. <span>Skin Health &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âMy dermatologist wanted to put me on antibiotics for my acne, but my momâ¦â</blockquote>
+        <div class="by">Lila T. <span>Skin Health Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;Amazing product! I still had no complete relief, even after immunotherapy for 3&#8230;&rdquo;</blockquote>
-        <div class="by">Patricia Brown Montera <span>Enviro Defense &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âAmazing product! I still had no complete relief, even after immunotherapy for 3â¦â</blockquote>
+        <div class="by">Patricia Brown Montera <span>Enviro Defense Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I started using Immune Boost almost a month ago. There have been so many illnesses going through our area, and even though I&rsquo;ve been around many people who don&rsquo;t follow infection-control guidelines, I have remained healthy.&rdquo;</blockquote>
-        <div class="by">jmsuther <span>Immune Boost &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âI started using Immune Boost almost a month ago. There have been so many illnesses going through our area, and even though Iâve been around many people who donât follow infection-control guidelines, I have remained healthy.â</blockquote>
+        <div class="by">jmsuther <span>Immune Boost Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;Terrific product, interesting ingredients. Nothing else like it that I&rsquo;ve come across. Haven&rsquo;t been sick once since taking it regularly. Highly recommend it.&rdquo;</blockquote>
-        <div class="by">HKG <span>Immune Boost &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âTerrific product, interesting ingredients. Nothing else like it that Iâve come across. Havenât been sick once since taking it regularly. Highly recommend it.â</blockquote>
+        <div class="by">HKG <span>Immune Boost Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;By the end of the school day I felt like I was moving through molasses. After a few weeks my energy actually started to level out, and now I have the energy to walk the dog after school daily.&rdquo;</blockquote>
-        <div class="by">Sarah Dobbs <span>Energy &amp; Metabolic &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âBy the end of the school day I felt like I was moving through molasses. After a few weeks my energy actually started to level out, and now I have the energy to walk the dog after school daily.â</blockquote>
+        <div class="by">Sarah Dobbs <span>Energy &amp; Metabolic Â· Verified</span></div>
       </article>
       <article class="rev">
-        <div class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;Working in healthcare, stress is part of the job. I use this before double shifts and it steadies me without that flat medicated feeling. It has become part of my self-care routine.&rdquo;</blockquote>
-        <div class="by">DD, RN <span>Resting Well &middot; Verified</span></div>
+        <div class="s">âââââ</div>
+        <blockquote>âWorking in healthcare, stress is part of the job. I use this before double shifts and it steadies me without that flat medicated feeling. It has become part of my self-care routine.â</blockquote>
+        <div class="by">DD, RN <span>Resting Well Â· Verified</span></div>
       </article>
     </div>
   </div>
@@ -1156,9 +985,9 @@ p{margin:0}
 <section class="offer" id="offer">
   <div class="wrap">
     <div class="offer-card reveal">
-      <h2>Try It for 60 Days. If Your Body Doesn&rsquo;t Agree, We&rsquo;ll Refund Every Cent.</h2>
-      <p class="lede">We can talk about synergy and science all day. What matters is how you feel. So the risk is entirely ours: try your protocol for a full 60 days, and if it&rsquo;s not right for you, we&rsquo;ll give you your money back, unconditionally.</p>
-      <a href="#protocols" class="btn btn--light">Choose Your Protocol <span class="arr">&rarr;</span></a>
+      <h2>Try It for 60 Days. If Your Body Doesnât Agree, Weâll Refund Every Cent.</h2>
+      <p class="lede">We can talk about synergy and science all day. What matters is how you feel. So the risk is entirely ours: try your protocol for a full 60 days, and if itâs not right for you, weâll give you your money back, unconditionally.</p>
+      <a href="#protocols" class="btn btn--light">Choose Your Protocol <span class="arr">â</span></a>
     </div>
   </div>
 </section>
@@ -1169,7 +998,7 @@ p{margin:0}
       <div class="perk">
         <svg class="pic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg>
         <b>60-Day Money-Back Guarantee</b>
-        <p>A full 60 days to decide, even though each protocol is a 30-day supply. Finish the bottles. If your body doesn&rsquo;t agree, every cent comes back.</p>
+        <p>A full 60 days to decide, even though each protocol is a 30-day supply. Finish the bottles. If your body doesnât agree, every cent comes back.</p>
       </div>
       <div class="perk">
         <svg class="pic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 11.4l7.8-7.8a2 2 0 0 1 1.4-.6H19a2 2 0 0 1 2 2v6.2a2 2 0 0 1-.6 1.4l-7.8 7.8a2 2 0 0 1-2.8 0L3.6 14.2a2 2 0 0 1 0-2.8z"/><circle cx="16.3" cy="7.7" r="1.2"/></svg>
@@ -1189,9 +1018,9 @@ p{margin:0}
 <section class="finalcta">
   <div class="wrap reveal">
     <h2>Your Body Has Been Asking for This. <br class="brk"><span class="serif">Give It an Answer.</span></h2>
-    <p>Choose your protocol, or take the 60-second quiz and we&rsquo;ll choose with you. Heal without harm, starting today.</p>
+    <p>Choose your protocol, or take the 60-second quiz and weâll choose with you. Heal without harm, starting today.</p>
     <div class="row">
-      <a href="#protocols" class="btn">Choose Your Protocol <span class="arr">&rarr;</span></a>
+      <a href="#protocols" class="btn">Choose Your Protocol <span class="arr">â</span></a>
       <a href="#quiz" class="btn btn--ghost">Take the Quiz</a>
     </div>
   </div>
@@ -1202,9 +1031,9 @@ p{margin:0}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas">
+        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas">
         <p>Three healing sciences: gemmotherapy, lithotherapy, and organotherapy, integrated into a single formula. Supporting your whole body as one connected system.</p>
-        <div class="hwh">Heal Without Harm&trade;</div>
+        <div class="hwh">Heal Without Harmâ¢</div>
       </div>
       <div class="foot-col">
         <h4>Protocols</h4>
@@ -1217,8 +1046,8 @@ p{margin:0}
     </div>
     <p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>
     <div class="foot-fine">
-      <span>&#169; 2026 Dr. Garber&rsquo;s Bioformulas. All rights reserved.</span>
-      <span>60-Day Unconditional Money-Back Guarantee &middot; Heal Without Harm&trade;</span>
+      <span>Â© 2026 Dr. Garberâs Bioformulas. All rights reserved.</span>
+      <span>60-Day Unconditional Money-Back Guarantee Â· Heal Without Harmâ¢</span>
     </div>
   </div>
 </footer>
@@ -1274,7 +1103,7 @@ document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 /* quiz */
 const results={
   aging:{t:'Your body is asking for the Aging Well Protocol.',
-    b:'You’re focused on staying strong, capable, and vital for the years ahead. Bone Strength, Joint Health, and Metabolic Vitality work together to support exactly that.',
+    b:'Youâre focused on staying strong, capable, and vital for the years ahead. Bone Strength, Joint Health, and Metabolic Vitality work together to support exactly that.',
     cta:'Get the Aging Well Protocol',l:'https://drgarbers.com/pages/aging-well-protocol',
     img:'https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_16_57_57_1_nh1s55.png'},
   immune:{t:'Your body is asking for the Staying Well Protocol.',
@@ -1282,7 +1111,7 @@ const results={
     cta:'Get the Staying Well Protocol',l:'https://drgarbers.com/pages/immune-defense-recovery-protocol',
     img:'https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_17_05_54_1_b1gra3.png'},
   stress:{t:'Your body is asking for the Resting Well Protocol.',
-    b:'You’re ready for calmer days and deeper rest. Anxiety Relief, Mood Boost, and Sleep Aid support your nervous system’s ability to settle, reset, and recover.',
+    b:'Youâre ready for calmer days and deeper rest. Anxiety Relief, Mood Boost, and Sleep Aid support your nervous systemâs ability to settle, reset, and recover.',
     cta:'Get the Resting Well Protocol',l:'https://drgarbers.com/pages/stress-mood-sleep-protocol',
     img:'https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_17_05_54_1_bohi0g.png'}
 };
@@ -1306,7 +1135,7 @@ function qRender(){
   qLabel.textContent=isEmailStep?'Your Recommendation':'Question '+(qCur+1)+' of '+qTotal;
   const pct=isEmailStep?100:Math.round(((qCur+1)/qTotal)*100);
   qPct.textContent=pct+'%'; qProgress.style.width=pct+'%';
-  qNext.innerHTML=isEmailStep?'See My Protocol <span class="arr">→</span>':'Next <span class="arr">→</span>';
+  qNext.innerHTML=isEmailStep?'See My Protocol <span class="arr">â</span>':'Next <span class="arr">â</span>';
   qNote.textContent='';
 }
 function qScroll(){ quizBox.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'}); }
@@ -1315,7 +1144,7 @@ function quizAnswers(){
     question:i+1,
     prompt:(step.querySelector('h3')?.textContent||'').trim(),
     answers:[...step.querySelectorAll('.opt.sel')].map(o=>({
-      text:(o.textContent||'').replace(/^✓\s*/,'').trim(),
+      text:(o.textContent||'').replace(/^â\s*/,'').trim(),
       tag:o.dataset.tag||''
     }))
   }));
@@ -1365,27 +1194,6 @@ qNext.addEventListener('click',async()=>{
 });
 qRender();
 
-/* interactive journey timeline */
-document.querySelectorAll('#timeline .tl-item').forEach(item=>{
-  const btn=item.querySelector('.tl-head'), panel=item.querySelector('.tl-panel');
-  btn.addEventListener('click',()=>{
-    const isOpen=item.classList.contains('open');
-    document.querySelectorAll('#timeline .tl-item.open').forEach(o=>{
-      o.classList.remove('open');
-      o.querySelector('.tl-panel').style.maxHeight=null;
-      o.querySelector('.tl-head').setAttribute('aria-expanded','false');
-    });
-    if(!isOpen){
-      item.classList.add('open');
-      panel.style.maxHeight=panel.scrollHeight+'px';
-      btn.setAttribute('aria-expanded','true');
-    }
-  });
-});
-window.addEventListener('resize',()=>{
-  const open=document.querySelector('#timeline .tl-item.open .tl-panel');
-  if(open) open.style.maxHeight=open.scrollHeight+'px';
-});
 </script>
 </body>
 </html>

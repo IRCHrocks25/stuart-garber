@@ -6,16 +6,16 @@
 <title>The Science of the Bioformulas | Dr. Garber's Bioformulas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F6F3; --paper:#FFFFFF; --paper-2:#EDEDE8;
-  --ink:#23281F; --ink-soft:#5C5766;
-  --forest:#3B2C57; --forest-2:#4A3A69;
-  --sage:#DED4F0; --moss:#6A4C93; --olive:#7C63A5;
-  --clay:#6A4C93; --stone:#C7C7BF; --mist:#E3E3DC;
-  --ice:#DED4F0; --rose:#EDE6F7; --indigo:#4A3A69; --indigo-2:#5B4680;
-  --purple:#6A4C93; --purple-d:#573D7B;
+  --ink:#23281F; --ink-soft:#5B635A;
+  --forest:#3A1360; --forest-2:#4A1877;
+  --sage:#EBE2F5; --moss:#5B1F91; --olive:#6E4BA6;
+  --clay:#5B1F91; --stone:#C7C7BF; --mist:#E3E3DC;
+  --ice:#EBE2F5; --rose:#F0E9F8; --indigo:#4A1877; --indigo-2:#5B1F91;
+  --purple:#5B1F91; --purple-d:#4A1877; --accent:#F6C324;
   --line:rgba(35,40,31,.12); --line-soft:rgba(35,40,31,.07);
   --shadow:0 1px 2px rgba(34,39,30,.04),0 18px 50px -28px rgba(34,39,30,.30);
   --r:18px; --maxw:1560px; --ease:cubic-bezier(.2,.7,.2,1);
@@ -50,11 +50,11 @@ p{margin:0}
   background:var(--moss);transition:width .1s linear}
 
 /* announcement */
-.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#EAE4F3;
+.anews{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--forest);color:#E9E3F3;
   font-size:16px;letter-spacing:.02em;transition:transform .45s var(--ease)}
 .anews.hide{transform:translateY(-100%)}
 .anews .row{display:flex;gap:26px;justify-content:center;align-items:center;flex-wrap:wrap;padding:9px 16px;text-align:center}
-.anews b{color:#DED4F0;font-weight:600}
+.anews b{color:#EBE2F5;font-weight:600}
 .anews .sep{opacity:.4}
 
 /* nav */
@@ -76,6 +76,20 @@ p{margin:0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1.5px;width:0;background:var(--moss);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{width:100%}
+.nav-drop{position:relative;display:inline-flex;align-items:center}
+.nav-drop>.nav-drop-btn{font:inherit;color:var(--ink-soft);background:none;border:0;cursor:pointer;padding:0;
+  display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:500;transition:color .3s}
+.nav-drop>.nav-drop-btn:hover{color:var(--ink)}
+.nav-drop .caret{width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform .3s}
+.nav-drop:hover .caret,.nav-drop:focus-within .caret{transform:translateY(0) rotate(225deg)}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);
+  min-width:214px;background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;
+  box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:120}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-drop-menu a{display:block;padding:10px 12px;border-radius:9px;font-size:15px;color:var(--ink-soft);white-space:nowrap;transition:background .2s,color .2s}
+.nav-drop-menu a::after{display:none}
+.nav-drop-menu a:hover{background:var(--paper-2);color:var(--ink)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none;width:46px;height:42px;align-items:center;justify-content:center;
   background:rgba(255,255,255,.5);border:1px solid var(--line-soft);border-radius:100px;cursor:pointer;padding:0;z-index:121;position:relative}
@@ -89,8 +103,8 @@ p{margin:0}
 .menu-btn.open .bars i:nth-child(2){opacity:0}
 .menu-btn.open .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .mobile-menu{position:fixed;top:88px;left:clamp(12px,4vw,22px);right:clamp(12px,4vw,22px);z-index:99;
-  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(106,76,147,.18);
-  border-radius:22px;box-shadow:0 22px 60px -34px rgba(26,16,40,.48);backdrop-filter:blur(16px);
+  max-height:calc(100dvh - 108px);overflow:auto;background:rgba(255,253,247,.97);border:1px solid rgba(94,110,84,.18);
+  border-radius:22px;box-shadow:0 22px 60px -34px rgba(22,30,18,.48);backdrop-filter:blur(16px);
   opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px) scale(.98);transform-origin:top right;
   transition:opacity .28s var(--ease),visibility .28s var(--ease),transform .28s var(--ease)}
 .mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
@@ -98,7 +112,7 @@ p{margin:0}
 .mm-inner a{color:var(--ink);font-size:16px;font-weight:600;letter-spacing:0;line-height:1.25;
   padding:14px 14px;border-bottom:1px solid rgba(35,40,31,.08);border-radius:12px;text-decoration:none;
   opacity:0;transform:translateY(8px);transition:opacity .34s var(--ease),transform .34s var(--ease),background .2s,color .2s}
-.mm-inner a:hover,.mm-inner a:active{background:rgba(106,76,147,.1);color:var(--forest)}
+.mm-inner a:hover,.mm-inner a:active{background:rgba(94,110,84,.1);color:var(--forest)}
 .mobile-menu.open .mm-inner a{opacity:1;transform:none}
 .mobile-menu.open .mm-inner a:nth-child(1){transition-delay:.08s}
 .mobile-menu.open .mm-inner a:nth-child(2){transition-delay:.13s}
@@ -116,12 +130,12 @@ p{margin:0}
 .hero{padding:128px 0 26px}
 .hero>.wrap{max-width:1840px;padding-left:clamp(10px,1.1vw,16px);padding-right:clamp(10px,1.1vw,16px)}
 .hero-card{position:relative;border-radius:26px;overflow:hidden;min-height:84vh;display:flex;align-items:flex-end;
-  background:#3B2C57}
+  background:#3A1360}
 .hero-photo{position:absolute;inset:0;background-size:cover;background-position:right center;
   background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_1_gszne7.png");
   opacity:1}
 .hero-card::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(16,8,26,.88) 0%,rgba(16,8,26,.62) 28%,rgba(16,8,26,.22) 52%,rgba(16,8,26,0) 72%)}
+  background:linear-gradient(90deg,rgba(8,22,15,.88) 0%,rgba(8,22,15,.62) 28%,rgba(8,22,15,.22) 52%,rgba(8,22,15,0) 72%)}
 .hero-noise{position:absolute;inset:0;opacity:.45;mix-blend-mode:overlay;pointer-events:none}
 .hero-kicker{display:inline-flex;align-items:center;background:rgba(248,247,242,.14);
   backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:8px 16px;
@@ -136,7 +150,7 @@ p{margin:0}
 .hero-card.in h1 .ln:nth-child(2) i{transition-delay:.26s}
 .hero-card.in h1 .ln:nth-child(3) i{transition-delay:.40s}
 .hero-card.in h1 .ln i{transform:translateY(0)}
-.hero h1 .accent{color:#DED4F0}
+.hero h1 .accent{color:#EBE2F5}
 .hero-sub{margin-top:18px;font-size:clamp(19px,1.9vw,22px);max-width:600px;color:rgba(244,243,238,.9);
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .5s}
 .hero-card.in .hero-sub{opacity:1;transform:none}
@@ -144,7 +158,7 @@ p{margin:0}
   opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .6s}
 .hero-card.in .hero-ticks{opacity:1;transform:none}
 .hero-ticks li{list-style:none;display:flex;align-items:flex-start;gap:8px;font-size:16px;line-height:1.4;color:rgba(244,243,238,.92)}
-.hero-ticks .ck{color:#DED4F0;flex:none}
+.hero-ticks .ck{color:#EBE2F5;flex:none}
 .hero-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:all .9s var(--ease) .72s}
 .hero-card.in .hero-cta{opacity:1;transform:none}
 .hero-cta .btn{background:#F4F3EE;color:var(--ink);border-color:transparent}
@@ -222,7 +236,7 @@ p{margin:0}
 .meet-photo{position:relative}
 .meet-photo .meet-img{display:block;width:100%;height:auto;border-radius:20px}
 .meet-photo::before{content:"";position:absolute;inset:0;background:rgba(35,40,31,.08);border-radius:20px}
-.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(24,15,36,.46);backdrop-filter:blur(8px);
+.meet-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(20,24,17,.46);backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 16px;font-size:16px;color:#EDEDE5}
 .meet-photo .cap b{display:block;font-size:16px;margin-bottom:2px}
 .meet-body{padding:0;display:flex;flex-direction:column;justify-content:center;gap:20px}
@@ -263,18 +277,18 @@ p{margin:0}
 .tri .ic svg{width:27px;height:27px}
 .tri h3{font-size:20px;font-weight:500;letter-spacing:-.02em;align-self:center}
 .tri p{font-size:19px;color:var(--ink-soft);line-height:1.5}
-.ic-gem{background:#3B2C57}
-.ic-lith{background:#4A3A69}
-.ic-org{background:#5B4680}
-.trust-list{background:var(--forest);color:#EAE4F3;border-radius:22px;padding:clamp(26px,4vw,48px);
+.ic-gem{background:#3A1360}
+.ic-lith{background:#4A1877}
+.ic-org{background:#5B1F91}
+.trust-list{background:var(--forest);color:#E9E3F3;border-radius:22px;padding:clamp(26px,4vw,48px);
   display:grid;grid-template-columns:0.88fr 1.12fr;gap:clamp(28px,4vw,48px);align-items:stretch}
 .trust-list h3{font-size:clamp(25px,3.2vw,38px);font-weight:500;color:#fff;margin-bottom:26px;max-width:22ch;line-height:1.12;letter-spacing:-.02em}
 .trust-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(234,228,243,.92)}
-.trust-grid .ck{color:#DED4F0;flex:none;margin-top:2px}
+.trust-grid li{list-style:none;display:flex;gap:12px;font-size:19px;line-height:1.5;color:rgba(231,232,221,.92)}
+.trust-grid .ck{color:#EBE2F5;flex:none;margin-top:2px}
 .trust-media{position:relative;align-self:stretch;border-radius:16px;overflow:hidden;min-height:340px}
 .trust-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(234,228,243,.16);
+.trust-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(231,232,221,.16);
   font-style:italic;font-size:clamp(19px,2.1vw,24px);color:#fff}
 
 /* protocols */
@@ -284,15 +298,15 @@ p{margin:0}
   transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .proto:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
 .proto .top{position:relative;padding:0;color:#F4F3EE;overflow:hidden;aspect-ratio:1/1;display:flex;align-items:flex-end}
-.proto .top.t-age{background:#3B2C57}
-.proto .top.t-imm{background:#4A3A69}
-.proto .top.t-str{background:#5B4680}
+.proto .top.t-age{background:#3A1360}
+.proto .top.t-imm{background:#4A1877}
+.proto .top.t-str{background:#5B1F91}
 .proto .top .top-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,8,26,0) 36%,rgba(16,8,26,.4) 62%,rgba(16,8,26,.92) 100%)}
+.proto .top::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,22,15,0) 36%,rgba(8,22,15,.4) 62%,rgba(8,22,15,.92) 100%)}
 .proto .top-meta{position:relative;z-index:2;width:100%;padding:22px 24px}
 .proto .top .kick{font-size:16px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
 .proto .top h3{font-size:23px;font-weight:500;margin-top:6px;letter-spacing:-.02em}
-.proto .top .tag{margin-top:12px;background:rgba(24,15,36,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
+.proto .top .tag{margin-top:12px;background:rgba(20,24,17,.42);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
 .proto .mid{padding:22px 24px;flex:1;display:flex;flex-direction:column;gap:14px}
 .proto .desc{font-size:19px;color:var(--ink-soft);line-height:1.55}
 .proto .inside{display:flex;flex-direction:column;gap:11px}
@@ -328,7 +342,7 @@ p{margin:0}
   transition:all .25s var(--ease);position:relative;user-select:none}
 .opt:hover{border-color:var(--olive);color:var(--ink)}
 .opt.sel{background:var(--forest);border-color:var(--forest);color:#F4F3EE}
-.opt.sel::before{content:"\2713  ";color:#DED4F0}
+.opt.sel::before{content:"â ";color:#EBE2F5}
 #quizEmail{display:block;width:100%;max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--line);
   border-radius:100px;padding:15px 22px;font-family:inherit;font-size:16px;outline:none;transition:border .3s;text-align:center}
 #quizEmail:focus{border-color:var(--moss)}
@@ -347,7 +361,7 @@ p{margin:0}
 .quiz-result p{color:rgba(237,237,229,.85);font-size:16px;max-width:48ch;margin:0 0 22px;line-height:1.6}
 .qr-media{position:absolute;inset:0;z-index:0}
 .qr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(26,16,40,.84),rgba(26,16,40,.5) 42%,rgba(26,16,40,.1) 72%,rgba(26,16,40,0))}
+.qr-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(22,30,24,.84),rgba(22,30,24,.5) 42%,rgba(22,30,24,.1) 72%,rgba(22,30,24,0))}
 
 /* reviews */
 .reviews{padding:60px 0;overflow:hidden}
@@ -367,8 +381,8 @@ p{margin:0}
 /* offer */
 .offer{padding:30px 0 26px}
 .offer-card{position:relative;border-radius:26px;overflow:hidden;color:#F4F3EE;
-  background-color:#221733;
-  background-image:linear-gradient(90deg,rgba(22,14,34,.9),rgba(22,14,34,.55) 58%,rgba(22,14,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
+  background-color:#1E0B33;
+  background-image:linear-gradient(90deg,rgba(24,18,34,.9),rgba(24,18,34,.55) 58%,rgba(24,18,34,.32)),url('https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ahhaj_dcdpk5.png');
   background-size:cover;background-position:center;background-repeat:no-repeat;
   padding:clamp(36px,5.4vw,76px);text-align:left}
 .offer-card h2{font-size:clamp(25px,3.6vw,40px);font-weight:500;max-width:22ch;margin:0}
@@ -389,7 +403,7 @@ p{margin:0}
 .finalcta .row{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* footer */
-.footer{background:var(--forest);color:#D9DAD0;padding:60px 0 28px}
+.footer{background:var(--forest);color:#D8D2E6;padding:60px 0 28px}
 .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(217,218,208,.14)}
 .foot-brand b{font-size:24px;font-weight:700;color:#F4F3EE;letter-spacing:-.03em}
 .foot-logo{height:40px;width:auto;display:block;margin-bottom:4px;filter:brightness(0) invert(1);opacity:.92}
@@ -397,7 +411,7 @@ p{margin:0}
 .foot-brand p{font-size:19px;color:rgba(217,218,208,.6);margin-top:12px;max-width:34ch;line-height:1.6}
 .foot-brand .hwh{font-style:italic;font-size:18px;color:var(--sage);margin-top:14px}
 .foot-col h4{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:rgba(217,218,208,.5);margin:0 0 14px}
-.foot-col a{display:block;font-size:16px;color:#D9DAD0;padding:5px 0;transition:color .3s}
+.foot-col a{display:block;font-size:16px;color:#D8D2E6;padding:5px 0;transition:color .3s}
 .foot-col a:hover{color:var(--sage)}
 .disclaimer{font-size:16px;color:rgba(217,218,208,.5);line-height:1.6;max-width:80ch;margin:26px 0 0}
 .foot-fine{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:16px;color:rgba(217,218,208,.5);
@@ -406,11 +420,11 @@ p{margin:0}
 /* responsive */
 @media(max-width:980px){
   .nav-links{display:none}.menu-btn{display:inline-flex}.nav-cta{display:none}
-  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(106,76,147,.14);backdrop-filter:blur(14px);
+  .nav-inner{background:rgba(255,253,247,.92);border-color:rgba(94,110,84,.14);backdrop-filter:blur(14px);
     box-shadow:0 14px 34px -26px rgba(34,39,30,.5)}
-  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(106,76,147,.22);
+  .nav.menu-open .nav-inner{background:#fffdf7;border-color:rgba(94,110,84,.22);
     box-shadow:0 18px 46px -30px rgba(34,39,30,.58)}
-  .menu-btn{background:rgba(106,76,147,.1);border-color:rgba(106,76,147,.2)}
+  .menu-btn{background:rgba(94,110,84,.1);border-color:rgba(94,110,84,.2)}
   .mobile-menu{top:126px;max-height:calc(100dvh - 146px)}
   .nav.top0 + .mobile-menu{top:88px;max-height:calc(100dvh - 108px)}
   .sci-split{grid-template-columns:1fr;gap:28px}.proto-grid{grid-template-columns:1fr}
@@ -443,7 +457,7 @@ p{margin:0}
   .finalcta{padding-top:28px;padding-bottom:44px}
   .hero-card{display:flex;align-items:flex-start;min-height:104vh;background:var(--forest)}
   .hero-photo{position:absolute;inset:0;height:auto;min-height:0;background-image:url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/stuart_2025a_headshot_2_ho4pgg.png");background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#23281F}
-  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(14,8,24,.9) 0%,rgba(14,8,24,.72) 30%,rgba(14,8,24,.5) 55%,rgba(14,8,24,.18) 80%,rgba(14,8,24,0) 100%)}
+  .hero-card::after{display:block;background:linear-gradient(180deg,rgba(8,18,12,.9) 0%,rgba(8,18,12,.72) 30%,rgba(8,18,12,.5) 55%,rgba(8,18,12,.18) 80%,rgba(8,18,12,0) 100%)}
   .hero-content{padding:clamp(18px,5vw,26px) clamp(15px,4.2vw,20px) clamp(30px,8vw,44px);max-width:none}
   .hero h1{font-size:clamp(22px,6.3vw,28px)}
   .hero h1 .ln{display:inline;overflow:visible;padding:0}
@@ -452,7 +466,7 @@ p{margin:0}
   .hero-ticks{grid-template-columns:1fr}
   .trustbar-grid{grid-template-columns:1fr}
   .hero-kicker{white-space:normal;letter-spacing:.04em}
-  .offer-card{background-image:linear-gradient(180deg,rgba(22,14,34,.93) 0%,rgba(22,14,34,.8) 32%,rgba(22,14,34,.45) 58%,rgba(22,14,34,.12) 82%,rgba(22,14,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#221733;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
+  .offer-card{background-image:linear-gradient(180deg,rgba(24,18,34,.93) 0%,rgba(24,18,34,.8) 32%,rgba(24,18,34,.45) 58%,rgba(24,18,34,.12) 82%,rgba(24,18,34,0) 100%),url("https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_25_Haz_2026_22_47_08_1_bijfz0.png");background-size:cover;background-position:center bottom;background-color:#1E0B33;padding:clamp(30px,7vw,44px) clamp(30px,7vw,44px) clamp(290px,86vw,500px)}
   .offer-card::after{display:none}
   .qr-grid{grid-template-columns:1fr;display:grid;min-height:0;align-items:stretch}
   .qr-media{position:static;inset:auto;z-index:auto;min-height:0;order:-1}
@@ -479,7 +493,7 @@ p{margin:0}
 .sc-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 
 /* premise */
-.premise{padding:78px 0;background:var(--paper)}
+.premise{padding:78px 0;background:url('https://cdn.katalyst-crm.com/t1/background.png') center/cover no-repeat}
 .premise-inner{max-width:760px;margin:0 auto;text-align:center}
 .premise h2{font-size:clamp(28px,3.8vw,46px);margin-bottom:28px}
 .premise .body{display:flex;flex-direction:column;gap:20px}
@@ -488,40 +502,34 @@ p{margin:0}
 
 /* three biotherapies */
 .bios{padding:78px 0;background:var(--paper-2)}
-.bio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,26px);margin-top:34px}
+.bio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,26px);margin-top:34px;align-items:start}
 .bio-card{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r);padding:clamp(26px,2.6vw,34px);
-  text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;flex-direction:column;gap:14px;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.bio-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line)}
-.bio-card .ic{width:48px;height:48px;border-radius:14px;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--forest)}
-.bio-card .ic svg{width:26px;height:26px}
+  text-align:left;color:var(--ink);display:flex;flex-direction:column;gap:14px;
+  transition:box-shadow .4s var(--ease),border-color .3s}
+.bio-card:hover{box-shadow:var(--shadow);border-color:var(--line)}
+.bio-card .ic{width:64px;height:64px;border-radius:14px;overflow:hidden;background:var(--sage);flex:0 0 auto}
+.bio-card .ic img{width:100%;height:100%;object-fit:cover;display:block}
 .bio-card h3{font-size:clamp(20px,2.1vw,24px);font-weight:500;line-height:1.2}
 .bio-card p{color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.55}
-.bio-card .more{margin-top:2px;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);display:inline-flex;align-items:center;gap:6px}
+.bio-card .more{margin-top:2px;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;align-self:flex-start;
+  font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);display:inline-flex;align-items:center;gap:6px;transition:color .3s}
+.bio-card .more:hover{color:var(--purple-d)}
 .bio-card .more .arr{transition:transform .4s var(--ease)}
 .bio-card.open .more .arr{transform:rotate(90deg)}
-
-/* detail accordion */
-.detail{padding:0 0 78px;background:var(--paper-2)}
-.detail-list{max-width:1000px;margin:0 auto}
-.det-item{border-bottom:1px solid var(--line);background:var(--paper);border-radius:var(--r);margin-bottom:14px;border:1px solid var(--line-soft)}
-.det-head{width:100%;background:none;border:0;cursor:pointer;font-family:inherit;color:var(--ink);text-align:left;
-  padding:24px clamp(20px,3vw,30px);position:relative;font-size:clamp(19px,2vw,23px);font-weight:500;letter-spacing:-.02em;
-  display:flex;align-items:center;gap:14px;transition:color .3s}
-.det-head:hover,.det-item.open .det-head{color:var(--purple)}
-.det-head .det-ico{margin-left:auto;position:relative;width:26px;height:26px;flex:0 0 26px}
-.det-head .det-ico::before,.det-head .det-ico::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink-soft);border-radius:2px;transform:translate(-50%,-50%);transition:transform .4s var(--ease),opacity .3s}
-.det-head .det-ico::before{width:13px;height:1.5px}
-.det-head .det-ico::after{width:1.5px;height:13px}
-.det-item.open .det-ico::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
-.det-panel{overflow:hidden;max-height:0;transition:max-height .55s var(--ease)}
-.det-panel .pad{padding:0 clamp(20px,3vw,30px) 28px}
-.det-panel p{margin:0 0 16px;color:var(--ink-soft);font-size:clamp(18px,1.75vw,20px);line-height:1.65;max-width:70ch}
-.det-panel p:last-child{margin-bottom:0}
-.det-panel a{color:var(--purple);text-decoration:underline;text-underline-offset:3px}
+.bio-panel{overflow:hidden;max-height:0;transition:max-height .55s var(--ease)}
+.bio-pad{padding-top:4px;display:flex;flex-direction:column;gap:14px}
+.bio-panel p{margin:0;color:var(--ink-soft);font-size:clamp(17px,1.6vw,19px);line-height:1.65}
+.bio-panel a{color:var(--purple);text-decoration:underline;text-underline-offset:3px}
+.synthesis{max-width:860px;margin:clamp(40px,5vw,64px) auto 0;text-align:center;
+  background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r);
+  padding:clamp(32px,4vw,52px);box-shadow:var(--shadow)}
+.synthesis h3{font-size:clamp(24px,3vw,34px);font-weight:500;letter-spacing:-.02em;color:var(--purple);margin:0 0 18px}
+.synthesis p{color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.65;margin:0 auto 12px;max-width:64ch}
+.synthesis p.beat{color:var(--ink);font-weight:500;font-size:clamp(20px,2vw,23px)}
+.synthesis p:last-child{margin-bottom:0}
 
 /* why combination */
-.combo{padding:78px 0}
+.combo{padding:78px 0;background:url('https://cdn.katalyst-crm.com/t1/background.png') center/cover no-repeat}
 .combo-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center}
 .combo h2{font-size:clamp(28px,3.6vw,44px);margin-bottom:24px}
 .combo-body{display:flex;flex-direction:column;gap:17px;max-width:56ch}
@@ -532,7 +540,8 @@ p{margin:0}
 
 /* safe checklist */
 .safe{padding:78px 0;background:var(--paper)}
-.safe-inner{max-width:960px;margin:0 auto}
+.safe-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(30px,5vw,60px);align-items:center}
+.safe-media img{width:100%;height:auto;border-radius:22px}
 .safe h2{font-size:clamp(27px,3.4vw,42px);margin-bottom:30px;max-width:22ch}
 .checklist{display:flex;flex-direction:column;gap:2px}
 .check{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line-soft)}
@@ -544,15 +553,15 @@ p{margin:0}
 .safe-close p.beat{color:var(--ink);font-weight:500}
 
 /* how made */
-.made{padding:78px 0}
-.made-intro{max-width:820px}
+.made{padding:78px 0;background:#FFFFFF}
+.made-intro{max-width:820px;margin:0 auto;text-align:center}
 .made-intro h2{font-size:clamp(28px,3.6vw,44px);margin-bottom:22px}
 .made-intro p{color:var(--ink-soft);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
-.std-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;margin:36px 0 0;max-width:1000px}
-.std{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--line-soft)}
-.std .n{flex:0 0 auto;font-size:15px;font-weight:600;color:var(--moss);letter-spacing:.1em;padding-top:3px}
-.std p{color:var(--ink);font-size:clamp(18px,1.7vw,20px);line-height:1.55}
-.made-close{margin-top:34px;max-width:74ch;color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.65}
+.std-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(16px,2vw,28px);margin:44px auto 0;max-width:1120px}
+.std{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:0;border-top:0}
+.std-badge{width:clamp(78px,8vw,104px);height:auto;display:block}
+.std p{color:var(--ink);font-size:15px;line-height:1.5}
+.made-close{margin:38px auto 0;max-width:74ch;color:var(--ink-soft);font-size:clamp(18px,1.7vw,20px);line-height:1.65;text-align:center}
 
 /* animals */
 .scanimals{padding:78px 0;background:var(--paper-2)}
@@ -563,29 +572,23 @@ p{margin:0}
 .scan-body p{color:var(--ink-soft);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
 .scan-body p.beat{color:var(--ink);font-weight:500}
 
-/* biotherapy note */
-.btnote{padding:0 0 78px}
-.btnote .box{max-width:820px;margin:0 auto;background:var(--paper-2);border:1px solid var(--line-soft);border-radius:var(--r);
-  padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:14px}
-.btnote .box .lbl{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-.btnote .box p{color:var(--ink-soft);font-size:clamp(17px,1.6vw,19px);line-height:1.6}
-
-/* closing band */
-.sc-closing{background:var(--forest);color:#F1F2EA;padding:clamp(64px,8vw,110px) 0;text-align:center}
-.sc-closing .hwh{font-size:clamp(30px,4.6vw,56px);font-weight:500;letter-spacing:-.03em;margin:0}
-.sc-closing .body{margin:26px auto 0;max-width:64ch;display:flex;flex-direction:column;gap:14px}
-.sc-closing .body p{color:rgba(241,242,234,.88);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
-.sc-closing .body p.beat{color:#fff;font-weight:500;font-size:clamp(21px,2.2vw,26px)}
-.sc-closing .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
-.sc-closing .btn--ghost{color:#F1F2EA;border-color:rgba(255,255,255,.35)}
-.sc-closing .btn--ghost:hover{background:rgba(255,255,255,.08)}
-.sc-closing .trust{margin-top:22px;font-size:16px;color:rgba(241,242,234,.8);display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.sc-closing .trust .st{color:var(--sage);letter-spacing:.1em}
+/* biotherapy note â small inline collapsible under the animals CTA */
+.btnote-mini{margin-top:24px;border-top:1px solid var(--line-soft);padding-top:16px;max-width:52ch}
+.btnote-mini summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.btnote-mini summary::-webkit-details-marker{display:none}
+.btnote-mini summary::after{content:"+";margin-left:auto;font-size:15px;font-weight:600;color:var(--moss)}
+.btnote-mini[open] summary::after{content:"\2013"}
+.btnote-mini summary:hover{color:var(--ink)}
+.btnote-mini-body{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.btnote-mini-body p{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0}
 
 /* faq */
-.faq{padding:78px 0}
-.faq-list{max-width:1000px;margin:34px auto 0}
+.faq{padding:78px 0;background:url('https://cdn.katalyst-crm.com/t1/background.png') center/cover no-repeat}
+.faq-list{max-width:1000px;margin:34px auto 0;background:var(--paper);border:1px solid var(--line-soft);
+  border-radius:var(--r);padding:6px clamp(22px,3vw,40px);box-shadow:var(--shadow)}
 .faq-item{border-bottom:1px solid var(--line-soft)}
+.faq-item:last-child{border-bottom:0}
 .faq-head{width:100%;background:none;border:0;cursor:pointer;font-family:inherit;color:var(--ink);
   text-align:left;padding:24px 44px 24px 0;position:relative;font-size:clamp(19px,2vw,22px);font-weight:500;
   letter-spacing:-.02em;line-height:1.35;transition:color .3s}
@@ -600,19 +603,51 @@ p{margin:0}
 .faq-panel p{margin:0 0 24px;padding-right:clamp(0px,4vw,60px);color:var(--ink-soft);
   font-size:clamp(18px,1.75vw,20px);line-height:1.65}
 
+/* closing band */
+.sc-closing{position:relative;color:#F1F2EA;padding:clamp(64px,8vw,110px) 0;text-align:left;
+  background:url('https://cdn.katalyst-crm.com/t1/drgarberimagelast%20setion.png') center/cover no-repeat}
+.sc-closing::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(26,18,38,.72) 0%,rgba(26,18,38,.48) 42%,rgba(26,18,38,.14) 72%,rgba(26,18,38,0) 100%)}
+.sc-closing>.wrap{position:relative;z-index:1}
+.sc-closing .inner{max-width:640px;text-shadow:0 1px 18px rgba(0,0,0,.35)}
+.sc-closing .hwh{font-size:clamp(30px,4.6vw,56px);font-weight:500;letter-spacing:-.03em;margin:0}
+.sc-closing .body{margin:26px 0 0;max-width:60ch;display:flex;flex-direction:column;gap:14px}
+.sc-closing .body p{color:rgba(241,242,234,.90);font-size:clamp(19px,1.85vw,21px);line-height:1.65}
+.sc-closing .body p.beat{color:#fff;font-weight:500;font-size:clamp(21px,2.2vw,26px)}
+.sc-closing .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start;margin-top:32px}
+.sc-closing .btn--ghost{color:#F1F2EA;border-color:rgba(255,255,255,.45);text-shadow:none}
+.sc-closing .btn--ghost:hover{background:rgba(255,255,255,.12)}
+.sc-closing .trust{margin-top:22px;font-size:16px;color:rgba(241,242,234,.85);display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap}
+.sc-closing .trust .st{color:#E8C36B;letter-spacing:.1em}
+
 @media(max-width:980px){
-  .sc-hero-grid,.combo-grid,.scan-grid{grid-template-columns:1fr}
-  .sc-hero-media,.scan-media{order:-1}
+  .sc-hero-grid,.combo-grid,.scan-grid,.safe-inner{grid-template-columns:1fr}
+  .sc-hero-media,.scan-media,.safe-media{order:-1}
   .bio-grid{grid-template-columns:1fr}
-  .std-grid{grid-template-columns:1fr}
+  .std-grid{grid-template-columns:repeat(3,1fr);row-gap:30px}
 }
 @media(max-width:560px){
   .sc-hero{padding:86px 0 44px}
+  .std-grid{grid-template-columns:1fr 1fr}
   .sc-cta-row .btn,.sc-closing .btns .btn{width:100%;justify-content:center}
 }
+
+/* accessibility & typography polish */
+.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--purple);color:#fff;
+  padding:10px 16px;border-radius:10px;font-weight:600;transition:top .2s}
+.skip-link:focus{top:12px;outline:2px solid #fff;outline-offset:2px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible,.nav-drop-btn:focus-visible{
+  outline:2px solid var(--purple);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{text-wrap:balance}
+p,li,.hero-sub,.lede{text-wrap:pretty}
+/* brand type: humanist body face (Montserrat/Gotham kept for headings, nav, buttons, labels) */
+p{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:0}
+/* brand accent (PMS 123 yellow) â white backgrounds only, used sparingly */
+.rating-badge .rstars,.rev .s{color:var(--accent)}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></svg>
 <div class="progress" id="progress"></div>
@@ -620,8 +655,8 @@ p{margin:0}
 <!-- ANNOUNCEMENT -->
 <div class="anews" id="anews">
   <div class="row">
-    <span><b>Heal Without Harm&trade;</b></span><span class="sep">&middot;</span>
-    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">&middot;</span>
+    <span><b>Heal Without Harmâ¢</b></span><span class="sep">Â·</span>
+    <span>60-Day Unconditional Money-Back Guarantee</span><span class="sep">Â·</span>
     <span>30% Off Plus Free U.S. Shipping on Your First Order</span>
   </div>
 </div>
@@ -630,9 +665,9 @@ p{margin:0}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html">
-      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <span style="display:none;flex-direction:column;line-height:1">
-        <b>Dr. Garber<span>&rsquo;s</span></b>
+        <b>Dr. Garber<span>âs</span></b>
         <small>Bioformulas</small>
       </span>
     </a>
@@ -641,11 +676,19 @@ p{margin:0}
       <a href="meet-dr-garber.html">Dr. Garber</a>
       <a href="#top">The Science</a>
       <a href="index.html#protocols">Protocols</a>
-      <a href="index.html#journey">My Journey</a>
+      <a href="meet-dr-garber.html#journey">My Journey</a>
       <a href="index.html#quiz">Find Yours</a>
       <a href="index.html#reviews">Reviews</a>
+      <div class="nav-drop">
+        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Blog <span class="caret" aria-hidden="true"></span></button>
+        <div class="nav-drop-menu" role="menu">
+          <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener" role="menuitem">Blog for Human Health</a>
+          <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener" role="menuitem">Blog for Animal Health</a>
+        </div>
+      </div>
     </div>
     <div class="nav-right">
+      <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener" class="btn btn--ghost nav-cta" style="padding:11px 18px">Practitioner Sign Up</a>
       <a href="index.html#protocols" class="btn btn--moss nav-cta" style="padding:11px 20px">Choose Your Protocol</a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span class="bars"><i></i><i></i><i></i></span>
@@ -659,9 +702,12 @@ p{margin:0}
     <a href="meet-dr-garber.html">Dr. Garber</a>
     <a href="#top">The Science</a>
     <a href="index.html#protocols">Protocols</a>
-    <a href="index.html#journey">My Journey</a>
+    <a href="meet-dr-garber.html#journey">My Journey</a>
     <a href="index.html#quiz">Find Yours</a>
     <a href="index.html#reviews">Reviews</a>
+    <a href="https://drgarbers.com/blogs/news" target="_blank" rel="noopener">Blog for Human Health</a>
+    <a href="https://drgarbers.com/blogs/pets" target="_blank" rel="noopener">Blog for Animal Health</a>
+    <a href="https://drgarbers.com/pages/practitioner-account-registration" target="_blank" rel="noopener">Practitioner Sign Up</a>
     <a href="index.html#protocols" class="mm-cta">Choose Your Protocol</a>
   </nav>
 </div>
@@ -669,11 +715,11 @@ p{margin:0}
 <span id="top"></span>
 
 <!-- 1. HERO -->
-<header class="sc-hero">
+<header class="sc-hero" id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="sc-hero-grid reveal">
       <div class="sc-hero-media">
-        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/ChatGPT_Image_26_Haz_2026_00_00_10_eysptv.png" alt="Plant, mineral and tissue biotherapies">
+        <img src="https://cdn.katalyst-crm.com/t1/ChatGPT%20Image%2011%20Ag%CC%86u%202026%2020_16_01.png" alt="Three biotherapies in one bioformula">
       </div>
       <div class="sc-hero-text">
         <span class="eyebrow">The Science</span>
@@ -714,56 +760,52 @@ p{margin:0}
       <h2>Three biotherapies. One bioformula.</h2>
     </div>
     <div class="bio-grid reveal">
-      <button class="bio-card" data-detail="det-gemmo">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c0-6 0-10 0-13"/><path d="M12 12c-3 0-6-2-6-6 4 0 6 2 6 6Z"/><path d="M12 9c0-3 2-6 6-6 0 4-3 6-6 6Z"/></svg></span>
+      <article class="bio-card">
+        <span class="ic"><img src="https://dashboard.katalyst-crm.com/files/t1/Gemmo%20example%20-%20ficus_carica_fruit.jpg" alt="Gemmotherapy source: fig (Ficus carica) young plant tissue" loading="lazy"></span>
         <h3>Gemmotherapy: the young plant</h3>
-        <p>Buds, shoots and seeds, harvested while the plant is still deciding what to become.</p>
-        <span class="more">Read the detail <span class="arr">&rarr;</span></span>
-      </button>
-      <button class="bio-card" data-detail="det-litho">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6-5 6 5-2 9H8L6 9Z"/><path d="M6 9h12"/><path d="M12 4v14"/></svg></span>
-        <h3>Lithotherapy: the whole rock</h3>
-        <p>Minerals used the way nature intended, naturally occurring compounds that work together, instead of isolated elements.</p>
-        <span class="more">Read the detail <span class="arr">&rarr;</span></span>
-      </button>
-      <button class="bio-card" data-detail="det-organo">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-6-4-8-8a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c-2 4-8 8-8 8Z"/></svg></span>
-        <h3>Organotherapy: the healthy tissue</h3>
-        <p>Healthy organ tissue, prepared homeopathically, to support an organ that is no longer functioning optimally.</p>
-        <span class="more">Read the detail <span class="arr">&rarr;</span></span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- 4. THE DETAIL -->
-<section class="detail">
-  <div class="wrap">
-    <div class="detail-list reveal" id="detailList">
-      <div class="det-item" id="det-gemmo">
-        <button class="det-head" aria-expanded="false">Gemmotherapy<span class="det-ico" aria-hidden="true"></span></button>
-        <div class="det-panel"><div class="pad">
-          <p>Take a plant at the moment it is still becoming itself: the bud, the seed, the shoot, the rootlet. Everything it needs to grow is concentrated there, and only there. Once the plant matures, most of it is gone. That timing is what separates gemmotherapy from an ordinary herbal extract.</p>
-          <p>These extracts are often called plant stem cells, because they are undifferentiated and capable of developing into every part of the mature plant. Each one has a traditional affinity for a particular organ or system. A single bioformula contains different gemmotherapies, each chosen to complement the others.</p>
+        <p>Young plant tissues, harvested at their most active stage of growth, selected to support specific organs and systems.</p>
+        <button class="more" aria-expanded="false">Read the detail <span class="arr">&rarr;</span></button>
+        <div class="bio-panel"><div class="bio-pad">
+          <p>Take a plant while it is still becoming itself: the bud, seed, shoot or rootlet. These young tissues contain compounds associated with the plant&rsquo;s active growth and development. That timing is what distinguishes gemmotherapy from an ordinary herbal extract made from the mature plant.</p>
+          <p>Sometimes described as &ldquo;plant stem cells,&rdquo; these embryonic tissues are undifferentiated and developing into the specialized structures of the mature plant. Different gemmotherapies have traditional affinities for different organs and systems, allowing Dr. Garber to select and combine them according to the biological function he wants to support.</p>
+          <p>In a Bioformula, gemmotherapy brings the active intelligence of the young plant into the formulation, supporting function, regulation and resilience.</p>
+          <p>Dr. Garber&rsquo;s gemmotherapies are prepared at 1DH (1X) potency and, unlike other gemmotherapy extracts, they are succussed as part of their homeopathic preparation.</p>
           <p>Certified organic and wild-harvested. AB certified in Occitanie, in the south of France, and certified organic by EcoCert France.</p>
         </div></div>
-      </div>
-      <div class="det-item" id="det-litho">
-        <button class="det-head" aria-expanded="false">Lithotherapy<span class="det-ico" aria-hidden="true"></span></button>
-        <div class="det-panel"><div class="pad">
-          <p>Minerals are your cells&rsquo; spark plugs, the catalysts behind the reactions that make energy. Dr. Garber&rsquo;s lithotherapies start as mineral-rich rock, triturated to a fine powder, homeopathically potentised, and blended into a solution.</p>
-          <p>Conventional mineral remedies isolate a single mineral. Lithotherapy keeps the whole matrix, so the minerals arrive the way they were found in nature, working together.</p>
+      </article>
+      <article class="bio-card">
+        <span class="ic"><img src="https://dashboard.katalyst-crm.com/files/t1/Litho%20example%20-%20rhodonite2.jpg" alt="Lithotherapy source: rhodonite, a mineral-rich rock" loading="lazy"></span>
+        <h3>Lithotherapy: the whole rock</h3>
+        <p>Mineral-rich rock, prepared homeopathically so its naturally occurring trace elements remain together rather than being treated as isolated minerals.</p>
+        <button class="more" aria-expanded="false">Read the detail <span class="arr">&rarr;</span></button>
+        <div class="bio-panel"><div class="bio-pad">
+          <p>Minerals and trace elements participate in countless biological processes throughout the body. Dr. Garber&rsquo;s lithotherapies begin with mineral-rich rock, triturated to a fine powder and made into an 8X homeopathic potency.</p>
+          <p>Rather than starting with a single isolated mineral, lithotherapy preserves the relationships among the naturally occurring mineral elements found within the original rock.</p>
+          <p>In a Bioformula, lithotherapy brings mineral and trace-element support to the systems the formula is designed to address.</p>
+          <p>Think of it as working with the mineral relationships nature created, rather than pulling one element out and asking it to work alone.</p>
+          <p>Like a spark plug in an engine, it helps initiate and support the system&rsquo;s overall function: small in itself, but essential in helping the larger process run smoothly and efficiently.</p>
         </div></div>
-      </div>
-      <div class="det-item" id="det-organo">
-        <button class="det-head" aria-expanded="false">Organotherapy<span class="det-ico" aria-hidden="true"></span></button>
-        <div class="det-panel"><div class="pad">
-          <p>A healthy organ or gland, prepared homeopathically, given to a body whose corresponding organ has lost the thread. It is designed to support the body&rsquo;s own regulatory processes: regulating, rebalancing, reminding.</p>
-          <p>This is not the same as eating raw organ tissue or taking a glandular supplement. The preparation follows established homeopathic methodology, so what arrives is a signal rather than a nutrient.</p>
-          <p>Tissues come from humanely raised cows and sheep: free-range grazing, species-appropriate diet, rigorous veterinary oversight. Homeopathically prepared organ tissue has been in use since 1836, back when every homeopath was a medical doctor.</p>
-          <p>Not certified kosher or halal, but permissible for observant Jews and Muslims. <a href="https://drgarbers.com/pages/kosher-and-halal-documentation" target="_blank" rel="noopener">Documentation available.</a></p>
+      </article>
+      <article class="bio-card">
+        <span class="ic"><img src="https://dashboard.katalyst-crm.com/files/t1/Organo%20example%20-%20parathyroid02.bmp" alt="Organotherapy source: healthy parathyroid tissue" loading="lazy"></span>
+        <h3>Organotherapy: the healthy tissue</h3>
+        <p>Healthy organ and glandular tissue, prepared homeopathically and selected for its affinity with the corresponding organ or system in the body.</p>
+        <button class="more" aria-expanded="false">Read the detail <span class="arr">&rarr;</span></button>
+        <div class="bio-panel"><div class="bio-pad">
+          <p>Organotherapy begins with healthy organ or glandular tissue and prepares it according to established homeopathic methods. Dr. Garber selects each organotherapy for its affinity with the corresponding organ, gland or biological system he wants the formula to support.</p>
+          <p>In a Bioformula, organotherapy provides the most targeted component of the three-biotherapy approach, supporting the body&rsquo;s own regulation and rebalancing of specific organs and systems.</p>
+          <p>This is not the same as eating raw organ tissue or taking a conventional glandular supplement. Dr. Garber&rsquo;s organotherapies are homeopathically prepared at potencies ranging from 5C to 9C.</p>
+          <p>Tissues come from humanely raised cows and sheep: free-range grazing, species-appropriate diets and rigorous veterinary oversight. Homeopathically prepared organ tissue has been used since the 19th century.</p>
+          <p>Not certified kosher or halal, but permissible for observant Jews and Muslims.</p>
         </div></div>
-      </div>
+      </article>
+    </div>
+
+    <div class="synthesis reveal">
+      <h3>Why combine all three?</h3>
+      <p class="beat">Because the body doesn&rsquo;t work in isolated parts, and neither do Dr. Garber&rsquo;s Bioformulas.</p>
+      <p>Gemmotherapy brings young plant support. Lithotherapy brings the mineral matrix. Organotherapy brings targeted organ and glandular support.</p>
+      <p>Three distinct biotherapies. Three complementary ways of supporting the body. One formula designed to work with the whole system.</p>
     </div>
   </div>
 </section>
@@ -795,6 +837,7 @@ p{margin:0}
 <section class="safe" id="safe">
   <div class="wrap">
     <div class="safe-inner reveal">
+      <div class="safe-copy">
       <h2>You can take this alongside whatever you are already on.</h2>
       <div class="checklist">
         <div class="check"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Safe for children, adults and animals.</p></div>
@@ -806,6 +849,10 @@ p{margin:0}
       <div class="safe-close">
         <p class="beat">In plain terms: a bioformula will not fight your regimen. In time, and with your doctor, you may find you need less of it.</p>
         <p>As always, decisions about your healthcare should be made in partnership with your healthcare provider.</p>
+      </div>
+      </div>
+      <div class="safe-media">
+        <img src="https://cdn.katalyst-crm.com/t1/ChatGPT%20Image%2011%20Ag%CC%86u%202026%2020_13_05.png" alt="A bioformula alongside everyday wellbeing" loading="lazy">
       </div>
     </div>
   </div>
@@ -820,11 +867,26 @@ p{margin:0}
       <p>These took years. Study, deliberation, training, experiment, failure, and then the unglamorous part: finding suppliers and manufacturers who cared about sourcing as much as Dr. Garber does.</p>
     </div>
     <div class="std-grid reveal">
-      <div class="std"><span class="n">01</span><p>Certified organic plant material. No pesticides, no GMOs, no synthetic fertilizer.</p></div>
-      <div class="std"><span class="n">02</span><p>Tissue extracted from free-range animals under veterinary oversight.</p></div>
-      <div class="std"><span class="n">03</span><p>Rock potentised in a white-room environment.</p></div>
-      <div class="std"><span class="n">04</span><p>Gluten free and GMO free.</p></div>
-      <div class="std"><span class="n">05</span><p>Recyclable packaging, minimally used.</p></div>
+      <div class="std">
+        <img class="std-badge" src="https://drgarbers.com/cdn/shop/files/Certifie_AB_Agriculture_Biologique.png" alt="Certifi&eacute; AB â Agriculture Biologique" loading="lazy">
+        <p>Certified organic plant material. No pesticides, no GMOs, no synthetic fertilizer.</p>
+      </div>
+      <div class="std">
+        <img class="std-badge" src="https://drgarbers.com/cdn/shop/files/Wild_Harvested_France.png" alt="Wild Harvested, France" loading="lazy">
+        <p>Tissue extracted from free-range animals under veterinary oversight.</p>
+      </div>
+      <div class="std">
+        <img class="std-badge" src="https://drgarbers.com/cdn/shop/files/Ecocert.png" alt="Ecocert certified" loading="lazy">
+        <p>Rock potentised in a white-room environment.</p>
+      </div>
+      <div class="std">
+        <img class="std-badge" src="https://drgarbers.com/cdn/shop/files/Gluten_Free_f0105aa5-5f8f-43af-8750-0edecf8c59f4.png" alt="Gluten Free" loading="lazy">
+        <p>Gluten free and GMO free.</p>
+      </div>
+      <div class="std">
+        <img class="std-badge" src="https://drgarbers.com/cdn/shop/files/Non_GMO_f49380a5-3f9c-42b3-bd94-441a96ed2f0a.png" alt="Non-GMO" loading="lazy">
+        <p>Recyclable packaging, minimally used.</p>
+      </div>
     </div>
     <p class="made-close reveal">Manufactured under Dr. Garber&rsquo;s supervision at homeopathic laboratories supplying more than 20 countries, to WHO Good Manufacturing Practice standards, regulated by the FDA and Health Canada.</p>
   </div>
@@ -835,7 +897,7 @@ p{margin:0}
   <div class="wrap">
     <div class="scan-grid reveal">
       <div class="scan-media">
-        <img src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/R0012111_dlnbfe.jpg" alt="Horses in Santa Fe" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/t1/IMG_4759.jpeg" alt="Dr. Garber with animals in Santa Fe" loading="lazy">
       </div>
       <div class="scan">
         <span class="eyebrow">People and animals</span>
@@ -845,20 +907,16 @@ p{margin:0}
           <p class="beat">The biotherapies are the same as the human line, held to the same standards, with the chemistry refined for the animal taking them. Just as safe. Just as effective.</p>
         </div>
         <div class="sc-cta-row">
-          <a href="https://drgarbers.com/collections/all-items" target="_blank" rel="noopener" class="btn">Remedies for dogs and horses <span class="arr">&rarr;</span></a>
+          <a href="https://drgarbers.com/collections/animals" target="_blank" rel="noopener" class="btn">Remedies for dogs and horses <span class="arr">&rarr;</span></a>
         </div>
+        <details class="btnote-mini">
+          <summary>A note on the word &ldquo;biotherapy&rdquo;</summary>
+          <div class="btnote-mini-body">
+            <p>Search for biotherapy and you will mostly find cancer drugs. The pharmaceutical industry usurped the word to mean biological therapy: using the immune system against cancer.</p>
+            <p>That is not what this is. Dr. Garber&rsquo;s bioformulas are rooted in the homeopathic biotherapies, which have carried that name far longer. The word got borrowed. We are using it the way it was meant.</p>
+          </div>
+        </details>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- 9. A NOTE ON THE WORD BIOTHERAPY -->
-<section class="btnote">
-  <div class="wrap">
-    <div class="box reveal">
-      <span class="lbl">A note on the word biotherapy</span>
-      <p>Search for biotherapy and you will mostly find cancer drugs. The pharmaceutical industry usurped the word to mean biological therapy: using the immune system against cancer.</p>
-      <p>That is not what this is. Dr. Garber&rsquo;s bioformulas are rooted in the homeopathic biotherapies, which have carried that name far longer. The word got borrowed. We are using it the way it was meant.</p>
     </div>
   </div>
 </section>
@@ -910,6 +968,7 @@ p{margin:0}
 <!-- 11. CLOSING -->
 <section class="sc-closing">
   <div class="wrap reveal">
+    <div class="inner">
     <p class="hwh">Heal Without Harm.</p>
     <div class="body">
       <p>Everything Dr. Garber has built, from his clinical practice to his research, to every bioformula bearing his name, comes back to one belief:</p>
@@ -925,6 +984,7 @@ p{margin:0}
       <span>&middot;</span>
       <span>60-day unconditional money-back guarantee</span>
     </div>
+    </div>
   </div>
 </section>
 <!-- FOOTER -->
@@ -932,9 +992,9 @@ p{margin:0}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garber&rsquo;s Bioformulas">
+        <img class="foot-logo" src="https://cdn.katalyst-crm.com/t1/sites/stuart-gaber/dr-garbers-bioformulas-logo_f42b2050-2186-436c-b5a1-478f93b0360f_l3pur6.webp" alt="Dr. Garberâs Bioformulas">
         <p>Three healing sciences: gemmotherapy, lithotherapy, and organotherapy, integrated into a single formula. Supporting your whole body as one connected system.</p>
-        <div class="hwh">Heal Without Harm&trade;</div>
+        <div class="hwh">Heal Without Harmâ¢</div>
       </div>
       <div class="foot-col">
         <h4>Protocols</h4>
@@ -947,8 +1007,8 @@ p{margin:0}
     </div>
     <p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>
     <div class="foot-fine">
-      <span>&#169; 2026 Dr. Garber&rsquo;s Bioformulas. All rights reserved.</span>
-      <span>60-Day Unconditional Money-Back Guarantee &middot; Heal Without Harm&trade;</span>
+      <span>Â© 2026 Dr. Garberâs Bioformulas. All rights reserved.</span>
+      <span>60-Day Unconditional Money-Back Guarantee Â· Heal Without Harmâ¢</span>
     </div>
   </div>
 </footer>
@@ -1001,24 +1061,21 @@ function toggleItem(scope,itemSel,headSel,panelSel,item,open){
   if(open){item.classList.add('open');panel.style.maxHeight=panel.scrollHeight+'px';btn.setAttribute('aria-expanded','true');}
   else{item.classList.remove('open');panel.style.maxHeight=null;btn.setAttribute('aria-expanded','false');}
 }
-accordion('#detailList','.det-item','.det-head','.det-panel');
 accordion('#faqList','.faq-item','.faq-head','.faq-panel');
 
-/* biotherapy cards open the matching detail panel */
+/* biotherapy cards: Read the detail toggles that card's panel (independent) */
 document.querySelectorAll('.bio-card').forEach(card=>{
-  card.addEventListener('click',()=>{
-    const id=card.dataset.detail, item=document.getElementById(id);
-    if(!item) return;
-    document.querySelectorAll('.bio-card').forEach(c=>c.classList.remove('open'));
-    card.classList.add('open');
-    toggleItem(document.getElementById('detailList'),'.det-item','.det-head','.det-panel',item,true);
-    const y=item.getBoundingClientRect().top+window.scrollY-100;
-    window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+  const btn=card.querySelector('.more'), panel=card.querySelector('.bio-panel');
+  if(!btn||!panel) return;
+  btn.addEventListener('click',()=>{
+    const open=card.classList.toggle('open');
+    panel.style.maxHeight=open?panel.scrollHeight+'px':null;
+    btn.setAttribute('aria-expanded',open?'true':'false');
   });
 });
 
 window.addEventListener('resize',()=>{
-  document.querySelectorAll('.det-item.open .det-panel,.faq-item.open .faq-panel').forEach(p=>{p.style.maxHeight=p.scrollHeight+'px';});
+  document.querySelectorAll('.bio-card.open .bio-panel,.faq-item.open .faq-panel').forEach(p=>{p.style.maxHeight=p.scrollHeight+'px';});
 });
 </script>
 </body>
